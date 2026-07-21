@@ -1,0 +1,15 @@
+# Keine Skriptausführung/-Auslieferung in diesem Upload-Ordner (Defense-in-Depth).
+# Falls hier je eine Skriptdatei landet, wird sie weder ausgeführt noch ausgeliefert.
+<FilesMatch "(?i)\.(php|php[0-9]*|phtml|phar|pht|cgi|pl|asp|aspx|jsp|jspx|py|rb|sh|exe|dll|htaccess)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_headers.c>
+  # Uploads sollen nie als HTML/Skript interpretiert werden
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="OpenTable Diners’ Choice 2025">
+  <circle cx="150" cy="150" r="150" fill="#da3743"/>
+  <!-- OpenTable-Marke -->
+  <circle cx="79" cy="60" r="7" fill="#fff"/>
+  <circle cx="106" cy="60" r="16" fill="#fff"/>
+  <circle cx="106" cy="60" r="6.5" fill="#da3743"/>
+  <text x="132" y="68" font-family="'Helvetica Neue', Arial, sans-serif" font-size="23" font-weight="600" fill="#fff">OpenTable</text>
+  <!-- Diners’ Choice -->
+  <text x="150" y="141" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#fff">Diners’</text>
+  <text x="150" y="196" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#fff">Choice</text>
+  <!-- Jahr -->
+  <text x="150" y="248" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="2" fill="#fff">2025</text>
+</svg>

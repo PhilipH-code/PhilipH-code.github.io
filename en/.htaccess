@@ -1,0 +1,2 @@
+# Englischer Seitenbaum: eigene Fehlerseite (Apache; php -S nutzt tools/preview-router.php)
+ErrorDocument 404 /en/404.html
