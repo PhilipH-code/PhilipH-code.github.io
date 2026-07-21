@@ -59,6 +59,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  background: #16120a;
 }
 
 body {
@@ -195,18 +196,16 @@ body::after {
 .header.is-scrolled::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -160px 0 0 0;
   z-index: -1;
-  background: rgba(113, 103, 63, 0.94);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: rgb(113, 103, 63);
 }
 .header__logo img { height: clamp(2.4rem, 4vw, 3.1rem); width: auto; }
 
 /* Navigation immer als Vollbild-Overlay (Burger), auch auf dem Desktop */
 .nav {
   position: fixed;
-  inset: 0;
+  inset: -160px 0;
   z-index: 115;
   display: flex;
   flex-direction: column;
@@ -1746,7 +1745,23 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
   transition: transform 0.45s var(--ease);
   will-change: transform;
 }
-.actionbar.is-hidden { transform: translateY(110%); }
+.actionbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(113, 103, 63);
+}
+.actionbar::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: rgb(113, 103, 63);
+}
+.actionbar.is-hidden { transform: translateY(calc(110% + 160px)); }
 .actionbar a {
   display: flex;
   align-items: center;
@@ -1758,7 +1773,7 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
-.actionbar__call { background: rgba(113, 103, 63, 0.96); color: var(--cream); }
+.actionbar__call { background: rgb(113, 103, 63); color: var(--cream); }
 .actionbar__book { background: var(--gold); color: var(--ink); }
 @media (max-width: 900px) {
   .actionbar { display: grid; }
@@ -2693,6 +2708,17 @@ h1 .ax, h2 .ax {
   position: fixed;
   inset: auto 0 0 0;
   padding-bottom: env(safe-area-inset-bottom);
+}
+.consent-banner::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: var(--pine);
+}
+.consent-banner {
   z-index: 300;
   background: var(--pine);
   color: var(--cream);
