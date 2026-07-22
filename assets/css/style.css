@@ -57,9 +57,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  background: #16120a;
+}
+html, body { height: 100%; }
+body { overflow: hidden; }
+/* Der eigentliche Scroller: die Seite bewegt sich nur noch hier drin.
+   Safari-Leisten-Animationen können so nie Inhalt über dem Header oder
+   unter der Aktionsleiste freilegen. */
+.page-scroll {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
-  background: #16120a;
 }
 
 body {
@@ -1779,7 +1790,7 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
   .actionbar { display: grid; }
   /* Siegel über die Aktionsleiste heben, damit es nicht verdeckt wird */
   .seal { bottom: calc(3.4rem + env(safe-area-inset-bottom) + 1.4rem); right: clamp(1rem, 3vw, 2rem); }
-  body { padding-bottom: 3.4rem; }
+  .page-scroll { padding-bottom: 3.4rem; }
   .footer { padding-bottom: 4.5rem; }
 }
 

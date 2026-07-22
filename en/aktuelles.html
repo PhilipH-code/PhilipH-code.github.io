@@ -17,7 +17,7 @@
   <meta name="ICBM" content="48.1553787, 11.5893823">
   <link rel="preload" href="/assets/fonts/futura-bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/futura-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/style.min.css?v=1784652248">
+  <link rel="stylesheet" href="/assets/css/style.min.css?v=1784699925">
   <!-- Miller Text via Adobe Fonts: Zeile aktivieren, sobald die Lizenz (Kit mms4gti) auf der Live-Domain freigeschaltet ist. Datenschutzerklärung dann um Adobe Fonts ergänzen. -->
   <!-- <link rel="stylesheet" href="https://use.typekit.net/mms4gti.css"> -->
   <noscript><style>.reveal,.hero__kicker,.hero .thin,.hero__sub,.hero__cta,.hero .seal,.hero .scroll-cue,.statement__text{opacity:1;transform:none}.hero__rule{transform:scaleX(1)}.hero__media img{transform:none}.loader{display:none}</style></noscript>
@@ -208,6 +208,11 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="progress" aria-hidden="true"></div>
+  <!-- Innerer Scroll-Container: die Seite scrollt zwischen den fixen Balken,
+       nicht im Browser-Root. iOS kann so beim Ein-/Ausfahren seiner Leisten
+       keinen Seiteninhalt mehr über dem Header oder unter der Aktionsleiste
+       freilegen (Root-Viewport bewegt sich, der innere Scroller nicht). -->
+  <div class="page-scroll" id="pagescroll">
   <header class="header is-scrolled" id="header">
     <div class="header__bar">
       <a class="header__logo" href="index.html" aria-label="Café Reitschule, to the homepage">
@@ -431,6 +436,7 @@
       </div>
     </div>
   </footer>
+  </div><!-- /.page-scroll -->
 
   <nav class="actionbar" aria-label="Quick access">
     <a class="actionbar__call" href="tel:+49893888760">Call</a>
@@ -493,6 +499,6 @@
   <script id="consent-config" type="application/json">{"version":1,"fonts":false,"pixel":""}</script>
   <script id="hours-data" type="application/json">{"s":[[540,1140],[690,1380],[690,1380],[690,1380],[690,1380],[690,1380],[540,1380]],"c":[],"t":{"now":"Open now · today until %s","today":"Opens today at %s","tomorrow":"Opens tomorrow at %s","on":"Opens on %s at %s","closedToday":"Closed today","uhr":"","noteTomorrow":"Tomorrow","noteDays":"In %s days (%s)","noteEarly":" open only until %s","noteClosed":" closed"}}</script>
   <script src="/assets/js/consent.js?v=1784030627" defer></script>
-  <script src="/assets/js/main.js?v=1784379115" defer></script>
+  <script src="/assets/js/main.js?v=1784699906" defer></script>
 </body>
 </html>

@@ -106,16 +106,27 @@
   var progress = document.querySelector(".progress");
   var heroMedia = document.querySelector(".hero__media");
 
+  /* Die Seite scrollt im inneren Container (.page-scroll), nicht im Root —
+     alle Scroll-Werte kommen von dort. Fallback: window (Admin, alte Seiten). */
+  var scroller = document.querySelector(".page-scroll");
+  var scrollHost = scroller || window;
+  var getScrollY = function () { return scroller ? scroller.scrollTop : window.scrollY; };
+  var getScrollMax = function () {
+    return scroller
+      ? scroller.scrollHeight - scroller.clientHeight
+      : document.documentElement.scrollHeight - window.innerHeight;
+  };
+
   var ticking = false;
   function onScroll() {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
-      var y = window.scrollY;
+      var y = getScrollY();
       header.classList.toggle("is-scrolled", y > 40);
 
       // Scroll progress hairline
-      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var max = getScrollMax();
       if (progress && max > 0) progress.style.width = (y / max) * 100 + "%";
 
       // Hero parallax (auf dem Wrapper, damit der Ken-Burns-Zoom des Bildes bleibt)
@@ -125,7 +136,7 @@
       ticking = false;
     });
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
+  scrollHost.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
 
@@ -599,10 +610,10 @@
   /* ---------- Aktionsleiste (mobil): beim Runterscrollen ausblenden, beim Hochscrollen zeigen ---------- */
   var actionbar = document.querySelector(".actionbar");
   if (actionbar) {
-    var lastY = window.scrollY;
+    var lastY = getScrollY();
     var barTicking = false;
     var updateBar = function () {
-      var y = window.scrollY;
+      var y = getScrollY();
       var goingDown = y > lastY;
       /* Nahe am Seitenanfang immer sichtbar; kleine Schwelle gegen Zittern */
       if (Math.abs(y - lastY) > 6) {
@@ -612,7 +623,7 @@
       }
       barTicking = false;
     };
-    window.addEventListener("scroll", function () {
+    scrollHost.addEventListener("scroll", function () {
       if (!barTicking) { window.requestAnimationFrame(updateBar); barTicking = true; }
     }, { passive: true });
   }
