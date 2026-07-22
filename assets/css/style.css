@@ -2718,6 +2718,7 @@ h1 .ax, h2 .ax {
    Einwilligung — Banner und Einstellungen, im CI des Hauses
    ============================================================ */
 .consent-banner {
+  display: none; /* Boot-Klasse (html) oder consent.js (body) blendet ein */
   position: fixed;
   inset: auto 0 0 0;
   padding-bottom: env(safe-area-inset-bottom);
@@ -2763,7 +2764,8 @@ h1 .ax, h2 .ax {
   padding: 0.9rem 0.4rem;
   border-bottom: 1px solid var(--gold-deep);
 }
-body.has-consent-banner .actionbar { display: none; }
+body.has-consent-banner .actionbar, html.rs-consent-open .actionbar { display: none; }
+html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { display: block; }
 
 .consent-dialog {
   border: 0;

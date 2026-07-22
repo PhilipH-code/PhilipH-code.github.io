@@ -60,6 +60,7 @@
 
   function hideBanner() {
     banner.hidden = true;
+    document.documentElement.classList.remove("rs-consent-open");
     document.body.classList.remove("has-consent-banner");
   }
 
@@ -76,8 +77,11 @@
   window.rsConsentPending = !current;
   if (current) {
     applyConsent(current);
+    /* Boot-Klasse räumen (z. B. nach Versionswechsel der Einwilligung) */
+    document.documentElement.classList.remove("rs-consent-open");
   } else {
     banner.hidden = false;
+    document.documentElement.classList.add("rs-consent-open");
     document.body.classList.add("has-consent-banner");
   }
 
