@@ -85,6 +85,9 @@
     var c = readConsent();
     setToggle(toggle, c ? c.external : false);
     setToggle(toggleM, c ? c.marketing : false);
+    var sc = document.querySelector(".page-scroll");
+    if (sc) sc.style.overflow = "hidden";
+    dialog.addEventListener("close", function () { if (sc) sc.style.overflow = ""; }, { once: true });
     if (typeof dialog.showModal === "function") dialog.showModal();
   }
 

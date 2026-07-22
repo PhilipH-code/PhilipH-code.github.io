@@ -33,13 +33,13 @@
       nav.classList.remove("is-open");
       burger.setAttribute("aria-expanded", "false");
       burger.setAttribute("aria-label", "Menü öffnen");
-      document.body.style.overflow = "";
+      lockBg(false);
     }
     burger.addEventListener("click", function () {
       var open = nav.classList.toggle("is-open");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
-      document.body.style.overflow = open ? "hidden" : "";
+      lockBg(open);
       if (open) {
         var first = nav.querySelector("a, button");
         if (first) first.focus();
@@ -116,6 +116,36 @@
       ? scroller.scrollHeight - scroller.clientHeight
       : document.documentElement.scrollHeight - window.innerHeight;
   };
+  /* Hintergrund-Scroll sperren (Burger, Lightbox, Popup): der Root ist eh
+     eingefroren, gesperrt werden muss der innere Scroller. */
+  var lockBg = function (on) {
+    if (scroller) scroller.style.overflow = on ? "hidden" : "";
+  };
+
+  document.querySelectorAll("dialog").forEach(function (dlg) {
+    dlg.addEventListener("close", function () { lockBg(false); });
+  });
+
+  /* Tastatur-Scrolling: Browser bedienen nur das (eingefrorene) Root-Element.
+     Space/Bild/Pfeile/Home/Ende deshalb explizit auf den Scroller routen —
+     außer ein Formularfeld, Button o. Ä. oder ein offener Dialog hat den Fokus. */
+  if (scroller) {
+    window.addEventListener("keydown", function (e) {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      var t = e.target;
+      if (t && (/^(INPUT|TEXTAREA|SELECT|BUTTON|A|SUMMARY)$/.test(t.tagName) || t.isContentEditable)) return;
+      if (document.querySelector("dialog[open]")) return;
+      var page = scroller.clientHeight * 0.88;
+      var jump = { "PageDown": page, "PageUp": -page, " ": e.shiftKey ? -page : page, "ArrowDown": 70, "ArrowUp": -70 };
+      if (e.key in jump) {
+        scroller.scrollBy({ top: jump[e.key], behavior: e.key.indexOf("Arrow") === 0 ? "auto" : "smooth" });
+        e.preventDefault();
+      } else if (e.key === "Home" || e.key === "End") {
+        scroller.scrollTo({ top: e.key === "Home" ? 0 : scroller.scrollHeight, behavior: "smooth" });
+        e.preventDefault();
+      }
+    });
+  }
 
   var ticking = false;
   function onScroll() {
@@ -344,6 +374,7 @@
       try { seen = sessionStorage.getItem(seenKey) === "1"; } catch (err) {}
       if (startOk && endOk && !seen && !window.rsConsentPending) {
         window.setTimeout(function () {
+          lockBg(true);
           popupEl.showModal();
           try { sessionStorage.setItem(seenKey, "1"); } catch (err) {}
         }, 2200);
@@ -484,6 +515,7 @@
         lbAlts = btns.map(function (b) { var im = b.querySelector("img"); return im ? im.alt : ""; });
         lbIndex = Math.max(0, btns.indexOf(btn));
         lbRender();
+        lockBg(true);
         lightbox.showModal();
         sliders.forEach(function (s) { s.stop(); });
       });
