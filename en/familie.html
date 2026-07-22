@@ -17,7 +17,7 @@
   <meta name="ICBM" content="48.1553787, 11.5893823">
   <link rel="preload" href="/assets/fonts/futura-bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/futura-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="/assets/js/consent-boot.js?v=1784712635"></script>
+  <script src="/assets/js/consent-boot.js?v=1784714685" data-v="2"></script>
   <link rel="stylesheet" href="/assets/css/style.min.css?v=1784712688">
   <!-- Miller Text via Adobe Fonts: Zeile aktivieren, sobald die Lizenz (Kit mms4gti) auf der Live-Domain freigeschaltet ist. Datenschutzerklärung dann um Adobe Fonts ergänzen. -->
   <!-- <link rel="stylesheet" href="https://use.typekit.net/mms4gti.css"> -->
@@ -461,9 +461,9 @@
 
   <div class="consent-banner" id="consent-banner" role="region" aria-label="Cookie notice">
     <div class="consent-banner__inner">
-      <p class="consent-banner__title">No tracking. Promised.</p>
+      <p class="consent-banner__title">Your data, your choice.</p>
       <p class="consent-banner__text">
-        This site works without advertising or analytics cookies. We store only what is technically necessary. External content loads only once you agree.        <a href="datenschutz.html">More in our privacy policy</a>.
+        Our own reach measurement works without cookies. Statistics cookies, external content and marketing load only once you agree.        <a href="datenschutz.html">More in our privacy policy</a>.
       </p>
       <div class="consent-banner__actions">
         <button type="button" class="btn btn--solid" data-consent="all">Accept all</button>
@@ -499,6 +499,14 @@
 
       <div class="consent-cat">
         <div class="consent-cat__head">
+          <strong>Statistics</strong>
+          <button type="button" class="consent-toggle" id="consent-toggle-analytics" role="switch" aria-checked="false" aria-label="Allow statistics"></button>
+        </div>
+        <p>Google Analytics 4 helps us understand how the website is used. It loads only after your consent and then sets cookies; data may be transferred to the USA (Google is certified under the EU-US Data Privacy Framework). Not currently used.</p>
+      </div>
+
+      <div class="consent-cat">
+        <div class="consent-cat__head">
           <strong>Marketing</strong>
           <button type="button" class="consent-toggle" id="consent-toggle-marketing" role="switch" aria-checked="false" aria-label="Allow marketing"></button>
         </div>
@@ -512,9 +520,9 @@
       <p class="consent-dialog__foot">Withdraw anytime here via “Cookie settings” in the footer · <a href="datenschutz.html">Privacy</a> · <a href="impressum.html">Imprint</a></p>
     </div>
   </dialog>
-  <script id="consent-config" type="application/json">{"version":1,"fonts":false,"pixel":""}</script>
+  <script id="consent-config" type="application/json">{"version":2,"fonts":false,"pixel":"","ga":""}</script>
   <script id="hours-data" type="application/json">{"s":[[540,1140],[690,1380],[690,1380],[690,1380],[690,1380],[690,1380],[540,1380]],"c":[],"t":{"now":"Open now · today until %s","today":"Opens today at %s","tomorrow":"Opens tomorrow at %s","on":"Opens on %s at %s","closedToday":"Closed today","uhr":"","noteTomorrow":"Tomorrow","noteDays":"In %s days (%s)","noteEarly":" open only until %s","noteClosed":" closed"}}</script>
-  <script src="/assets/js/consent.min.js?v=1784712688" defer></script>
+  <script src="/assets/js/consent.min.js?v=1784714967" defer></script>
   <script src="/assets/js/main.min.js?v=1784712688" defer></script>
 </body>
 </html>

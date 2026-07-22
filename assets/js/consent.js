@@ -1,5 +1,5 @@
 /* ============================================================
-   Café Reitschule — Einwilligungs-Manager (§ 25 TTDSG, DSGVO)
+   Café Reitschule — Einwilligungs-Manager (§ 25 TDDDG, DSGVO)
    Kein Tracking. Speichert nur die Entscheidung selbst.
    ============================================================ */
 (function () {
@@ -10,7 +10,7 @@
   var dialog = document.getElementById("consent-dialog");
   if (!cfgEl || !banner || !dialog) return;
 
-  var cfg = { version: 1, fonts: false, pixel: "" };
+  var cfg = { version: 2, fonts: false, pixel: "", ga: "" };
   try { cfg = JSON.parse(cfgEl.textContent); } catch (err) {}
 
   var KEY = "rs-consent";
@@ -23,8 +23,8 @@
     return null;
   }
 
-  function writeConsent(external, marketing) {
-    var c = { v: cfg.version, ts: new Date().toISOString(), external: !!external, marketing: !!marketing };
+  function writeConsent(external, marketing, analytics) {
+    var c = { v: cfg.version, ts: new Date().toISOString(), external: !!external, marketing: !!marketing, analytics: !!analytics };
     try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (err) {}
     return c;
   }
@@ -37,6 +37,24 @@
       l.rel = "stylesheet";
       l.href = "https://use.typekit.net/mms4gti.css";
       document.head.appendChild(l);
+    }
+    /* Google Analytics 4: nur mit Einwilligung, nur wenn im Admin konfiguriert.
+       Wird komplett erst NACH der Einwilligung geladen; Consent-Mode-Signale
+       setzen wir trotzdem explizit (Werbe-Speicher bleibt verweigert). */
+    if (c && c.analytics && cfg.ga && !window.__rsGa) {
+      window.__rsGa = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("consent", "default", {
+        ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
+        analytics_storage: "granted"
+      });
+      window.gtag("js", new Date());
+      window.gtag("config", cfg.ga);
+      var g = document.createElement("script");
+      g.async = true;
+      g.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
+      document.head.appendChild(g);
     }
     /* Meta Pixel: nur mit Einwilligung, nur wenn im Admin konfiguriert */
     if (c && c.marketing && cfg.pixel && !window.fbq) {
@@ -52,6 +70,28 @@
 
   var toggle = document.getElementById("consent-toggle-external");
   var toggleM = document.getElementById("consent-toggle-marketing");
+  var toggleA = document.getElementById("consent-toggle-analytics");
+
+  /* Tracking-Cookies entfernen (Widerruf und als Nachlese bei jedem Laden,
+     falls ein Skript kurz vor dem Neuladen noch geschrieben hat) */
+  function killTrackingCookies() {
+    document.cookie.split(";").forEach(function (part) {
+      var name = part.split("=")[0].trim();
+      if (/^(_ga|_gid|_gat|_fbp|_fbc)/.test(name)) {
+        var kill = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        document.cookie = kill;
+        document.cookie = kill + "; domain=" + location.hostname;
+        document.cookie = kill + "; domain=." + location.hostname;
+      }
+    });
+  }
+
+  function revokeCleanup(before, after) {
+    var downgraded = before && ((before.analytics && !after.analytics) || (before.marketing && !after.marketing));
+    if (!downgraded) return;
+    killTrackingCookies();
+    location.reload();
+  }
 
   function setToggle(t, on) {
     t.classList.toggle("is-on", !!on);
@@ -64,12 +104,14 @@
     document.body.classList.remove("has-consent-banner");
   }
 
-  function decide(external, marketing) {
-    var c = writeConsent(external, marketing);
+  function decide(external, marketing, analytics) {
+    var before = readConsent();
+    var c = writeConsent(external, marketing, analytics);
     applyConsent(c);
     hideBanner();
     if (dialog.open) dialog.close();
     window.rsConsentPending = false;
+    revokeCleanup(before, c);
   }
 
   /* Banner nur zeigen, wenn noch keine (gültige) Entscheidung vorliegt */
@@ -79,6 +121,9 @@
     applyConsent(current);
     /* Boot-Klasse räumen (z. B. nach Versionswechsel der Einwilligung) */
     document.documentElement.classList.remove("rs-consent-open");
+    /* Nachlese: ohne Statistik-/Marketing-Einwilligung dürfen keine
+       Tracking-Cookies liegen bleiben */
+    if (!current.analytics && !current.marketing) killTrackingCookies();
   } else {
     banner.hidden = false;
     document.documentElement.classList.add("rs-consent-open");
@@ -89,13 +134,14 @@
     var c = readConsent();
     setToggle(toggle, c ? c.external : false);
     setToggle(toggleM, c ? c.marketing : false);
+    setToggle(toggleA, c ? !!c.analytics : false);
     var sc = document.querySelector(".page-scroll");
     if (sc) sc.style.overflow = "hidden";
     dialog.addEventListener("close", function () { if (sc) sc.style.overflow = ""; }, { once: true });
     if (typeof dialog.showModal === "function") dialog.showModal();
   }
 
-  [toggle, toggleM].forEach(function (t) {
+  [toggle, toggleM, toggleA].forEach(function (t) {
     t.addEventListener("click", function () { setToggle(t, !t.classList.contains("is-on")); });
   });
 
@@ -103,9 +149,9 @@
     var el = e.target.closest("[data-consent]");
     if (el) {
       var action = el.getAttribute("data-consent");
-      if (action === "all") decide(true, true);
-      if (action === "necessary") decide(false, false);
-      if (action === "save") decide(toggle.classList.contains("is-on"), toggleM.classList.contains("is-on"));
+      if (action === "all") decide(true, true, true);
+      if (action === "necessary") decide(false, false, false);
+      if (action === "save") decide(toggle.classList.contains("is-on"), toggleM.classList.contains("is-on"), toggleA.classList.contains("is-on"));
       if (action === "settings" || action === "open") { e.preventDefault(); openSettings(); }
       if (action === "close") dialog.close();
       return;
