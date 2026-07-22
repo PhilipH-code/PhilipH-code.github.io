@@ -2598,6 +2598,7 @@ h1 .ax, h2 .ax {
 
 /* Menüblatt — die immergleiche Menü-Gestaltung des Hauses */
 .menu-sheet {
+  color: var(--ink); /* eigener Farbraum: das Blatt liegt auch im dunklen Band */
   background: var(--paper);
   border: 1px solid var(--gold-deep);
   outline: 1px solid var(--line);
@@ -2611,7 +2612,7 @@ h1 .ax, h2 .ax {
 .menu-sheet__title { font-size: clamp(1.8rem, 4.5vw, 3rem); margin-top: 1rem; color: var(--green); }
 .menu-sheet__subtitle { font-family: var(--serif); font-style: italic; margin-top: 0.7rem; color: var(--gold-deep); }
 .menu-sheet__section { margin-top: clamp(2rem, 4vw, 2.8rem); }
-.menu-sheet__section h3 {
+.menu-sheet__section h3, .menu-sheet__section h4 {
   font-size: 0.85rem;
   letter-spacing: 0.42em;
   color: var(--gold-deep);
@@ -2620,7 +2621,8 @@ h1 .ax, h2 .ax {
   gap: 1.2rem;
   justify-content: center;
 }
-.menu-sheet__section h3::before, .menu-sheet__section h3::after {
+.menu-sheet__section h3::before, .menu-sheet__section h3::after,
+.menu-sheet__section h4::before, .menu-sheet__section h4::after {
   content: "";
   width: 3rem;
   height: 1px;
@@ -3061,6 +3063,134 @@ body.has-consent-banner .actionbar { display: none; }
 .lightbox__nav [data-lb="prev"] { left: 1rem; }
 .lightbox__nav [data-lb="next"] { right: 1rem; }
 
+/* ============================================================
+   Die Kartenmappe — Einbände als gefächerter Stapel, darunter
+   das aufgeschlagene Blatt auf dunklem Filz
+   ============================================================ */
+.mappe { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.mappe__covers {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  padding: 0 0 1.6rem;
+}
+.mappe__cover {
+  position: relative;
+  cursor: pointer;
+  width: clamp(11rem, 16vw, 14rem);
+  min-height: 13rem;
+  margin-left: -1.6rem;
+  rotate: calc((var(--n) - 2) * 1.4deg);
+  translate: 0 calc((var(--n) - 2) * (var(--n) - 2) * 0.12rem);
+  z-index: calc(10 - var(--n));
+  transition: rotate 0.45s var(--ease), translate 0.45s var(--ease), border-color 0.45s var(--ease), background 0.45s var(--ease);
+  box-shadow: -0.6rem 0.4rem 1.6rem rgba(10, 8, 4, 0.35);
+  font: inherit;
+  text-align: center;
+}
+.mappe__cover:first-child { margin-left: 0; }
+.mappe__cover:hover { translate: 0 -0.5rem; }
+.mappe__cover[aria-selected="true"] {
+  rotate: 0deg;
+  translate: 0 -0.9rem;
+  z-index: 20;
+  border-color: var(--gold);
+  background: rgba(240, 236, 221, 0.1);
+}
+.mappe__cover[aria-selected="true"] .menu-cover__open { color: var(--gold-light); }
+.mappe__cover .menu-cover__title { font-size: clamp(1.05rem, 1.4vw, 1.3rem); }
+.mappe__cover .menu-cover__note { font-size: 0.74rem; }
+
+.mappe__stage { position: relative; }
+.mappe__blatt {
+  max-width: 52rem;
+  margin: 0 auto;
+  box-shadow: 0 1.8rem 4rem -1.4rem rgba(8, 6, 3, 0.65);
+}
+.mappe__blatt + .mappe__blatt { margin-top: clamp(2rem, 4vw, 3rem); } /* No-JS: alle untereinander */
+.mappe__blatt.is-entering { animation: blattAuf 0.5s var(--ease); }
+@keyframes blattAuf {
+  from { opacity: 0; transform: translateY(1.2rem); }
+}
+.mappe__gaenge {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 1.8rem 0 0.4rem;
+}
+.mappe__gaenge a {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.75rem;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.mappe__gaenge a:hover { border-color: var(--gold-deep); color: var(--ink); }
+.mappe__pdfonly {
+  font-family: var(--serif);
+  font-style: italic;
+  text-align: center;
+  margin-top: 2rem;
+}
+.mappe__stand {
+  font-size: 0.68rem !important;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.mappe__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+/* Buttons liegen auf hellem Blatt: dunkle Werte statt Creme-Kontur */
+.mappe__actions .btn { color: var(--ink); border-color: var(--gold-deep); }
+.mappe__actions .btn--solid { color: var(--ink); }
+.mappe__actions .btn--dark { background: var(--green); color: var(--cream); border-color: var(--green); }
+
+@media (max-width: 760px) {
+  /* Einbände als Snap-Leiste, nicht gestapelt */
+  .mappe__covers {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.6rem 0.2rem 1.2rem;
+    scrollbar-width: none;
+  }
+  .mappe__covers::-webkit-scrollbar { display: none; }
+  .mappe__cover {
+    flex: 0 0 auto;
+    width: 11rem;
+    min-height: 11rem;
+    margin-left: 0.7rem;
+    rotate: 0deg;
+    translate: none;
+    scroll-snap-align: center;
+    box-shadow: 0 0.4rem 1.2rem rgba(10, 8, 4, 0.3);
+  }
+  .mappe__cover:first-child { margin-left: 0; }
+  .mappe__cover[aria-selected="true"] { translate: 0 -0.35rem; }
+  .mappe__cover .menu-cover__note { display: none; }
+  .mappe__blatt { padding-inline: 1.1rem; }
+  .mappe__gaenge { justify-content: flex-start; }
+  .mappe__gaenge a { padding: 0.45rem 0.7rem; }
+  .menu-sheet__price { display: block; margin-left: 0; margin-top: 0.2rem; }
+}
+
+@media print {
+  /* Nur das aufgeschlagene Blatt drucken */
+  .mappe__covers, .mappe__actions, .mappe__gaenge { display: none !important; }
+  .mappe__blatt[hidden] { display: none !important; }
+  .mappe__blatt { box-shadow: none; }
+}
 /* Gutscheine: zwei Wege + Kleingedrucktes */
 .voucher-ways {
   display: grid;

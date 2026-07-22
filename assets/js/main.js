@@ -699,6 +699,58 @@
     }
   }
 
+  /* ---------- Kartenmappe: Einband wählt das Blatt (Tab-Muster) ----------
+     Ohne JS liegen alle Blätter untereinander — hidden setzt erst dieses Skript. */
+  var mappe = document.querySelector("[data-mappe]");
+  if (mappe) {
+    var mpTabs = Array.prototype.slice.call(mappe.querySelectorAll("[data-mappe-tab]"));
+    var mpSelect = function (id, focus) {
+      mpTabs.forEach(function (tab) {
+        var on = tab.getAttribute("data-mappe-tab") === id;
+        tab.setAttribute("aria-selected", on ? "true" : "false");
+        tab.setAttribute("tabindex", on ? "0" : "-1");
+        if (on && focus) tab.focus();
+        if (on && tab.scrollIntoView) {
+          /* Snap-Leiste mobil: gewählten Einband in die Mitte holen */
+          try { tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); } catch (err) {}
+        }
+      });
+      mappe.querySelectorAll("[data-mappe-blatt]").forEach(function (blatt) {
+        var on = blatt.getAttribute("data-mappe-blatt") === id;
+        blatt.hidden = !on;
+        blatt.classList.toggle("is-entering", on);
+      });
+      try { sessionStorage.setItem("rs-karte", id); } catch (err) {}
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+    };
+    mpTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () { mpSelect(tab.getAttribute("data-mappe-tab"), false); });
+    });
+    mappe.querySelector('[role="tablist"]').addEventListener("keydown", function (e) {
+      var i = mpTabs.findIndex(function (t) { return t.getAttribute("aria-selected") === "true"; });
+      var n = mpTabs.length, j = -1;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") j = (i + 1) % n;
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") j = (i - 1 + n) % n;
+      else if (e.key === "Home") j = 0;
+      else if (e.key === "End") j = n - 1;
+      if (j >= 0) { e.preventDefault(); mpSelect(mpTabs[j].getAttribute("data-mappe-tab"), true); }
+    });
+    /* Startkarte: Deep-Link (#weine) > gemerkte Wahl > erste Karte */
+    var mpStart = null;
+    var mpHash = location.hash.replace("#", "");
+    if (mpHash && mappe.querySelector('[data-mappe-tab="' + mpHash + '"]')) mpStart = mpHash;
+    if (!mpStart) {
+      try { var mem = sessionStorage.getItem("rs-karte"); if (mem && mappe.querySelector('[data-mappe-tab="' + mem + '"]')) mpStart = mem; } catch (err) {}
+    }
+    mpSelect(mpStart || mpTabs[0].getAttribute("data-mappe-tab"), false);
+    if (mpHash && mpStart === mpHash) {
+      requestAnimationFrame(function () {
+        var band = document.getElementById("karten-pdf");
+        if (band) band.scrollIntoView();
+      });
+    }
+  }
+
   /* ---------- Current year ---------- */
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
