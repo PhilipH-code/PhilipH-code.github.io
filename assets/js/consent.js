@@ -115,19 +115,28 @@
   }
 
   /* Banner nur zeigen, wenn noch keine (gültige) Entscheidung vorliegt */
-  var current = readConsent();
-  window.rsConsentPending = !current;
-  if (current) {
-    applyConsent(current);
-    /* Boot-Klasse räumen (z. B. nach Versionswechsel der Einwilligung) */
-    document.documentElement.classList.remove("rs-consent-open");
-    /* Nachlese: ohne Statistik-/Marketing-Einwilligung dürfen keine
-       Tracking-Cookies liegen bleiben */
-    if (!current.analytics && !current.marketing) killTrackingCookies();
-  } else {
-    banner.hidden = false;
-    document.documentElement.classList.add("rs-consent-open");
-    document.body.classList.add("has-consent-banner");
+  function syncBanner() {
+    var current = readConsent();
+    window.rsConsentPending = !current;
+    if (current) {
+      applyConsent(current);
+      /* Boot-Klasse räumen (z. B. nach Versionswechsel der Einwilligung) */
+      hideBanner();
+      /* Nachlese: ohne Statistik-/Marketing-Einwilligung dürfen keine
+         Tracking-Cookies liegen bleiben */
+      if (!current.analytics && !current.marketing) killTrackingCookies();
+    } else {
+      banner.hidden = false;
+      document.documentElement.classList.add("rs-consent-open");
+      document.body.classList.add("has-consent-banner");
+    }
+  }
+  syncBanner();
+  /* Vorgerenderte Seiten (Speculation Rules): Die Entscheidung kann zwischen
+     Prerender und Aktivierung gefallen sein — beim Aktivieren neu prüfen,
+     sonst zeigt die Folgeseite den Banner trotz erteilter Einwilligung. */
+  if (document.prerendering) {
+    document.addEventListener("prerenderingchange", syncBanner, { once: true });
   }
 
   function openSettings() {

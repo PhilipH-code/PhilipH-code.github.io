@@ -710,10 +710,6 @@
         tab.setAttribute("aria-selected", on ? "true" : "false");
         tab.setAttribute("tabindex", on ? "0" : "-1");
         if (on && focus) tab.focus();
-        if (on && tab.scrollIntoView) {
-          /* Snap-Leiste mobil: gewählten Einband in die Mitte holen */
-          try { tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); } catch (err) {}
-        }
       });
       mappe.querySelectorAll("[data-mappe-blatt]").forEach(function (blatt) {
         var on = blatt.getAttribute("data-mappe-blatt") === id;
@@ -724,7 +720,15 @@
       if (history.replaceState) history.replaceState(null, "", "#" + id);
     };
     mpTabs.forEach(function (tab) {
-      tab.addEventListener("click", function () { mpSelect(tab.getAttribute("data-mappe-tab"), false); });
+      tab.addEventListener("click", function () {
+        var id = tab.getAttribute("data-mappe-tab");
+        mpSelect(id, false);
+        /* Blattanfang ins Bild holen — mobil steht das Register über dem Blatt,
+           ohne den Sprung bliebe der Kartenwechsel unsichtbar. Nur bei Klick:
+           bei Pfeiltasten muss der Fokus im Register sichtbar bleiben. */
+        var blatt = mappe.querySelector('[data-mappe-blatt="' + id + '"]');
+        if (blatt) requestAnimationFrame(function () { blatt.scrollIntoView(); });
+      });
     });
     mappe.querySelector('[role="tablist"]').addEventListener("keydown", function (e) {
       var i = mpTabs.findIndex(function (t) { return t.getAttribute("aria-selected") === "true"; });
