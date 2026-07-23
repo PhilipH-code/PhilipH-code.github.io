@@ -3069,45 +3069,93 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
    Die Kartenmappe — Einbände als gefächerter Stapel, darunter
    das aufgeschlagene Blatt auf dunklem Filz
    ============================================================ */
-.mappe { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
-.mappe__covers {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 0;
-  padding: 0 0 1.6rem;
+.mappe {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: minmax(17rem, 21rem) 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+  text-align: left;
 }
-.mappe__cover {
-  position: relative;
-  cursor: pointer;
-  width: clamp(11rem, 16vw, 14rem);
-  min-height: 13rem;
-  margin-left: -1.6rem;
-  rotate: calc((var(--n) - 2) * 1.4deg);
-  translate: 0 calc((var(--n) - 2) * (var(--n) - 2) * 0.12rem);
-  z-index: calc(10 - var(--n));
-  transition: rotate 0.45s var(--ease), translate 0.45s var(--ease), border-color 0.45s var(--ease), background 0.45s var(--ease);
-  box-shadow: -0.6rem 0.4rem 1.6rem rgba(10, 8, 4, 0.35);
+/* Das Register: ruhiges Inhaltsverzeichnis, bleibt beim Lesen sichtbar */
+.mappe__register {
+  position: sticky;
+  top: calc(6.5rem + env(safe-area-inset-top));
+  border-top: 1px solid rgba(179, 153, 100, 0.4);
+}
+.mappe__tab {
+  /* Button-Reset: Zeile statt Schaltfläche */
+  background: transparent;
+  border: 0;
   font: inherit;
-  text-align: center;
+  color: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  display: grid;
+  grid-template-columns: 2.1rem 1fr auto;
+  align-items: baseline;
+  column-gap: 0.9rem;
+  width: 100%;
+  padding: 1.05rem 0.2rem;
+  border-bottom: 1px solid rgba(179, 153, 100, 0.4) !important;
+  text-align: left;
+  cursor: pointer;
+  transition: padding-left 0.35s var(--ease);
 }
-.mappe__cover:first-child { margin-left: 0; }
-.mappe__cover:hover { translate: 0 -0.5rem; }
-.mappe__cover[aria-selected="true"] {
-  rotate: 0deg;
-  translate: 0 -0.9rem;
-  z-index: 20;
-  border-color: var(--gold);
-  background: rgba(240, 236, 221, 0.1);
+.mappe__tab-idx {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--gold);
 }
-.mappe__cover[aria-selected="true"] .menu-cover__open { color: var(--gold-light); }
-.mappe__cover .menu-cover__title { font-size: clamp(1.05rem, 1.4vw, 1.3rem); }
-.mappe__cover .menu-cover__note { font-size: 0.74rem; }
+.mappe__tab-body strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  transition: color 0.3s var(--ease);
+}
+.mappe__tab-body small {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(240, 236, 221, 0.62);
+}
+/* Marker: feine Goldlinie, wächst beim aktiven Eintrag zur vollen Länge */
+.mappe__tab-mark {
+  align-self: center;
+  width: 1.1rem;
+  height: 1px;
+  background: rgba(179, 153, 100, 0.45);
+  transition: width 0.35s var(--ease), background 0.35s var(--ease);
+}
+.mappe__tab:hover .mappe__tab-body strong { color: var(--gold-light); }
+.mappe__tab[aria-selected="true"] {
+  padding-left: 0.55rem;
+}
+.mappe__tab[aria-selected="true"] .mappe__tab-body strong { color: var(--gold-light); }
+.mappe__tab[aria-selected="true"] .mappe__tab-idx { color: var(--gold-light); }
+.mappe__tab[aria-selected="true"] .mappe__tab-mark { width: 2.2rem; background: var(--gold); }
+.mappe__tab:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
 
+@media (max-width: 900px) {
+  .mappe { grid-template-columns: 1fr; gap: 1.8rem; }
+  .mappe__register { position: static; }
+  .mappe__tab { padding: 0.95rem 0.1rem; }
+  .mappe__tab-body small { font-size: 0.76rem; }
+  .mappe__blatt { padding-inline: 1.1rem; }
+  .mappe__gaenge { justify-content: flex-start; }
+  .mappe__gaenge a { padding: 0.45rem 0.7rem; }
+}
 .mappe__stage { position: relative; }
 .mappe__blatt {
   max-width: 52rem;
-  margin: 0 auto;
+  margin: 0;
   box-shadow: 0 1.8rem 4rem -1.4rem rgba(8, 6, 3, 0.65);
 }
 .mappe__blatt + .mappe__blatt { margin-top: clamp(2rem, 4vw, 3rem); } /* No-JS: alle untereinander */
@@ -3157,39 +3205,11 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 .mappe__actions .btn--solid { color: var(--ink); }
 .mappe__actions .btn--dark { background: var(--green); color: var(--cream); border-color: var(--green); }
 
-@media (max-width: 760px) {
-  /* Einbände als Snap-Leiste, nicht gestapelt */
-  .mappe__covers {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 0.6rem 0.2rem 1.2rem;
-    scrollbar-width: none;
-  }
-  .mappe__covers::-webkit-scrollbar { display: none; }
-  .mappe__cover {
-    flex: 0 0 auto;
-    width: 11rem;
-    min-height: 11rem;
-    margin-left: 0.7rem;
-    rotate: 0deg;
-    translate: none;
-    scroll-snap-align: center;
-    box-shadow: 0 0.4rem 1.2rem rgba(10, 8, 4, 0.3);
-  }
-  .mappe__cover:first-child { margin-left: 0; }
-  .mappe__cover[aria-selected="true"] { translate: 0 -0.35rem; }
-  .mappe__cover .menu-cover__note { display: none; }
-  .mappe__blatt { padding-inline: 1.1rem; }
-  .mappe__gaenge { justify-content: flex-start; }
-  .mappe__gaenge a { padding: 0.45rem 0.7rem; }
-  .menu-sheet__price { display: block; margin-left: 0; margin-top: 0.2rem; }
-}
+
 
 @media print {
   /* Nur das aufgeschlagene Blatt drucken */
-  .mappe__covers, .mappe__actions, .mappe__gaenge { display: none !important; }
+  .mappe__register, .mappe__actions, .mappe__gaenge { display: none !important; }
   .mappe__blatt[hidden] { display: none !important; }
   .mappe__blatt { box-shadow: none; }
 }
