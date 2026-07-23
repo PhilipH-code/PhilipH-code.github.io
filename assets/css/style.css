@@ -3117,15 +3117,6 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
   color: var(--cream);
   transition: color 0.3s var(--ease);
 }
-.mappe__tab-body small {
-  display: block;
-  margin-top: 0.3rem;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: rgba(240, 236, 221, 0.62);
-}
 /* Marker: feine Goldlinie, wächst beim aktiven Eintrag zur vollen Länge */
 .mappe__tab-mark {
   align-self: center;
@@ -3147,7 +3138,6 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
   .mappe { grid-template-columns: 1fr; gap: 1.8rem; }
   .mappe__register { position: static; }
   .mappe__tab { padding: 0.95rem 0.1rem; }
-  .mappe__tab-body small { font-size: 0.76rem; }
   .mappe__blatt { padding-inline: 1.1rem; }
 }
 /* min-width:0 — sonst treibt die nowrap-Pill-Zeile die Grid-Spalte
