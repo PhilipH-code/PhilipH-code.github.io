@@ -1280,6 +1280,21 @@ body::after { opacity: 0.03; }
   padding-left: 1.1rem;
   border-left: 1px solid rgba(179, 153, 100, 0.5);
 }
+/* Reservieren direkt im Hero: die Überschrift verspricht Reservierung,
+   also gehört die Handlung hierher, nicht erst ans Seitenende */
+.page-hero__cta {
+  margin-top: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+.page-hero__call {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.page-hero__call:hover { color: var(--gold-light); }
 
 /* Brotkrumen */
 .breadcrumb {

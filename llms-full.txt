@@ -1,6 +1,6 @@
 # Café Reitschule München — Volltexte
 
-> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 23. Juli 2026
+> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 24. Juli 2026
 
 ## Café Reitschule München | Restaurant am Englischen Garten
 
@@ -1910,6 +1910,9 @@ Wir freuen uns auf Sie
  Kontakt und Reservierung 
  Königinstraße 34, direkt am Englischen Garten. 
  Das Café Reitschule liegt an der Königinstraße 34 in München-Schwabing, direkt am Englischen Garten. Reservieren können Sie rund um die Uhr online über OpenTable oder telefonisch unter +49 89 38 88 76 0.
+
+Online reservieren 
+ +49 89 38 88 76 0
 
 ### Kontaktdaten
 
