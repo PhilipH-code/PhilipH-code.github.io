@@ -391,11 +391,16 @@
   function track(params) {
     if (dnt || location.protocol === "file:") return;
     var q = Object.keys(params).map(function (k) { return k + "=" + encodeURIComponent(params[k]); }).join("&");
-    var url = "t.php?" + q;
+    /* root-relativ: auf /en/-Seiten würde "t.php" sonst zu /en/t.php (404) */
+    var url = "/t.php?" + q;
     if (navigator.sendBeacon) navigator.sendBeacon(url);
     else { var i = new Image(); i.src = url; }
   }
-  track({ p: location.pathname, r: document.referrer || "" });
+  /* Vorgerenderte Seiten (Speculation Rules) erst zählen, wenn sie wirklich
+     angezeigt werden: Anfragen aus dem Prerender verwirft t.php bewusst */
+  function pageview() { track({ p: location.pathname, r: document.referrer || "" }); }
+  if (document.prerendering) document.addEventListener("prerenderingchange", pageview, { once: true });
+  else pageview();
   document.addEventListener("click", function (e) {
     var a = e.target.closest("a[href], button");
     if (!a) return;

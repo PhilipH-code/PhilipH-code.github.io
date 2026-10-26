@@ -146,6 +146,11 @@ ul { list-style: none; }
   opacity: 0.6;
 }
 .on-dark .eyebrow { color: var(--gold); }
+/* Weiche Trennstellen (soft_hyphen im Template) nur auf schmalen Bildschirmen:
+   ab 701 px ignoriert hyphens: none sie vollständig, das Layout bleibt unverändert */
+@media (min-width: 701px) { h2 { -webkit-hyphens: none; hyphens: none; } }
+/* Eyebrows (kleine Versalzeilen) erst unter 390 px trennen: darüber passen sie in den Bildschirm */
+@media (min-width: 390px) { .eyebrow { -webkit-hyphens: none; hyphens: none; } }
 
 h1, h2, h3 { line-height: 1.05; text-wrap: balance; }
 
@@ -1200,6 +1205,10 @@ body::after {
 /* ---------- Legal pages ---------- */
 .legal-page { padding-top: clamp(8rem, 16vw, 11rem); }
 .legal-page h1 { font-size: clamp(1.6rem, 5vw, 3.4rem); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2.5rem; overflow-wrap: break-word; hyphens: auto; }
+/* Lange Rechtsbegriffe (Verbraucherstreitbeilegung) auf sehr schmalen Handys umbrechen;
+   break-word greift nur, wenn ein Wort sonst überstünde */
+.legal-page h2 { overflow-wrap: break-word; }
+@media (max-width: 359px) { .legal-page h2 { -webkit-hyphens: auto; hyphens: auto; } }
 .legal-page h2 { font-size: clamp(1.2rem, 2.4vw, 1.6rem); margin: 2.8rem 0 1rem; }
 .legal-page h3 { font-size: 1.05rem; margin: 1.8rem 0 0.6rem; }
 .legal-page p, .legal-page li { margin-bottom: 0.8rem; max-width: 46rem; overflow-wrap: anywhere; }

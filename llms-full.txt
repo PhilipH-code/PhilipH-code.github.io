@@ -1,6 +1,6 @@
 # Café Reitschule München — Volltexte
 
-> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 24. Juli 2026
+> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 25. Oktober 2026
 
 ## Café Reitschule München | Restaurant am Englischen Garten
 
@@ -59,21 +59,21 @@ Ein Wohnzimmer für Schwabing. Seit bald hundert Jahren gedeckt.
 Als Nächstes 
  Alle Termine →
 
-Fr 
- 24 
- Jul
+Sa 
+ 31 
+ Okt
 
-Champagnernacht auf der Panoramaterrasse 
- 24. Juli 2026 · 18:00 Uhr · Panoramaterrasse
+Halloween Horror Mansion 
+ 31. Oktober 2026 · 20:00 Uhr · Reitschule & Moro Mou
 
 →
 
-Sa 
- 1 
- Aug
+Do 
+ 12 
+ Nov
 
-White Night am Englischen Garten 
- 1. August 2026 · 17:00 Uhr · Ganzes Haus & Moro Mou
+Champagnernacht auf der Panoramaterrasse 
+ 12. November 2026 · 18:00 Uhr · Panoramaterrasse
 
 →
 
@@ -1459,7 +1459,7 @@ Gute Gründe, heute zu kommen
 
 Jeden Sonntag
 
-### Sonntagsbrunch in Schwabing
+### Sonntags­brunch in Schwabing
 
 Jeden Sonntag von 09:30 bis 15:00 Uhr, als Buffet im Moro Mou. Ein langer Tisch, ein langer Vormittag, keine Eile.
 
@@ -2029,44 +2029,62 @@ Kalender
 
 ### Die nächsten Termine
 
-### Juli 2026
+### Oktober 2026
 
 Als Nächstes
 
-Fr 
- 24 
- Jul
+Sa 
+ 31 
+ Okt
+
+### Halloween Horror Mansion
+
+Am Samstag, 31. Oktober, wird es wieder dunkel am Englischen Garten. Reitschule und Moro Mou verwandeln sich in eine große Halloween-Welt mit mehreren Areas, DJs, Dinner und Drinks.
+
+Samstag, 31. Oktober 2026 · 20:00 Uhr · Reitschule & Moro Mou · Einlass ab 18 Jahren
+
+Drei Welten an einem Abend: House und Mykonos-Gefühl im Moro Mou, 80er, 90er und 2000er in der Orangerie, Charts und Urban Sound auf dem Rooftop und im Horrorsaal. Wer den Abend mit Dinner beginnen möchte, reserviert vorab einen Tisch. Beginn 20 Uhr, Einlass ab 18 Jahren.
+
+Mehr erfahren
+
+Jetzt Tisch sichern 
+ Jetzt Tickets sichern
+
+### November 2026
+
+Do 
+ 12 
+ Nov
 
 ### Champagnernacht auf der Panoramaterrasse
 
-Ein Sommerabend über der Königinstraße. Champagner glasweise, Austern von der Bar. Dazu ein DJ, der leise genug bleibt zum Reden. Wenn es dunkel wird, übernehmen die Lichterketten.
+Ein Abend über der Königinstraße. Champagner glasweise, Austern von der Bar. Dazu ein DJ, der leise genug bleibt zum Reden. Wenn es dunkel wird, übernehmen die Lichterketten.
 
-Freitag, 24. Juli 2026 · 18:00 Uhr · Panoramaterrasse · Eintritt frei, Reservierung empfohlen
+Donnerstag, 12. November 2026 · 18:00 Uhr · Panoramaterrasse · Eintritt frei, Reservierung empfohlen
 
 Reserviert wird wie immer über OpenTable. Wer früher kommt, bekommt die Plätze an der Balustrade, dort ist der Blick am weitesten.
 
 Mehr erfahren
 
-Jetzt Tisch sichern 
- +49 89 38 88 76 0
+Jetzt Tisch sichern
 
-### August 2026
+### Dezember 2026
 
-Sa 
- 1 
- Aug
+Do 
+ 31 
+ Dez
 
-### White Night am Englischen Garten
+### Silvester 26/27
 
-Eine Nacht in Weiß, im ganzen Haus und im Moro Mou. Drei Areas, drei Klangfarben: elektronische Clubsounds, Pop und mediterrane Beats mit internationalen DJs. Vorher Aperitivo und Küche wie immer.
+Ein glanzvoller Jahreswechsel in festlicher Atmosphäre. Champagnerempfang, ein großes Galabuffet und DJs auf zwei Ebenen begleiten Sie ins neue Jahr.
 
-Samstag, 1. August 2026 · 17:00 Uhr · Ganzes Haus & Moro Mou · Tickets über Eventbrite
+Donnerstag, 31. Dezember 2026 · 19:00 Uhr · Das ganze Haus · 139 € pro Person · Galabuffet
 
-Von 17 bis 3 Uhr. Erwünscht sind mindestens 50 Prozent Weiß am Körper. Einlass ab 18 Jahren, die Plätze sind begrenzt.
+Ab 19 Uhr Einlass und Champagnerempfang, ab 20 Uhr ist das Galabuffet eröffnet. Um Mitternacht zählen wir gemeinsam herunter. Dresscode von Black Tie bis Smart Casual, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
 
 Mehr erfahren
 
-Tickets auf Eventbrite
+Jetzt Tisch sichern
 
 Gut zu wissen
 
@@ -2307,7 +2325,7 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
 ### Restaurant bestuhlt
 
@@ -2407,7 +2425,7 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
 ### Orangerie bestuhlt
 
@@ -2507,7 +2525,7 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
 ### Lounge bestuhlt
 
@@ -2607,7 +2625,7 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
 ### Studio bestuhlt
 
@@ -2679,7 +2697,7 @@ Erdgeschoss · überdacht · Raum 05 von 07
 
 Der Raum
 
-### Panoramaterrasse in Zahlen
+### Panorama­terrasse in Zahlen
 
 Die Panoramaterrasse liegt geschützt am Haus. Der Blick geht ins Grün des Englischen Gartens, abends übernehmen die Lichterketten. Überdacht und mit Heizstrahlern, verlässlich von Frühjahr bis in den Herbst. 
  Einer der schönsten Plätze Schwabings für Feste unter freiem Himmel, ohne das Wetterrisiko.
@@ -2707,9 +2725,9 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
-### Panoramaterrasse bestuhlt
+### Panorama­terrasse bestuhlt
 
 Beispielhafte Anordnungen für diesen Raum. Die Gästezahlen stehen in den Plänen. Wir stellen für Ihren Anlass passend um.
 
@@ -2719,7 +2737,7 @@ Beispielhafte Anordnungen für diesen Raum. Die Gästezahlen stehen in den Plän
 
 Gut zu wissen
 
-### Fragen zu Panoramaterrasse
+### Fragen zu Panorama­terrasse
 
 Wie viele Gäste haben Platz? 
  Panoramaterrasse: bestuhlt bis 160 Gäste, beim Empfang bis 220. Die Fläche misst 180 m².
@@ -2732,7 +2750,7 @@ Wie frage ich unverbindlich an?
 
 Anfrage
 
-### Die Panoramaterrasse für Ihr Fest
+### Die Panorama­terrasse für Ihr Fest
 
 Erzählen Sie uns von Ihrem Anlass. Wir antworten schnell und beraten Sie gern persönlich.
 
@@ -2779,7 +2797,7 @@ Erdgeschoss · unüberdacht · Raum 06 von 07
 
 Der Raum
 
-### Königinterrasse in Zahlen
+### Königin­terrasse in Zahlen
 
 Die Königinterrasse ist die große Sommerbühne des Hauses: alte Bäume, Kies, Sonnenschirme, der Englische Garten einen Steinwurf entfernt. 
  Unüberdacht und genau deshalb der Ort für lange Sommerabende. Bis 180 Gäste an Tischen, bis 250 beim Empfang.
@@ -2809,7 +2827,7 @@ Auch interessant:
 
 Gut zu wissen
 
-### Fragen zu Königinterrasse
+### Fragen zu Königin­terrasse
 
 Wie viele Gäste haben Platz? 
  Königinterrasse: bestuhlt bis 180 Gäste, beim Empfang bis 250. Die Fläche misst 260 m².
@@ -2822,7 +2840,7 @@ Wie frage ich unverbindlich an?
 
 Anfrage
 
-### Die Königinterrasse für Ihr Fest
+### Die Königin­terrasse für Ihr Fest
 
 Erzählen Sie uns von Ihrem Anlass. Wir antworten schnell und beraten Sie gern persönlich.
 
@@ -2869,7 +2887,7 @@ Obergeschoss · Raum 07 von 07
 
 Der Raum
 
-### Sonnenterrasse in Zahlen
+### Sonnen­terrasse in Zahlen
 
 Die Sonnenterrasse liegt im Obergeschoss über der Königinstraße, Abendsonne inklusive. Sie gehört zum Studio und macht aus der eigenen Etage ein Fest mit Draußen und Drinnen. 
  Bis 150 Gäste bestuhlt. In Kombination mit dem Studio feiern bis zu 300 Gäste auf einer Ebene.
@@ -2897,9 +2915,9 @@ Auch interessant:
  Zurück zum Grundriss 
  Alle Räume im Überblick
 
-Bestuhlungsvarianten
+Bestuhlungs­varianten
 
-### Sonnenterrasse bestuhlt
+### Sonnen­terrasse bestuhlt
 
 Beispielhafte Anordnungen für diesen Raum. Die Gästezahlen stehen in den Plänen. Wir stellen für Ihren Anlass passend um.
 
@@ -2909,7 +2927,7 @@ Beispielhafte Anordnungen für diesen Raum. Die Gästezahlen stehen in den Plän
 
 Gut zu wissen
 
-### Fragen zu Sonnenterrasse
+### Fragen zu Sonnen­terrasse
 
 Wie viele Gäste haben Platz? 
  Sonnenterrasse: bestuhlt bis 150 Gäste, beim Empfang bis 200. Die Fläche misst 228 m².
@@ -2922,7 +2940,7 @@ Wie frage ich unverbindlich an?
 
 Anfrage
 
-### Die Sonnenterrasse für Ihr Fest
+### Die Sonnen­terrasse für Ihr Fest
 
 Erzählen Sie uns von Ihrem Anlass. Wir antworten schnell und beraten Sie gern persönlich.
 
