@@ -3739,3 +3739,37 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 
 /* Landingpages: Eigennamen in der H1 nicht automatisch trennen ("Englischen") */
 .page-hero--lp h1 { -webkit-hyphens: manual; hyphens: manual; }
+
+/* ---------- Geschlossene Gesellschaften ---------- */
+.closures { border-top: 1px solid var(--line); }
+.closures .cal-row__flag { display: none; }
+/* Hervorgehoben ist der erste noch sichtbare Termin, auch nachdem der Browser
+   abgelaufene ausgeblendet hat (ohne neuen Build) */
+.closures .cal-row:nth-child(1 of .cal-row:not([hidden])) {
+  border: 1px solid var(--gold-deep);
+  outline: 1px solid var(--line);
+  outline-offset: 4px;
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 1.4rem 0;
+  background: var(--paper);
+}
+.closures .cal-row:nth-child(1 of .cal-row:not([hidden])) .cal-row__flag { display: block; }
+.closures__empty { padding: 2rem 0; font-family: var(--serif); font-style: italic; }
+.closures__sign { margin-top: 1.4rem; font-family: var(--serif); font-style: italic; color: var(--gold-deep); }
+.closures__hours .brunch-prices { margin-top: 1rem; }
+.closures__kitchen { margin-top: 1rem; font-size: 0.92rem; }
+.closures__hours .open-badge { margin-top: 1rem; }
+.closures__hours .page-hero__call { display: inline-block; margin-top: 1.4rem; }
+/* Aktuelles-Karte: nur der nächste Termin */
+.closures-next span { display: block; }
+.closures-next span:not([hidden]) ~ span { display: none; }
+/* Kontakt: Link unter den Öffnungszeiten */
+.hours-link { display: inline-block; margin-top: 0.9rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.hours-link:hover { color: var(--ink); }
+@media (min-width: 761px) {
+  .closures .cal-row:nth-child(1 of .cal-row:not([hidden])):hover { padding-left: clamp(1.6rem, 3vw, 2.2rem); }
+}
+@media (max-width: 760px) {
+  .closures .cal-row:nth-child(1 of .cal-row:not([hidden])) { padding: 1.2rem 1rem 1.1rem; margin: 1.1rem 0; }
+}
+.closures-next:not(:has(span:not([hidden]))) { display: none; }
