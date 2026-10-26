@@ -412,16 +412,22 @@
   }
   /* Vorgerenderte Seiten (Speculation Rules) erst zählen, wenn sie wirklich
      angezeigt werden: Anfragen aus dem Prerender verwirft t.php bewusst */
-  function pageview() { track({ p: location.pathname, r: document.referrer || "" }); }
+  /* Herkunft dieser Seite: Referrer und utm_source (ChatGPT & Co. hängen ihn an
+     Links). Klicks senden sie mit, so lassen sich Reservierungen aus KI-Besuchen
+     zählen, ohne Cookie und ohne etwas im Browser zu speichern. */
+  var utm = (location.search.match(/[?&]utm_source=([^&#]{1,40})/i) || [])[1] || "";
+  try { utm = decodeURIComponent(utm); } catch (err) { utm = ""; }
+  var origin = { r: document.referrer || "", u: utm };
+  function pageview() { track({ p: location.pathname, r: origin.r, u: origin.u }); }
   if (document.prerendering) document.addEventListener("prerenderingchange", pageview, { once: true });
   else pageview();
   document.addEventListener("click", function (e) {
     var a = e.target.closest("a[href], button");
     if (!a) return;
     var href = (a.getAttribute("href") || "").toLowerCase();
-    if (href.indexOf("opentable") !== -1) track({ p: location.pathname, e: "reservieren" });
-    else if (href.indexOf("tel:") === 0) track({ p: location.pathname, e: "anruf" });
-    else if (href.indexOf("mailto:") === 0) track({ p: location.pathname, e: "email" });
+    if (href.indexOf("opentable") !== -1) track({ p: location.pathname, e: "reservieren", r: origin.r, u: origin.u });
+    else if (href.indexOf("tel:") === 0) track({ p: location.pathname, e: "anruf", r: origin.r, u: origin.u });
+    else if (href.indexOf("mailto:") === 0) track({ p: location.pathname, e: "email", r: origin.r, u: origin.u });
   }, { passive: true });
 
   /* ---------- Flip-Karten: erster Tipp dreht, zweiter folgt dem Link ---------- */
