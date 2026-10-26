@@ -19,6 +19,19 @@
   Array.prototype.forEach.call(document.querySelectorAll("[data-expires]"), function (el) {
     if (el.getAttribute("data-expires") < todayIso) el.hidden = true;
   });
+  /* Saisonale Inhalte, ebenfalls ohne neuen Build: data-from erst ab einem
+     Datum zeigen, data-after erst NACH einem Datum (z. B. "Silvester ist
+     vorbei"), data-season hebt ein Element im Zeitraum "von|bis" hervor. */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-from]"), function (el) {
+    if (el.getAttribute("data-from") > todayIso) el.hidden = true;
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-after]"), function (el) {
+    el.hidden = !(el.getAttribute("data-after") < todayIso);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-season]"), function (el) {
+    var r = el.getAttribute("data-season").split("|");
+    el.classList.toggle("is-season", todayIso >= r[0] && todayIso <= r[1]);
+  });
 
   /* Druck-Button (Menü-Seiten) — CSP-konform statt inline onclick */
   document.addEventListener("click", function (e) {

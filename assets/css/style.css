@@ -3555,3 +3555,187 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
   .map-figure .map-svg--wide { display: none; }
   .map-figure .map-svg--tall { display: block; }
 }
+
+/* ==========================================================
+   Landingpages Brunch & Silvester (templates/pages/brunch.php, silvester.php)
+   ========================================================== */
+/* Datumsgesteuerte Elemente (main.js) müssen sicher verschwinden, auch wenn
+   ihre Komponente ein eigenes display setzt (z. B. grid bei Kalenderzeilen) */
+[data-expires][hidden], [data-from][hidden], [data-after][hidden] { display: none !important; }
+
+/* Festlicher Hero für Silvester: ein Hauch Gold von oben rechts */
+.page-hero--festive {
+  background:
+    radial-gradient(ellipse 70% 90% at 92% -10%, rgba(200, 174, 122, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 8% 110%, rgba(135, 106, 57, 0.18), transparent 65%),
+    var(--pine);
+}
+
+/* Auf einen Blick: Kennzahlen unter dem Hero */
+.keyfacts-band { background: var(--paper); border-bottom: 1px solid var(--line); }
+.keyfacts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0;
+}
+.keyfacts--6 { grid-template-columns: repeat(6, 1fr); }
+.keyfacts > div {
+  padding: clamp(1.3rem, 2.6vw, 1.9rem) clamp(0.8rem, 1.6vw, 1.4rem);
+  border-left: 1px solid var(--line);
+}
+.keyfacts > div:first-child { border-left: 0; padding-left: 0; }
+.keyfacts dt {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.keyfacts dd { margin: 0.45rem 0 0; font-weight: 700; font-size: 1rem; line-height: 1.35; color: var(--ink); }
+.keyfacts dd small {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--gold-deep);
+}
+@media (max-width: 1000px) {
+  .keyfacts, .keyfacts--6 { grid-template-columns: repeat(3, 1fr); }
+  .keyfacts > div { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+  .keyfacts > div:nth-child(-n + 3) { border-top: 0; }
+}
+@media (max-width: 600px) {
+  .keyfacts, .keyfacts--6 { grid-template-columns: repeat(2, 1fr); column-gap: 1.2rem; }
+  .keyfacts > div:nth-child(3) { border-top: 1px solid var(--line); }
+}
+
+/* Alles inklusive: Getränke als ruhige Versalzeile */
+.lp-drinks {
+  list-style: none;
+  padding: 0;
+  margin: clamp(1.8rem, 4vw, 2.6rem) auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 0;
+}
+.lp-drinks li {
+  font-size: clamp(0.8rem, 1.6vw, 0.98rem);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 0 clamp(0.7rem, 1.8vw, 1.3rem);
+}
+.lp-drinks li + li { border-left: 1px solid var(--gold); }
+
+/* Das Buffet: Stationen im Raster */
+.stations {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.8rem, 3.5vw, 3rem) clamp(1.2rem, 2.6vw, 2.4rem);
+  margin-top: clamp(2.2rem, 4.5vw, 3.4rem);
+}
+.station { border-top: 1px solid var(--gold); padding-top: 1.1rem; }
+.station__idx { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; color: var(--gold-deep); }
+.station h3 { font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0.55rem 0 0.6rem; }
+.station p { font-family: var(--serif); font-size: 0.98rem; line-height: 1.65; margin: 0; }
+@media (max-width: 1000px) { .stations { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .stations { grid-template-columns: 1fr; } }
+
+.split.split--top { align-items: start; }
+.brunch-prices--lg { font-size: 1rem; max-width: 30rem; margin-top: 1.6rem; }
+.lp-note {
+  margin-top: 1.8rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  max-width: 30rem;
+}
+.lp-note h3 { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.6rem; }
+.lp-note p { font-size: 0.95rem; margin: 0.35rem 0 0; }
+
+/* Silvester: Inklusive-Leistungen auf dunklem Band */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(1.8rem, 4vw, 2.8rem);
+}
+.highlight { text-align: center; padding: 0.4rem clamp(0.8rem, 2vw, 1.6rem); }
+.highlight + .highlight { border-left: 1px solid var(--line-light); }
+.highlight h3 {
+  font-size: clamp(0.92rem, 1.7vw, 1.08rem);
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.highlight p { font-family: var(--serif); font-style: italic; margin-top: 0.6rem; opacity: 0.85; }
+@media (max-width: 800px) {
+  .highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.8rem; }
+  .highlight:nth-child(3) { border-left: 0; }
+}
+/* Schmale Handys: untereinander, sonst sprengt "Champagnerempfang" die Spalte */
+@media (max-width: 520px) {
+  .highlights { grid-template-columns: 1fr; row-gap: 0; }
+  .highlight { padding: 1.1rem 0; }
+  .highlight + .highlight { border-left: 0; border-top: 1px solid var(--line-light); }
+}
+
+/* Programm: Zeitleiste */
+.programme-list { list-style: none; padding: 0; margin: clamp(1.8rem, 4vw, 2.6rem) 0 0; border-top: 1px dotted var(--line); }
+.programme-list li {
+  display: grid;
+  grid-template-columns: clamp(6rem, 18vw, 9rem) 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(0.9rem, 2vw, 1.2rem) 0;
+  border-bottom: 1px dotted var(--line);
+}
+.programme-list time {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  letter-spacing: 0.04em;
+  color: var(--gold-deep);
+  font-variant-numeric: tabular-nums;
+}
+.programme-list span { font-family: var(--serif); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+.programme-list li.is-midnight time, .programme-list li.is-midnight span { color: var(--ink); }
+.programme-list li.is-midnight span { font-style: italic; font-weight: 700; }
+
+/* Galabuffet als Menüblatt */
+.lp-sheet { max-width: 52rem; margin: clamp(2rem, 4vw, 3rem) auto 0; }
+
+/* Nach Silvester: Dank-Hinweis */
+.lp-after { background: var(--paper); border-bottom: 1px solid var(--line); }
+
+/* Aktuelles: Silvester-Karte, in der Saison groß und an erster Stelle */
+.news-card--season.is-season {
+  grid-column: 1 / -1;
+  order: -1;
+  background: var(--pine);
+  color: var(--cream);
+  border-color: var(--gold);
+}
+.news-card--season.is-season h3 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--cream); }
+.news-card--season.is-season .num, .news-card--season.is-season .more { color: var(--gold-light); }
+.news-card--season.is-season p { max-width: 44rem; }
+
+/* Links zu eigenen Seiten (Kalender, Aktuelles) */
+.page-hero__call--ink { color: var(--gold-deep); }
+.page-hero__call--ink:hover { color: var(--ink); }
+.cal-row h3 a { color: inherit; text-decoration: none; }
+.cal-row h3 a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--gold); }
+.cal-row__page { display: inline-block; margin-top: 0.7rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.cal-row__page:hover { color: var(--ink); }
+
+/* Längere Hinweise im Reservierungsband: gut lesbar statt in Versalien */
+.reserve__fine { margin: 1rem auto 0; max-width: 34rem; font-family: var(--serif); font-size: 0.98rem; line-height: 1.7; opacity: 0.85; }
+.reserve__fine + .reserve__fine { margin-top: 0.6rem; }
+/* Einleitungssatz direkt unter einer Überschrift */
+.lp-lead { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); }
+
+/* Landingpages: Eigennamen in der H1 nicht automatisch trennen ("Englischen") */
+.page-hero--lp h1 { -webkit-hyphens: manual; hyphens: manual; }
