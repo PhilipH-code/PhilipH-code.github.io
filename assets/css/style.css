@@ -3776,3 +3776,66 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 
 /* FAQ: Kurzporträt unter der Überschrift (Startseite) */
 .faq__lead { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); max-width: 46rem; }
+
+/* ---------- Landingpages Frühstück & Hochzeit ---------- */
+/* Leistungen in drei Spalten (6 Bausteine = 2 Reihen) */
+.highlights--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 2.2rem; }
+.highlights--3 .highlight:nth-child(3n + 1) { border-left: 0; }
+@media (max-width: 800px) {
+  .highlights--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .highlights--3 .highlight { border-left: 1px solid var(--line-light); }
+  .highlights--3 .highlight:nth-child(odd) { border-left: 0; }
+}
+@media (max-width: 520px) {
+  .highlights--3 { grid-template-columns: 1fr; row-gap: 0; }
+  .highlights--3 .highlight, .highlights--3 .highlight:nth-child(odd) { border-left: 0; }
+  .highlights--3 .highlight + .highlight { border-top: 1px solid var(--line-light); }
+}
+/* Links unter einem Abschnitt (PDF, alle Karten, Kontakt) */
+.lp-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; justify-content: center; margin-top: clamp(1.6rem, 3vw, 2.2rem); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.lp-links a { color: var(--gold-light); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.lp-links a:hover { color: var(--cream); }
+.section:not(.on-dark) .lp-links a { color: var(--gold-deep); }
+.section:not(.on-dark) .lp-links a:hover { color: var(--ink); }
+/* Frühstück oder Brunch: zwei Spalten im Vergleich */
+.compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2rem); margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+.compare__col { background: var(--paper); border: 1px solid var(--line); padding: clamp(1.3rem, 3vw, 2rem); }
+.compare__col--here { border-color: var(--gold-deep); outline: 1px solid var(--line); outline-offset: 4px; }
+.compare__col h3 { font-size: 1.05rem; letter-spacing: 0.14em; color: var(--green); }
+.compare__col dl { margin: 1.1rem 0 0; border-top: 1px dotted var(--line); }
+.compare__col dl div { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.8rem; padding: 0.55rem 0; border-bottom: 1px dotted var(--line); }
+.compare__col dt { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep); padding-top: 0.2rem; }
+.compare__col dd { margin: 0; font-family: var(--serif); font-size: 0.98rem; line-height: 1.5; }
+.compare__col .cal-row__page { margin-top: 1.1rem; }
+@media (max-width: 700px) {
+  .compare { grid-template-columns: 1fr; }
+  .compare__col dl div { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+/* Ansprechpartner auf der Hochzeitsseite */
+.lp-team { border-top: 1px solid var(--line); }
+/* Hochzeit: Gäste-Wegweiser (welcher Raum für wie viele Gäste) */
+.guest-guide { margin-top: clamp(1.8rem, 4vw, 2.6rem); background: var(--paper); border: 1px solid var(--line); padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.2rem, 3vw, 2rem); max-width: 46rem; }
+.guest-guide h3 { font-size: 0.82rem; letter-spacing: 0.18em; color: var(--green); }
+.guest-guide dl { margin: 0.9rem 0 0; border-top: 1px dotted var(--line); }
+.guest-guide dl div { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px dotted var(--line); align-items: baseline; }
+.guest-guide dt { font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); font-variant-numeric: tabular-nums; }
+.guest-guide dd { margin: 0; font-family: var(--serif); }
+.guest-guide dd a { color: var(--ink); border-bottom: 1px solid var(--gold); }
+.guest-guide dd small { color: var(--muted, #6b6252); font-size: 0.85em; margin-left: 0.35rem; }
+.guest-guide__all dd { font-style: italic; }
+@media (max-width: 600px) { .guest-guide dl div { grid-template-columns: 1fr; gap: 0.1rem; } .guest-guide dd small { display: block; margin: 0.1rem 0 0; } }
+/* Wege von der Reitschule (Fotos im Englischen Garten) */
+.lp-distances { list-style: none; padding: 0; margin: 1.4rem 0 0; border-top: 1px dotted var(--line-light); max-width: 30rem; }
+.lp-distances li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px dotted var(--line-light); font-size: 0.92rem; }
+.lp-distances li span:last-child { font-weight: 700; color: var(--gold-light); white-space: nowrap; }
+.lp-source { margin-top: 1rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.lp-source a { color: var(--gold-light); border-bottom: 1px solid currentColor; }
+/* Brotkrumen mit Zwischenebene: Trenner auch zwischen zwei Links */
+.breadcrumb a + a::before { content: "/"; margin: 0 0.7rem; opacity: 0.5; display: inline-block; }
+/* Hochzeit: Rolle statt Nummer über dem Raumnamen */
+.room-cards--roles .idx { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.66rem; }
+/* Ablauf in fünf Schritten: auf breiten Schirmen eine Reihe */
+@media (min-width: 1100px) { .stations--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.lp-team .lead { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); }
+/* Sehr schmale Handys: lange Kartentitel ("Frühstückskarte") passen in die Zeile */
+@media (max-width: 360px) { .lp-sheet .menu-sheet__title { font-size: 1.45rem; -webkit-hyphens: auto; hyphens: auto; } }
