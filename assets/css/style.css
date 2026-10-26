@@ -206,10 +206,13 @@ body::after {
   gap: 1.5rem;
   padding: 1.1rem var(--gutter);
 }
-.header.is-scrolled { box-shadow: 0 1px 0 var(--line-light); }
+/* Olivband: beim Scrollen (main.js), auf Unterseiten ohne JavaScript dauerhaft
+   (.is-sub; html.no-js nimmt consent-boot.js vor dem ersten Paint weg, damit
+   das Band nicht aufblitzt, bevor main.js den Header oben transparent schaltet) */
+.header.is-scrolled, .no-js .header.is-sub { box-shadow: 0 1px 0 var(--line-light); }
 /* Olivband als Hintergrund-Ebene: backdrop-filter direkt auf .header würde
    das fixierte Vollbild-Menü auf die Headerleiste stutzen (Containing Block) */
-.header.is-scrolled::after {
+.header.is-scrolled::after, .no-js .header.is-sub::after {
   content: "";
   position: absolute;
   inset: -160px 0 0 0;
@@ -395,7 +398,7 @@ body::after {
     pointer-events: none;
     transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   }
-  .header.is-scrolled .header__reserve { opacity: 1; transform: none; pointer-events: auto; }
+  .header.is-scrolled .header__reserve, .no-js .header.is-sub .header__reserve { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 /* ---------- Hero ---------- */
@@ -1535,7 +1538,7 @@ body::after { opacity: 0.03; }
   opacity: 1;
   transition: opacity 0.5s var(--ease);
 }
-.header.is-scrolled::before { opacity: 0; }
+.header.is-scrolled::before, .no-js .header.is-sub::before { opacity: 0; }
 .header__bar { position: relative; }
 
 .marquee { padding: 0.7rem 0; }
@@ -3839,3 +3842,12 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 .lp-team .lead { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); }
 /* Sehr schmale Handys: lange Kartentitel ("Frühstückskarte") passen in die Zeile */
 @media (max-width: 360px) { .lp-sheet .menu-sheet__title { font-size: 1.45rem; -webkit-hyphens: auto; hyphens: auto; } }
+/* Restaurant: Teamfoto der Gastgeber (Original nur 392 px, deshalb bewusst kompakt) */
+.host-photo { margin: 1.6rem 0 1.2rem; max-width: 392px; }
+.host-photo img { width: 100%; height: auto; display: block; border: 1px solid var(--line); padding: 5px; background: var(--paper); }
+.host-photo figcaption { margin-top: 0.6rem; font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--muted, #6b6252); }
+/* Öffnungszeiten neben dem Gastgeber-Text: bleiben beim Lesen stehen */
+@media (min-width: 1001px) {
+  .split--sticky { align-items: start; }
+  .split--sticky > :first-child { position: sticky; top: 7.5rem; }
+}

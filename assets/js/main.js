@@ -2,7 +2,16 @@
    Café Reitschule — Technik im Hintergrund.
    Kein Tracking, keine Cookies, keine externen Requests.
    ============================================================ */
-(function () {
+(function (init) {
+  /* Mit Critical CSS lädt das volle Stylesheet nicht blockierend (media="print",
+     head.php; consent-boot.js schaltet es beim Laden ein). Gemessen, verteilt und
+     animiert wird erst, wenn es greift, wie früher beim blockierenden Stylesheet. */
+  var css = document.getElementById("css-full");
+  var go = function () { css.media = "all"; init(); };
+  if (!css || css.media === "all") init();
+  else if (css.sheet) go();
+  else { css.addEventListener("load", go); css.addEventListener("error", go); }
+})(function () {
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -503,21 +512,26 @@
     var lbImg = lightbox.querySelector("img");
     var lbCap = lightbox.querySelector(".lightbox__caption");
     var lbCount = lightbox.querySelector(".lightbox__count");
-    var lbList = [], lbAlts = [], lbIndex = 0;
+    var lbList = [], lbAlts = [], lbWebp = [], lbIndex = 0;
     var lbPad = function (n) { return (n < 10 ? "0" : "") + n; };
-    /* Blur-up: erst die (meist schon gecachte) w960-Variante zeigen, das
-       Original leise nachladen und tauschen, sobald es da ist. */
+    /* Blur-up: erst die w960-Variante zeigen, das Original leise nachladen und
+       tauschen, sobald es da ist. Als WebP, wenn das Vorschaubild eines hat (jeder
+       Browser mit <dialog> kann es, und es ist rund ein Drittel leichter); Grundrisse
+       ohne WebP laden direkt das Original. Fehlt eine Fassung, greift die nächste. */
     var lbToken = 0;
     var lbRender = function () {
       var full = lbList[lbIndex];
-      var mid = full.replace(/\.(jpe?g|png)$/i, ".w960.$1");
-      var token = ++lbToken;
-      lbImg.onerror = function () { lbImg.onerror = null; lbImg.src = full; };
-      lbImg.src = mid;
-      if (mid !== full) {
+      var chain = lbWebp[lbIndex]
+        ? [full.replace(/\.(jpe?g|png)$/i, ".w960.webp"), full.replace(/\.(jpe?g|png)$/i, ".webp"), full]
+        : [full];
+      var token = ++lbToken, step = 0;
+      lbImg.onerror = function () { if (token === lbToken && ++step < chain.length) lbImg.src = chain[step]; };
+      lbImg.src = chain[0];
+      if (chain.length > 1) {
         var pre = new Image();
-        pre.onload = function () { if (token === lbToken) { lbImg.onerror = null; lbImg.src = full; } };
-        pre.src = full;
+        pre.onload = function () { if (token === lbToken) { step = chain.length; lbImg.src = pre.src; } };
+        pre.onerror = function () { if (pre.src.slice(-5) === ".webp") pre.src = full; };
+        pre.src = chain[1];
       }
       lbImg.alt = lbAlts[lbIndex] || "Café Reitschule München";
       if (lbCap) lbCap.textContent = lbAlts[lbIndex] || "";
@@ -538,6 +552,7 @@
         var btns = Array.prototype.slice.call(document.querySelectorAll(sel));
         lbList = btns.map(function (b) { return b.getAttribute("data-lightbox"); });
         lbAlts = btns.map(function (b) { var im = b.querySelector("img"); return im ? im.alt : ""; });
+        lbWebp = btns.map(function (b) { return !!b.querySelector('source[type="image/webp"]'); });
         lbIndex = Math.max(0, btns.indexOf(btn));
         lbRender();
         lockBg(true);
@@ -783,4 +798,4 @@
   /* ---------- Current year ---------- */
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
-})();
+});
