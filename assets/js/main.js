@@ -272,7 +272,7 @@
   var badges = document.querySelectorAll("[data-open-badge]");
   if (badges.length) {
     var openingHours = { 0: [540, 1140], 1: [690, 1380], 2: [690, 1380], 3: [690, 1380], 4: [690, 1380], 5: [690, 1380], 6: [540, 1380] };
-    var closures = [];
+    var closures = [], holidays = [];
     /* Beschriftungen liefert die Seite (hours-data.t, per i18n) — DE-Fallback hier */
     var HT = {
       now: "Jetzt geöffnet · heute bis %s", today: "Öffnet heute um %s", tomorrow: "Öffnet morgen um %s",
@@ -283,7 +283,7 @@
     if (hoursEl) {
       try {
         var hd = JSON.parse(hoursEl.textContent);
-        if (hd.s) { openingHours = hd.s; closures = hd.c || []; if (hd.t) HT = hd.t; }
+        if (hd.s) { openingHours = hd.s; closures = hd.c || []; holidays = hd.h || []; if (hd.t) HT = hd.t; }
         else openingHours = hd;
       } catch (err) {}
     }
@@ -302,7 +302,6 @@
     };
     try {
       var berlin = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
-      var day = berlin.getDay();
       var mins = berlin.getHours() * 60 + berlin.getMinutes();
       var pad = function (n) { return (n < 10 ? "0" : "") + n; };
       var isoOf = function (d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); };
@@ -316,7 +315,9 @@
         return null;
       };
 
-      var today = openingHours[day];
+      /* Gesetzliche Feiertage öffnen wie sonntags */
+      var hoursOn = function (d) { return holidays.indexOf(isoOf(d)) > -1 ? openingHours[0] : openingHours[d.getDay()]; };
+      var today = hoursOn(berlin);
       var todayC = closureOn(todayIso);
       var text = "", isOpen = false;
 
@@ -338,7 +339,7 @@
             d2.setDate(d2.getDate() + 1);
             var c2 = closureOn(isoOf(d2));
             if (!c2 || c2.type !== "ganz") {
-              var opensAt = fmtTime(openingHours[d2.getDay()][0]);
+              var opensAt = fmtTime(hoursOn(d2)[0]);
               text = n === 1 ? fill(HT.tomorrow, opensAt) : fill(HT.on, d2.getDate() + "." + (d2.getMonth() + 1) + ".", opensAt);
               break;
             }
