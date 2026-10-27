@@ -571,7 +571,7 @@
     var lbImg = lightbox.querySelector("img");
     var lbCap = lightbox.querySelector(".lightbox__caption");
     var lbCount = lightbox.querySelector(".lightbox__count");
-    var lbList = [], lbAlts = [], lbWebp = [], lbIndex = 0;
+    var lbList = [], lbAlts = [], lbCredits = [], lbWebp = [], lbIndex = 0;
     var lbPad = function (n) { return (n < 10 ? "0" : "") + n; };
     /* Blur-up: erst die w960-Variante zeigen, das Original leise nachladen und
        tauschen, sobald es da ist. Als WebP, wenn das Vorschaubild eines hat (jeder
@@ -593,7 +593,8 @@
         pre.src = chain[1];
       }
       lbImg.alt = lbAlts[lbIndex] || "Café Reitschule München";
-      if (lbCap) lbCap.textContent = lbAlts[lbIndex] || "";
+      /* Fotografen mit Bildnachweis (data-credit) stehen hinter der Beschreibung */
+      if (lbCap) lbCap.textContent = [lbAlts[lbIndex], lbCredits[lbIndex]].filter(Boolean).join(" · ");
       if (lbCount) lbCount.textContent = lbList.length > 1 ? lbPad(lbIndex + 1) + " / " + lbPad(lbList.length) : "";
     };
     var lbShow = function (i) {
@@ -611,6 +612,7 @@
         var btns = Array.prototype.slice.call(document.querySelectorAll(sel));
         lbList = btns.map(function (b) { return b.getAttribute("data-lightbox"); });
         lbAlts = btns.map(function (b) { var im = b.querySelector("img"); return im ? im.alt : ""; });
+        lbCredits = btns.map(function (b) { return b.getAttribute("data-credit") || ""; });
         lbWebp = btns.map(function (b) { return !!b.querySelector('source[type="image/webp"]'); });
         lbIndex = Math.max(0, btns.indexOf(btn));
         lbRender();
