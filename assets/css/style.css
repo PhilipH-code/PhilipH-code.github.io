@@ -2942,14 +2942,6 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 .locard:focus-visible .locard__badge,
 .locard.is-flipped .locard__badge { opacity: 0; }
 .locard__back { transform: rotateY(180deg); }
-/* Absicherung ohne 3D-Darstellung (manche WebViews, Safari ohne Grafikbeschleunigung
-   ignorieren backface-visibility): die abgewandte Seite wird zur Hälfte der Drehung
-   durchsichtig, wenn sie ohnehin hochkant steht. Mit 3D sieht man davon nichts.
-   opacity statt visibility: der Text der Rückseite bleibt Teil des Linknamens. */
-.locard__front, .locard__back { transition: opacity 0s linear 0.4s; }
-.locard__back { opacity: 0; }
-.locard:hover .locard__back, .locard:focus-visible .locard__back, .locard.is-flipped .locard__back { opacity: 1; }
-.locard:hover .locard__front, .locard:focus-visible .locard__front, .locard.is-flipped .locard__front { opacity: 0; }
 .locard__back--cream { background: var(--cream); }
 .locard__back--photo {
   background-size: cover;
@@ -3013,7 +3005,7 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
   .locard__cta { font-size: 0.6rem; letter-spacing: 0.16em; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .locard__inner, .locard__front, .locard__back { transition: none; }
+  .locard__inner { transition: none; }
 }
 
 /* Galerie: Masonry + Lightbox */
@@ -3891,7 +3883,9 @@ html.rs-consent-open .page-scroll { scroll-padding-bottom: calc(var(--consent-h,
    html.is-still setzt consent-boot.js schon vor dem ersten Bild aus localStorage. */
 html.is-still .gallery__row, html.is-still .marquee__track, html.is-still .family-strip__track,
 html.is-still .seal__ring, html.is-still .scroll-cue::after, html.is-still .open-badge.is-open::before { animation-play-state: paused; }
-.gallery:hover .gallery__row, .family-strip:hover .family-strip__track, .family-strip:focus-within .family-strip__track { animation-play-state: paused; }
+/* Laufbänder laufen unter der Maus weiter (Wunsch des Hauses); anhalten nur per Knopf.
+   Ausnahme: Tastaturfokus auf einem Familien-Logo, sonst wandert der Link davon */
+.family-strip:focus-within .family-strip__track { animation-play-state: paused; }
 .motion-toggle {
   display: inline-flex; align-items: center; gap: 0.6rem;
   min-height: 2.75rem; padding: 0.4rem 0.2rem;
