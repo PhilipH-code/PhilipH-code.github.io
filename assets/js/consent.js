@@ -114,6 +114,12 @@
     revokeCleanup(before, c);
   }
 
+  /* Höhe des Hinweises für scroll-padding: per Tab fokussierte Elemente rollen
+     über ihn statt dahinter zu verschwinden (WCAG 2.4.11) */
+  if (window.ResizeObserver) new ResizeObserver(function () {
+    document.documentElement.style.setProperty("--consent-h", banner.offsetHeight + "px");
+  }).observe(banner);
+
   /* Banner nur zeigen, wenn noch keine (gültige) Entscheidung vorliegt */
   function syncBanner() {
     var current = readConsent();

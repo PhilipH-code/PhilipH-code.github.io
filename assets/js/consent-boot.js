@@ -2,12 +2,15 @@
    mit dem ERSTEN Paint erscheint (sonst wird er auf langsamen Verbindungen
    zum verspäteten LCP-Element) und Wiederkehrer ihn nie aufblitzen sehen.
    Nur eine Klasse am Wurzelelement — alles Weitere macht consent.js.
-   Als einziges synchrones Skript übernimmt es zwei Handgriffe für den ersten
+   Als einziges synchrones Skript übernimmt es drei Handgriffe für den ersten
    Paint: html.no-js weg (Fallbacks ohne JavaScript greifen sonst kurz auch bei
-   allen anderen) und das volle Stylesheet einschalten, das neben dem Critical CSS
-   als media="print" lädt, also nie blockiert (CSP erlaubt kein onload im HTML). */
+   allen anderen), die gespeicherte Bewegungspause und das volle Stylesheet
+   einschalten, das neben dem Critical CSS als media="print" lädt, also nie
+   blockiert (CSP erlaubt kein onload im HTML). */
 (function () {
   document.documentElement.classList.remove("no-js");
+  /* Bewegung angehalten (Knopf in Galerie und Footer, main.js): gilt sofort */
+  try { if (localStorage.getItem("rs-still") === "1") document.documentElement.classList.add("is-still"); } catch (e) {}
   var css = document.getElementById("css-full");
   if (css) {
     if (css.sheet) css.media = "all";

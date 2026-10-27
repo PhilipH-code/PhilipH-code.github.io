@@ -471,8 +471,9 @@
     var total = slides.length;
     if (!track || total === 0) return;
     if (total < 2) { root.classList.add("slider--single"); return; }
-    var idx = 0, timer = null, resume = null;
+    var idx = 0, timer = null, resume = null, paused = false, hover = false;
     var delay = parseInt(root.getAttribute("data-autoplay"), 10) || 5000;
+    var pauseBtn = root.querySelector(".slider__pause");
     function paint() {
       track.style.transform = "translateX(" + (-idx * 100) + "%)";
       if (current) current.textContent = ("0" + (idx + 1)).slice(-2);
@@ -483,10 +484,27 @@
       });
     }
     function go(i) { idx = (i + total) % total; paint(); }
-    function play() { if (reduceMotion || timer) return; timer = setInterval(function () { go(idx + 1); }, delay); }
+    function play() {
+      if (reduceMotion || timer || paused || hover || document.documentElement.classList.contains("is-still")) return;
+      timer = setInterval(function () { go(idx + 1); }, delay);
+    }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     /* Bei Bedienung Auto-Lauf stoppen, nach 10 s wieder anwerfen */
     function nudge() { stop(); if (resume) clearTimeout(resume); resume = setTimeout(function () { resume = null; play(); }, 10000); }
+    /* Pause-Knopf (WCAG 2.2.2); Tastaturfokus im Schieber hält ihn dauerhaft an,
+       die Maus nur, solange sie darüber steht (Karussell-Muster der WAI-ARIA APG) */
+    var setPaused = function (on) {
+      paused = on;
+      if (pauseBtn) {
+        pauseBtn.setAttribute("data-paused", on ? "true" : "false");
+        pauseBtn.setAttribute("aria-label", pauseBtn.getAttribute(on ? "data-label-play" : "data-label-pause"));
+      }
+      if (on) stop(); else play();
+    };
+    if (pauseBtn) pauseBtn.addEventListener("click", function () { setPaused(!paused); });
+    root.addEventListener("focusin", function (e) { if (e.target !== pauseBtn && !paused && e.target.matches(":focus-visible")) setPaused(true); });
+    root.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { hover = true; stop(); } });
+    root.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { hover = false; play(); } });
     root.querySelector(".slider__arrow--next").addEventListener("click", function () { go(idx + 1); nudge(); });
     root.querySelector(".slider__arrow--prev").addEventListener("click", function () { go(idx - 1); nudge(); });
     /* Wischen (Touch/Pointer); ein echter Wisch öffnet nicht die Lightbox */
@@ -505,6 +523,28 @@
     sliders.push({ stop: stop, play: play });
     paint(); play();
   });
+
+  /* ---------- Bewegung anhalten (WCAG 2.2.2) ----------
+     Laufbänder, Siegel und Bildwechsel seitenweit pausieren; die Wahl bleibt
+     gespeichert, consent-boot.js setzt html.is-still schon vor dem ersten Bild.
+     Die Beschriftung wechselt mit dem Zustand (deshalb ohne aria-pressed). */
+  var motionBtns = document.querySelectorAll("[data-motion-toggle]");
+  var isStill = function () { return document.documentElement.classList.contains("is-still"); };
+  var paintMotion = function () {
+    motionBtns.forEach(function (b) {
+      b.setAttribute("data-paused", isStill() ? "true" : "false");
+      b.textContent = b.getAttribute(isStill() ? "data-label-play" : "data-label-pause");
+    });
+  };
+  motionBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.documentElement.classList.toggle("is-still");
+      try { localStorage.setItem("rs-still", isStill() ? "1" : "0"); } catch (e) {}
+      paintMotion();
+      sliders.forEach(function (sl) { if (isStill()) sl.stop(); else sl.play(); });
+    });
+  });
+  paintMotion();
 
   /* ---------- Bild-Großansicht (Lightbox, gruppenfähig) ---------- */
   var lightbox = document.getElementById("lightbox");
@@ -595,6 +635,32 @@
   }
 
   /* ---------- Newsletter: Anmeldung ohne Seitenwechsel ---------- */
+  /* ---------- Pflichtfelder vor dem Absenden prüfen ----------
+     Fehler stehen am Feld (aria-invalid, aria-describedby), der Fokus springt ins
+     erste fehlerhafte Feld. Die Texte kommen aus data-err (i18n im Markup). */
+  var errSeq = 0;
+  var clearFieldErr = function (f) { f.removeAttribute("aria-invalid"); if (f.rsErr) f.rsErr.textContent = ""; };
+  var checkFields = function (form) {
+    var first = null;
+    form.querySelectorAll("[data-err]").forEach(function (f) {
+      if (f.value.trim() && f.validity.valid) { clearFieldErr(f); return; }
+      if (!f.rsErr) {
+        var err = document.createElement("p");
+        err.className = "field-err";
+        err.id = "field-err-" + (++errSeq);
+        (f.closest(".news-form__inline") || f).insertAdjacentElement("afterend", err);
+        f.rsErr = err;
+        f.setAttribute("aria-describedby", ((f.getAttribute("aria-describedby") || "") + " " + err.id).trim());
+        f.addEventListener("input", function () { if (f.value.trim() && f.validity.valid) clearFieldErr(f); });
+      }
+      f.rsErr.textContent = f.getAttribute("data-err");
+      f.setAttribute("aria-invalid", "true");
+      if (!first) first = f;
+    });
+    if (first) first.focus();
+    return !first;
+  };
+
   var newsForm = document.querySelector(".news-form");
   if (newsForm) {
     var newsMsg = newsForm.querySelector(".news-form__msg");
@@ -618,6 +684,7 @@
     };
     newsForm.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!checkFields(newsForm)) return;
       var data = new FormData(newsForm);
       data.append("ajax", "1");
       if (newsBtn) { newsBtn.disabled = true; newsBtn.textContent = "…"; }
@@ -629,7 +696,8 @@
         .then(function (r) { return r.json(); })
         .then(function (res) {
           showMsg(res.message, !res.ok);
-          if (res.ok) newsForm.classList.add("is-done");
+          /* Felder verschwinden: Fokus auf die Bestätigung statt ins Leere */
+          if (res.ok) { newsForm.classList.add("is-done"); newsMsg.focus(); }
           else newsRestore();
         })
         .catch(function () {
@@ -654,6 +722,7 @@
     };
     inqForm.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!checkFields(inqForm)) return;
       var data = new FormData(inqForm);
       data.append("ajax", "1");
       if (inqBtn) { inqBtn.disabled = true; inqBtn.textContent = "…"; }
@@ -667,7 +736,8 @@
           inqShow(res.message, !res.ok);
           if (res.ok) {
             inqForm.classList.add("is-done");
-            inqMsg.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            inqMsg.focus({ preventScroll: true });
+            inqMsg.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
           } else if (inqBtn) {
             inqBtn.disabled = false; inqBtn.textContent = inqLabel;
           }
@@ -794,6 +864,17 @@
       });
     }
   }
+
+  /* ---------- Links in neuem Tab ankündigen (Screenreader) ---------- */
+  var newTab = document.documentElement.getAttribute("data-newtab");
+  if (newTab) document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+    var label = a.getAttribute("aria-label");
+    if (label) { if (label.indexOf(newTab) < 0) a.setAttribute("aria-label", label + " (" + newTab + ")"); return; }
+    var hint = document.createElement("span");
+    hint.className = "sr-only";
+    hint.textContent = " (" + newTab + ")";
+    a.appendChild(hint);
+  });
 
   /* ---------- Current year ---------- */
   var year = document.getElementById("year");
