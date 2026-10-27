@@ -18,8 +18,9 @@
   }
   var need = 0;
   try { need = parseInt(document.currentScript.getAttribute("data-v"), 10) || 0; } catch (e) {}
-  var open = true;
-  try {
+  /* data-v="0": Hinweis im Admin abgeschaltet, dann gibt es keinen Banner */
+  var open = need > 0;
+  if (open) try {
     var c = JSON.parse(localStorage.getItem("rs-consent"));
     if (c && c.v === need) open = false;
   } catch (e) {}

@@ -1,6 +1,10 @@
 /* ============================================================
    Café Reitschule — Einwilligungs-Manager (§ 25 TDDDG, DSGVO)
-   Kein Tracking. Speichert nur die Entscheidung selbst.
+   Speichert nur die Entscheidung selbst. Auch die eigene, cookiefreie
+   Statistik (main.js) zählt erst nach Einwilligung in „Statistik“:
+   Sie liest per Skript Referrer und Seitenadresse aus und lässt den
+   Browser eine Meldung senden, das ist Zugriff auf das Endgerät
+   (DSK, OH Digitale Dienste 2024; EDPB Leitlinien 2/2023).
    ============================================================ */
 (function () {
   "use strict";
@@ -21,6 +25,12 @@
       if (c && c.v === cfg.version) return c;
     } catch (err) {}
     return null;
+  }
+
+  /* Für main.js: aktuelle Entscheidung (null = noch keine) */
+  function publish(c) {
+    window.rsConsent = c;
+    try { document.dispatchEvent(new CustomEvent("rs:consent", { detail: c })); } catch (err) {}
   }
 
   function writeConsent(external, marketing, analytics) {
@@ -94,6 +104,7 @@
   }
 
   function setToggle(t, on) {
+    if (!t) return;
     t.classList.toggle("is-on", !!on);
     t.setAttribute("aria-checked", on ? "true" : "false");
   }
@@ -111,6 +122,7 @@
     hideBanner();
     if (dialog.open) dialog.close();
     window.rsConsentPending = false;
+    publish(c);
     revokeCleanup(before, c);
   }
 
@@ -124,6 +136,7 @@
   function syncBanner() {
     var current = readConsent();
     window.rsConsentPending = !current;
+    publish(current);
     if (current) {
       applyConsent(current);
       /* Boot-Klasse räumen (z. B. nach Versionswechsel der Einwilligung) */
@@ -152,21 +165,36 @@
     setToggle(toggleA, c ? !!c.analytics : false);
     var sc = document.querySelector(".page-scroll");
     if (sc) sc.style.overflow = "hidden";
-    dialog.addEventListener("close", function () { if (sc) sc.style.overflow = ""; }, { once: true });
+    dialog.addEventListener("close", function () {
+      if (sc) sc.style.overflow = "";
+      /* Hash des Direktlinks räumen, sonst löst derselbe Link kein hashchange mehr aus */
+      if (location.hash === "#cookie-einstellungen" && history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+    }, { once: true });
     if (typeof dialog.showModal === "function") dialog.showModal();
   }
 
+  /* Direktlink aus der Datenschutzerklärung (Rechtsseiten laden kein Skript) */
+  if (location.hash === "#cookie-einstellungen") openSettings();
+  window.addEventListener("hashchange", function () {
+    if (location.hash === "#cookie-einstellungen" && !dialog.open) openSettings();
+  });
+
+  function isOn(t) { return !!t && t.classList.contains("is-on"); }
+
   [toggle, toggleM, toggleA].forEach(function (t) {
-    t.addEventListener("click", function () { setToggle(t, !t.classList.contains("is-on")); });
+    if (t) t.addEventListener("click", function () { setToggle(t, !t.classList.contains("is-on")); });
   });
 
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-consent]");
     if (el) {
       var action = el.getAttribute("data-consent");
-      if (action === "all") decide(true, true, true);
+      /* „Alle“ heißt: alle angezeigten Kategorien. Nicht eingesetzte Dienste
+         erscheinen nicht und werden auch nicht vorab erlaubt; kommen sie
+         hinzu, erhöht der Admin die Version und fragt neu. */
+      if (action === "all") decide(!!toggle, !!toggleM, !!toggleA);
       if (action === "necessary") decide(false, false, false);
-      if (action === "save") decide(toggle.classList.contains("is-on"), toggleM.classList.contains("is-on"), toggleA.classList.contains("is-on"));
+      if (action === "save") decide(isOn(toggle), isOn(toggleM), isOn(toggleA));
       if (action === "settings" || action === "open") { e.preventDefault(); openSettings(); }
       if (action === "close") dialog.close();
       return;

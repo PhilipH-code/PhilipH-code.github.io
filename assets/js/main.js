@@ -409,34 +409,50 @@
     } catch (err) { /* fehlerhafte Popup-Daten: nichts anzeigen */ }
   }
 
-  /* ---------- Anonyme Statistik (ohne Cookies, DNT wird respektiert) ---------- */
+  /* ---------- Eigene Statistik (ohne Cookies, nur mit Einwilligung „Statistik“) ----------
+     Vor der Einwilligung liest dieser Teil nichts aus und sendet nichts.
+     consent.js meldet die Entscheidung über window.rsConsent und "rs:consent". */
   var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1";
+  function statsOk() { return !dnt && location.protocol !== "file:" && !!(window.rsConsent && window.rsConsent.analytics); }
+  /* Herkunft dieser Seite: Referrer und utm_source (ChatGPT & Co. hängen ihn an
+     Links). Klicks senden sie mit, so lassen sich Reservierungen aus KI-Besuchen
+     zählen, ohne Cookie und ohne etwas im Browser zu speichern. */
+  var origin = null;
   function track(params) {
-    if (dnt || location.protocol === "file:") return;
+    if (!statsOk()) return;
+    if (!origin) {
+      var utm = (location.search.match(/[?&]utm_source=([^&#]{1,40})/i) || [])[1] || "";
+      try { utm = decodeURIComponent(utm); } catch (err) { utm = ""; }
+      origin = { r: document.referrer || "", u: utm };
+    }
+    params.p = location.pathname;
+    params.r = origin.r;
+    params.u = origin.u;
     var q = Object.keys(params).map(function (k) { return k + "=" + encodeURIComponent(params[k]); }).join("&");
     /* root-relativ: auf /en/-Seiten würde "t.php" sonst zu /en/t.php (404) */
     var url = "/t.php?" + q;
     if (navigator.sendBeacon) navigator.sendBeacon(url);
     else { var i = new Image(); i.src = url; }
   }
-  /* Vorgerenderte Seiten (Speculation Rules) erst zählen, wenn sie wirklich
-     angezeigt werden: Anfragen aus dem Prerender verwirft t.php bewusst */
-  /* Herkunft dieser Seite: Referrer und utm_source (ChatGPT & Co. hängen ihn an
-     Links). Klicks senden sie mit, so lassen sich Reservierungen aus KI-Besuchen
-     zählen, ohne Cookie und ohne etwas im Browser zu speichern. */
-  var utm = (location.search.match(/[?&]utm_source=([^&#]{1,40})/i) || [])[1] || "";
-  try { utm = decodeURIComponent(utm); } catch (err) { utm = ""; }
-  var origin = { r: document.referrer || "", u: utm };
-  function pageview() { track({ p: location.pathname, r: origin.r, u: origin.u }); }
+  /* Einmal pro Seite zählen: beim Laden, oder sobald die Einwilligung auf
+     dieser Seite erteilt wird. Vorgerenderte Seiten (Speculation Rules) erst,
+     wenn sie wirklich angezeigt werden: Anfragen aus dem Prerender verwirft t.php */
+  var counted = false;
+  function pageview() {
+    if (counted || document.prerendering || !statsOk()) return;
+    counted = true;
+    track({});
+  }
   if (document.prerendering) document.addEventListener("prerenderingchange", pageview, { once: true });
   else pageview();
+  document.addEventListener("rs:consent", pageview);
   document.addEventListener("click", function (e) {
     var a = e.target.closest("a[href], button");
     if (!a) return;
     var href = (a.getAttribute("href") || "").toLowerCase();
-    if (href.indexOf("opentable") !== -1) track({ p: location.pathname, e: "reservieren", r: origin.r, u: origin.u });
-    else if (href.indexOf("tel:") === 0) track({ p: location.pathname, e: "anruf", r: origin.r, u: origin.u });
-    else if (href.indexOf("mailto:") === 0) track({ p: location.pathname, e: "email", r: origin.r, u: origin.u });
+    if (href.indexOf("opentable") !== -1) track({ e: "reservieren" });
+    else if (href.indexOf("tel:") === 0) track({ e: "anruf" });
+    else if (href.indexOf("mailto:") === 0) track({ e: "email" });
   }, { passive: true });
 
   /* ---------- Flip-Karten: erster Tipp dreht, zweiter folgt dem Link ---------- */
