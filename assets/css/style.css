@@ -2803,6 +2803,10 @@ h1 .ax, h2 .ax {
 }
 body.has-consent-banner .actionbar, html.rs-consent-open .actionbar { display: none; }
 html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { display: block; }
+/* Offenes Menü geht vor: Beim Erstbesuch verdeckte der Hinweis am Handy die
+   Hälfte der Menüpunkte. Er tritt zurück, solange das Menü offen ist, und ist
+   beim Schließen wieder da (ohne Wahl gilt weiter: keine Einwilligung). */
+html:has(.nav.is-open) .consent-banner { visibility: hidden; }
 
 .consent-dialog {
   border: 0;

@@ -7,7 +7,11 @@
      head.php; consent-boot.js schaltet es beim Laden ein). Gemessen, verteilt und
      animiert wird erst, wenn es greift, wie früher beim blockierenden Stylesheet. */
   var css = document.getElementById("css-full");
-  var go = function () { css.media = "all"; init(); };
+  /* Nur einmal starten: Safari meldet „load“ nach dem Umschalten von media
+     ein zweites Mal. Dann lief alles doppelt, und der Burger öffnete und
+     schloss mit einem Klick (Erstbesuch, Stylesheet noch nicht im Cache). */
+  var started = false;
+  var go = function () { if (started) return; started = true; css.media = "all"; init(); };
   if (!css || css.media === "all") init();
   else if (css.sheet) go();
   else { css.addEventListener("load", go); css.addEventListener("error", go); }
@@ -51,6 +55,8 @@
   var burger = document.querySelector(".burger");
   var nav = document.getElementById("nav");
   if (burger && nav) {
+    /* Ab hier bedient main.js den Burger, der Notgriff in consent-boot.js tritt zurück */
+    window.rsNav = true;
     function closeNav() {
       nav.classList.remove("is-open");
       burger.setAttribute("aria-expanded", "false");
