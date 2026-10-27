@@ -57,12 +57,15 @@
       burger.setAttribute("aria-label", "Menü öffnen");
       lockBg(false);
     }
-    burger.addEventListener("click", function () {
+    burger.addEventListener("click", function (e) {
       var open = nav.classList.toggle("is-open");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
       lockBg(open);
-      if (open) {
+      /* Nur per Tastatur geöffnet (Enter/Leertaste: detail 0) springt der Fokus
+         in das Menü. Bei Maus und Finger bleibt er am Burger, sonst zeigen manche
+         Browser einen Fokusring um „Restaurant“ (z. B. auf vorgeladenen Seiten). */
+      if (open && e.detail === 0) {
         var first = nav.querySelector("a, button");
         if (first) first.focus();
       }
