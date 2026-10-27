@@ -3855,6 +3855,15 @@ html.rs-consent-open .consent-banner, body.has-consent-banner .consent-banner { 
 .breadcrumb a + a::before { content: "/"; margin: 0 0.7rem; opacity: 0.5; display: inline-block; }
 /* Hochzeit: Rolle statt Nummer über dem Raumnamen */
 .room-cards--roles .idx { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.66rem; }
+/* Karten mit tragendem Text (Hochzeit, Terrassen): mobil Bild links, voller Text
+   rechts statt zwei gekürzter Spalten */
+@media (max-width: 560px) {
+  .room-cards--roles { grid-template-columns: 1fr; gap: 1.4rem; }
+  .room-cards--roles .room-card { display: grid; grid-template-columns: 40% minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+  .room-cards--roles .room-card__body { padding-top: 0; }
+  .room-cards--roles .room-card__teaser { display: block; overflow: visible; -webkit-line-clamp: unset; }
+  .room-cards--roles .room-card .more { display: inline-block; margin-top: 0.5rem; font-size: 0.66rem; letter-spacing: 0.18em; }
+}
 /* Ablauf in fünf Schritten: auf breiten Schirmen eine Reihe */
 @media (min-width: 1100px) { .stations--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 .lp-team .lead { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); }

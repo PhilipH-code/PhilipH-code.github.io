@@ -127,19 +127,19 @@ Wie reserviere ich einen Tisch?
  Online über OpenTable, rund um die Uhr. Für denselben Tag rufen Sie am besten kurz an: +49 89 38 88 76 0. Abends und am Wochenende empfehlen wir eine Reservierung. Den Sonntagsbrunch buchen Sie ausschließlich über OpenTable.
 
 Gibt es Frühstück im Café Reitschule? 
- Ja. Samstags, sonntags und an Feiertagen servieren wir von 9 bis 13 Uhr Frühstück à la carte , ohne Reservierung, solange Platz ist. Die Karte reicht vom bayerischen Frühstück über Shakshuka bis zur Acai Bowl, Frühstücksgerichte gibt es ab 10 €. Sonntags kommt das Brunchbuffet im Moro Mou dazu.
+ Ja. Samstags, sonntags und an Feiertagen servieren wir von 9 bis 13 Uhr Frühstück à la carte , ohne Reservierung, solange Platz ist. Die Karte reicht vom bayerischen Frühstück über Shakshuka bis zur Acai Bowl, Frühstücksgerichte gibt es ab 10 €. Sonntags kommt das Brunchbuffet im Moro Mou dazu.
 
 Was kostet ein Essen im Café Reitschule? 
- Salate gibt es ab 16,50 €, Pasta und Risotto zwischen 16,50 € und 19,50 €. Das Wiener Schnitzel vom Kalbsrücken kostet 33,50 €. Alle Gerichte und Preise stehen auf unseren Karten , als Text und als PDF.
+ Salate gibt es ab 16,50 €, Pasta und Risotto zwischen 16,50 € und 19,50 €. Das Wiener Schnitzel vom Kalbsrücken kostet 33,50 €. Alle Gerichte und Preise stehen auf unseren Karten , als Text und als PDF.
 
 Kann man im Café Reitschule draußen sitzen? 
- Ja, auf drei Terrassen. Die Panoramaterrasse ist überdacht und hat Heizstrahler, von dort blickt man ins Grün des Englischen Gartens. Die Königinterrasse liegt unter alten Bäumen an der Königinstraße, dazu kommt die Sonnenterrasse im Obergeschoss.
+ Ja, auf drei Terrassen. Die Panoramaterrasse ist überdacht und hat Heizstrahler, von dort blickt man ins Grün des Englischen Gartens. Die Königinterrasse liegt unter alten Bäumen an der Königinstraße, dazu kommt die Sonnenterrasse im Obergeschoss. Alles zu den Terrassen am Englischen Garten .
 
 Sind Hunde im Café Reitschule erlaubt? 
  Ja. Ihr Hund ist bei uns gern gesehen, drinnen wie auf den Terrassen.
 
 Ist das Café Reitschule für Familien mit Kindern geeignet? 
- Ja. Es gibt eine eigene Kinderkarte, zum Beispiel mit Kinderpasta für 9,50 € oder einem kleinen Wiener Schnitzel für 18,50 €. Beim Sonntagsbrunch zahlen Kinder je nach Alter weniger. Der Englische Garten liegt direkt vor der Tür.
+ Ja. Es gibt eine eigene Kinderkarte, zum Beispiel mit Kinderpasta für 9,50 € oder einem kleinen Wiener Schnitzel für 18,50 €. Beim Sonntagsbrunch zahlen Kinder je nach Alter weniger. Der Englische Garten liegt direkt vor der Tür.
 
 Kann ich im Café Reitschule feiern? 
  Ja. Vier Räume und drei Terrassen bieten Platz für 20 bis 450 Gäste, einzeln oder kombiniert bis zum ganzen Haus. Gefeiert werden hier Hochzeiten , Geburtstage, Firmen- und Weihnachtsfeiern. Alles zu den Räumen steht unter Räume & Feste , unser Eventteam berät Sie unter contact@cafe-reitschule.de .
@@ -263,7 +263,7 @@ Bekomme ich spontan einen Tisch, ohne Reservierung?
  Oft ja, das Haus hat 450 Plätze. Abends und am Wochenende empfehlen wir eine Reservierung; für denselben Tag rufen Sie am besten kurz an: +49 89 38 88 76 0 .
 
 Kann ich auch bei kühlem Wetter draußen sitzen? 
- Ja. Die Panoramaterrasse ist überdacht und mit Heizstrahlern ausgestattet, verlässlich von Frühjahr bis in den Herbst.
+ Ja. Die Panoramaterrasse ist überdacht und mit Heizstrahlern ausgestattet, verlässlich von Frühjahr bis in den Herbst. Mehr zu den drei Terrassen .
 
 Wann gibt es Frühstück? 
  Samstags, sonntags und an Feiertagen von 9 bis 13 Uhr, à la carte im Erdgeschoss. Sonntags zusätzlich der Brunch im Moro Mou .
@@ -411,7 +411,7 @@ Start Karten
 Küche & Keller 
  Unsere Karten 
  Durchgehend warme Küche. Mittags wie abends, innen wie draußen. 
- Das Café Reitschule kocht europäisch und bayerisch, mit Klassikern wie dem Wiener Schnitzel vom Kalbsrücken für 33,50 €. Warme Küche: Mo bis Sa bis 21:30 Uhr, So und Feiertag bis 18:00 Uhr. Frühstück gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr. Alle fünf Karten stehen hier als Text und als PDF.
+ Das Café Reitschule kocht europäisch und bayerisch, mit Klassikern wie dem Wiener Schnitzel vom Kalbsrücken für 33,50 €. Warme Küche: Mo bis Sa bis 21:30 Uhr, So und Feiertag bis 18:00 Uhr. Frühstück gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr. Alle fünf Karten stehen hier als Text und als PDF.
 
 Zum Blättern 
  Frühstück in Schwabing 
@@ -1505,19 +1505,19 @@ Wie lange gibt es warmes Essen?
  Warme Küche: Mo bis Sa bis 21:30 Uhr, So und Feiertag bis 18:00 Uhr. Frühstück à la carte servieren wir samstags, sonntags und an Feiertagen von 9 bis 13 Uhr, danach übernimmt die Küche mit der großen Karte.
 
 Was kostet das Wiener Schnitzel im Café Reitschule? 
- Das Wiener Schnitzel vom Kalbsrücken kostet 33,50 €. Für Kinder gibt es eine kleinere Portion auf der Kinderkarte für 18,50 €.
+ Das Wiener Schnitzel vom Kalbsrücken kostet 33,50 €. Für Kinder gibt es eine kleinere Portion auf der Kinderkarte für 18,50 €.
 
 Gibt es vegetarische und vegane Gerichte? 
- Ja. Ausdrücklich vegan ist der Vegan Burger mit Hafer-Patty für 25,50 €. Ohne Fleisch und Fisch sind außerdem etwa die Burrata, der gratinierte Ziegenkäse, der Blumenkohl-Couscous-Salat und die frischen Tagliatelle mit Avocadopesto. Ob ein Gericht streng vegetarisch zubereitet ist, etwa beim Käse, sagt Ihnen das Service-Team.
+ Ja. Ausdrücklich vegan ist der Vegan Burger mit Hafer-Patty für 25,50 €. Ohne Fleisch und Fisch sind außerdem etwa die Burrata, der gratinierte Ziegenkäse, der Blumenkohl-Couscous-Salat und die frischen Tagliatelle mit Avocadopesto. Ob ein Gericht streng vegetarisch zubereitet ist, etwa beim Käse, sagt Ihnen das Service-Team.
 
 Wie erfahre ich, welche Allergene ein Gericht enthält? 
  Fragen Sie beim Bestellen unser Service-Team. Es sagt Ihnen, welche der 14 kennzeichnungspflichtigen Allergene in einem Gericht stecken, etwa Gluten, Nüsse oder Milch.
 
 Gibt es eine Kinderkarte? 
- Ja. Sie reicht von Kinderpasta für 9,50 € über Chicken Fingers vom Maishähnchen bis zu hausgemachten Pfannkuchen für 9 €. Dazu gibt es Eis kugelweise.
+ Ja. Sie reicht von Kinderpasta für 9,50 € über Chicken Fingers vom Maishähnchen bis zu hausgemachten Pfannkuchen für 9 €. Dazu gibt es Eis kugelweise.
 
 Was gibt es zum Frühstück? 
- Die Frühstückskarte reicht vom bayerischen Frühstück für 10 € über Avocadobrot und Shakshuka „Reitschule“ bis zu Pancakes und Acai Bowl. Frühstücksgerichte gibt es ab 10 €, dazu Säfte, Kaffee und Champagner im Glas.
+ Die Frühstückskarte reicht vom bayerischen Frühstück für 10 € über Avocadobrot und Shakshuka „Reitschule“ bis zu Pancakes und Acai Bowl. Frühstücksgerichte gibt es ab 10 €, dazu Säfte, Kaffee und Champagner im Glas.
 
 Gibt es eine Karte für Gruppen? 
  Ja. Für 10 bis 20 Personen gibt es eine eigene Speisekarte mit Vorspeisen, Klassikern, Salaten, Pasta und Dessert. Für größere Feste berät Sie unser Eventteam unter contact@cafe-reitschule.de .
@@ -1554,10 +1554,10 @@ Jeden Sonntag
 
 Jeden Sonntag von 09:30 bis 15:00 Uhr, als Buffet im Moro Mou. Ein langer Tisch, ein langer Vormittag, keine Eile.
 
-Erwachsene & ab 16 Jahre 59,00 € 
- 12 bis 15 Jahre 46,50 € 
- 7 bis 11 Jahre 29,50 € 
- 0 bis 6 Jahre 12,00 €
+Erwachsene & ab 16 Jahre 59,00 € 
+ 12 bis 15 Jahre 46,50 € 
+ 7 bis 11 Jahre 29,50 € 
+ 0 bis 6 Jahre 12,00 €
 
 Plätze vergeben wir ausschließlich über OpenTable.
 
@@ -1634,7 +1634,7 @@ Wann gibt es Frühstück à la carte?
  Samstags, sonntags und an Feiertagen von 9 bis 13 Uhr im Erdgeschoss. Eine Reservierung ist nicht nötig, solange Platz ist.
 
 Was kostet der Sonntagsbrunch? 
- Erwachsene zahlen 59 €, für Kinder gelten Preise nach Alter. Der Brunch läuft jeden Sonntag von 9:30 bis 15 Uhr im Moro Mou, Getränke wie Prosecco, Wein, Bier und Kaffee sind inklusive. Gebucht wird ausschließlich über OpenTable; alle Details auf der Brunchseite .
+ Erwachsene zahlen 59 €, für Kinder gelten Preise nach Alter. Der Brunch läuft jeden Sonntag von 9:30 bis 15 Uhr im Moro Mou, Getränke wie Prosecco, Wein, Bier und Kaffee sind inklusive. Gebucht wird ausschließlich über OpenTable; alle Details auf der Brunchseite .
 
 Schließt das Café Reitschule an manchen Tagen früher? 
  Ja, an einzelnen Tagen wegen geschlossener Gesellschaften. Alle Termine mit Uhrzeit stehen unter Geschlossene Gesellschaften , der Hinweis „Jetzt geöffnet“ auf der Website kündigt sie einige Tage vorher an.
@@ -2209,7 +2209,7 @@ Fr
 
 Das große Brunchbuffet im Moro Mou, mit Austern- und Eierstation, bayerischen Klassikern und Mittagsgerichten. Prosecco, Wein, Bier, Heißgetränke, Saft und Wasser sind inklusive.
 
-Freitag, 25. Dezember 2026 · 09:30 Uhr · Moro Mou · 59 € pro Person, Getränke inklusive 
+Freitag, 25. Dezember 2026 · 09:30 Uhr · Moro Mou · 59 € pro Person, Getränke inklusive 
  Alles zum Brunch →
 
 Buchbar ausschließlich über OpenTable.
@@ -2226,7 +2226,7 @@ Do
 
 Ein glanzvoller Jahreswechsel in festlicher Atmosphäre. Champagnerempfang, ein großes Galabuffet und DJs auf zwei Ebenen begleiten Sie ins neue Jahr.
 
-Donnerstag, 31. Dezember 2026 · 19:00 Uhr · Das ganze Haus · 139 € pro Person · Galabuffet 
+Donnerstag, 31. Dezember 2026 · 19:00 Uhr · Das ganze Haus · 139 € pro Person · Galabuffet 
  Programm & Galabuffet →
 
 Ab 19 Uhr Einlass und Champagnerempfang, ab 20 Uhr ist das Galabuffet eröffnet. Um Mitternacht zählen wir gemeinsam herunter. Dresscode von Black Tie bis Smart Casual, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
@@ -2463,7 +2463,7 @@ Start Brunch
 Jeden Sonntag 
  Sonntagsbrunch am Englischen Garten 
  Das große Sonntagsbuffet im Moro Mou. Alles inklusive, auch die Getränke. 
- Das Café Reitschule in München-Schwabing serviert jeden Sonntag von 09:30 bis 15:00 Uhr ein Brunchbuffet im Restaurant Moro Mou, direkt am Englischen Garten. Erwachsene zahlen 59 €, Kinder je nach Alter 12 € bis 46,50 €. Prosecco, Wein, Bier, Heißgetränke, Saft und Wasser sind inklusive. Reserviert wird über OpenTable.
+ Das Café Reitschule in München-Schwabing serviert jeden Sonntag von 09:30 bis 15:00 Uhr ein Brunchbuffet im Restaurant Moro Mou, direkt am Englischen Garten. Erwachsene zahlen 59 €, Kinder je nach Alter 12 € bis 46,50 €. Prosecco, Wein, Bier, Heißgetränke, Saft und Wasser sind inklusive. Reserviert wird über OpenTable.
 
 Brunch reservieren 
  Zum Buffet ↓
@@ -2471,7 +2471,7 @@ Brunch reservieren
 Wann Jeden Sonntag plus ausgewählte Feiertage 
  Uhrzeit 09:30 bis 15:00 Uhr 
  Ort Moro Mou 
- Preis 59 € Getränke inklusive 
+ Preis 59 € Getränke inklusive 
  Verweildauer 3 Stunden
 
 Der Sonntag
@@ -2552,10 +2552,10 @@ Preise
 
 ### Für die ganze Familie
 
-Erwachsene & ab 16 Jahre 59,00 € 
- 12 bis 15 Jahre 46,50 € 
- 7 bis 11 Jahre 29,50 € 
- 0 bis 6 Jahre 12,00 €
+Erwachsene & ab 16 Jahre 59,00 € 
+ 12 bis 15 Jahre 46,50 € 
+ 7 bis 11 Jahre 29,50 € 
+ 0 bis 6 Jahre 12,00 €
 
 Der Preis gilt für 3 Stunden ab Ihrer Reservierungszeit, Getränke inklusive.
 
@@ -2591,7 +2591,7 @@ Wann gibt es Brunch im Café Reitschule?
  Jeden Sonntag von 09:30 bis 15:00 Uhr, als Buffet im Moro Mou im Haus der Reitschule.
 
 Was kostet der Brunch? 
- Erwachsene und Jugendliche ab 16 Jahren zahlen 59 €. Für Kinder von 12 bis 15 Jahren sind es 46,50 €, von 7 bis 11 Jahren 29,50 € und bis 6 Jahre 12 €.
+ Erwachsene und Jugendliche ab 16 Jahren zahlen 59 €. Für Kinder von 12 bis 15 Jahren sind es 46,50 €, von 7 bis 11 Jahren 29,50 € und bis 6 Jahre 12 €.
 
 Sind Getränke im Brunchpreis enthalten? 
  Ja. Prosecco, Wein, Bier, Heißgetränke, Saft und Wasser sind inklusive, so viel Sie mögen.
@@ -2609,7 +2609,7 @@ Gibt es vegetarische und vegane Gerichte?
  Ja. Auch Vegetarier und Veganer finden am Buffet viel Auswahl.
 
 Ist der Brunch für Kinder geeignet? 
- Ja. Kinder zahlen je nach Alter weniger: bis 6 Jahre 12 €, von 7 bis 11 Jahren 29,50 € und von 12 bis 15 Jahren 46,50 €.
+ Ja. Kinder zahlen je nach Alter weniger: bis 6 Jahre 12 €, von 7 bis 11 Jahren 29,50 € und von 12 bis 15 Jahren 46,50 €.
 
 Was gilt bei Stornierung? 
  Bei Nichterscheinen oder Stornierung weniger als zwei Tage vorher berechnen wir 20 € pro Person.
@@ -2632,7 +2632,7 @@ Start Silvester
 Silvester 26/27 
  Silvester 2026/27 am Englischen Garten 
  Galabuffet, Champagner und DJs auf zwei Ebenen. Ein glanzvoller Abend bis vier Uhr früh. 
- Das Café Reitschule in München-Schwabing feiert Silvester 2026/27 mit einem Galabuffet: Champagnerempfang ab 19:00 Uhr, Buffet ab 20 Uhr, DJs auf zwei Ebenen bis 04:00 Uhr. Der Abend kostet 139 € pro Person, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
+ Das Café Reitschule in München-Schwabing feiert Silvester 2026/27 mit einem Galabuffet: Champagnerempfang ab 19:00 Uhr, Buffet ab 20 Uhr, DJs auf zwei Ebenen bis 04:00 Uhr. Der Abend kostet 139 € pro Person, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
 
 Jetzt Tisch sichern 
  Zum Programm ↓
@@ -2809,7 +2809,7 @@ Gut zu wissen
 ### Fragen zu Silvester
 
 Was kostet Silvester im Café Reitschule? 
- Der Abend kostet 139 € pro Person. Dazu gehören Champagnerempfang, Häppchen, das Galabuffet sowie DJs und Tanzflächen auf zwei Ebenen.
+ Der Abend kostet 139 € pro Person. Dazu gehören Champagnerempfang, Häppchen, das Galabuffet sowie DJs und Tanzflächen auf zwei Ebenen.
 
 Wann beginnt und endet der Silvesterabend? 
  Einlass mit Champagnerempfang ist ab 19:00 Uhr, das Galabuffet öffnet um 20 Uhr, ab 22 Uhr legen die DJs auf. Der Abend endet um 04:00 Uhr.
@@ -2948,7 +2948,7 @@ Start Frühstück
 Frühstück in Schwabing 
  Frühstück am Englischen Garten 
  Samstags, sonntags und an Feiertagen von 9 bis 13 Uhr. Ohne Reservierung, mit Blick ins Grün. 
- Im Café Reitschule an der Königinstraße 34 in Schwabing gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr Frühstück à la carte, direkt am Englischen Garten. Eine Reservierung ist nicht nötig. Die Karte reicht von Weißwürsten mit Breze für 10 € über Eggs Benedict und Shakshuka bis zu Pancakes und Acai Bowl, serviert drinnen oder auf drei Terrassen.
+ Im Café Reitschule an der Königinstraße 34 in Schwabing gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr Frühstück à la carte, direkt am Englischen Garten. Eine Reservierung ist nicht nötig. Die Karte reicht von Weißwürsten mit Breze für 10 € über Eggs Benedict und Shakshuka bis zu Pancakes und Acai Bowl, serviert drinnen oder auf drei Terrassen.
 
 Zur Frühstückskarte 
  Route planen ↗︎
@@ -2956,7 +2956,7 @@ Zur Frühstückskarte
 Wann Sa, So & Feiertag 
  Uhrzeit 9 bis 13 Uhr 
  Reservierung nicht nötig solange Plätze frei sind 
- Frühstück ab 10 € 
+ Frühstück ab 10 € 
  Lage Englischer Garten U3/U6 Giselastraße
 
 Ein Morgen in Schwabing
@@ -3065,7 +3065,7 @@ Im Haus gibt es zwei Arten zu frühstücken: am Wochenende à la carte im Café 
 Wann Samstag, Sonntag und Feiertag 
  Uhrzeit 9 bis 13 Uhr 
  Wo Café Reitschule, Erdgeschoss und Terrassen 
- Preis je Gericht, ab 10 € 
+ Preis je Gericht, ab 10 € 
  Reservierung nicht nötig
 
 ### Sonntagsbrunch
@@ -3073,7 +3073,7 @@ Wann Samstag, Sonntag und Feiertag
 Wann jeden Sonntag 
  Uhrzeit 9:30 bis 15 Uhr 
  Wo Moro Mou, unten im Haus 
- Preis 59 € pro Person, Getränke inklusive 
+ Preis 59 € pro Person, Getränke inklusive 
  Reservierung nur über OpenTable
 
 Zum Sonntagsbrunch →
@@ -3098,13 +3098,13 @@ Muss ich für das Frühstück reservieren?
  Nein. Die Plätze vergeben wir, solange welche frei sind. Wer sicher einen Platz möchte, kommt am besten früh.
 
 Was kostet das Frühstück? 
- Frühstücksgerichte kosten zwischen 10 € und 21,50 €. Zwei Weißwürste mit Breze gibt es für 10 €, Pancakes für 14,50 €, das klassische Frühstück mit Käse, Wurst und Schinken für 20 €.
+ Frühstücksgerichte kosten zwischen 10 € und 21,50 €. Zwei Weißwürste mit Breze gibt es für 10 €, Pancakes für 14,50 €, das klassische Frühstück mit Käse, Wurst und Schinken für 20 €.
 
 Was ist der Unterschied zwischen Frühstück und Sonntagsbrunch? 
- Frühstück gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr à la carte im Café Reitschule, ohne Reservierung. Der Sonntagsbrunch ist ein Buffet im Moro Mou unten im Haus, jeden Sonntag von 9:30 bis 15 Uhr, für 59 € pro Person mit Getränken, buchbar nur über OpenTable.
+ Frühstück gibt es samstags, sonntags und an Feiertagen von 9 bis 13 Uhr à la carte im Café Reitschule, ohne Reservierung. Der Sonntagsbrunch ist ein Buffet im Moro Mou unten im Haus, jeden Sonntag von 9:30 bis 15 Uhr, für 59 € pro Person mit Getränken, buchbar nur über OpenTable.
 
 Gibt es ein bayerisches Frühstück mit Weißwurst? 
- Ja: zwei Münchner Weißwürste mit Breze und süßem Senf für 10 €. Traditionell isst man Weißwürste vor dem Mittagsläuten, bei uns gibt es sie bis 13 Uhr.
+ Ja: zwei Münchner Weißwürste mit Breze und süßem Senf für 10 €. Traditionell isst man Weißwürste vor dem Mittagsläuten, bei uns gibt es sie bis 13 Uhr.
 
 Kann man im Café Reitschule draußen frühstücken? 
  Ja, auf drei Terrassen mit Blick ins Grün des Englischen Gartens. Die Panoramaterrasse ist überdacht und hat Heizstrahler, dort sitzen Sie auch an kühleren Morgen im Freien.
@@ -3383,7 +3383,7 @@ Wie kommen die Gäste zur Reitschule?
  Mit der U-Bahn bis Giselastraße (U3/U6), von dort sind es rund acht Gehminuten. Die Busse 54, 58, 68 und 154 halten an der Thiemestraße. Parkplätze in den Straßen rund um die Königinstraße sind knapp, Taxi oder U-Bahn sind entspannter.
 
 Gibt es am Tag nach der Hochzeit einen Brunch? 
- Sonntags gibt es im Moro Mou unten im Haus das Brunchbuffet von 9:30 bis 15 Uhr, für 59 € pro Person mit Getränken. Für eine größere Runde nach Ihrer Hochzeit sprechen Sie uns am besten direkt an.
+ Sonntags gibt es im Moro Mou unten im Haus das Brunchbuffet von 9:30 bis 15 Uhr, für 59 € pro Person mit Getränken. Für eine größere Runde nach Ihrer Hochzeit sprechen Sie uns am besten direkt an.
 
 Ihre Hochzeit
 
@@ -3432,6 +3432,144 @@ Anfrage senden
 
 Oder direkt: +49 89 38 88 76 0 ·
  contact@cafe-reitschule.de
+
+## Terrasse am Englischen Garten in Schwabing | Café Reitschule
+
+https://www.cafe-reitschule.de/terrasse.html
+
+Start Terrassen
+
+Draußen essen in Schwabing 
+ Terrassen am Englischen Garten 
+ Unter alten Bäumen, unter einem Dach oder über den Dächern. Mit Bedienung am Tisch, vom Frühstück bis zum Abend. 
+ Das Café Reitschule an der Königinstraße 34 in Schwabing hat drei Terrassen direkt am Englischen Garten, mit rund 270 Plätzen im Freien. Die Königinterrasse liegt unter alten Bäumen, die Panoramaterrasse ist überdacht und hat Heizstrahler, die Sonnenterrasse liegt im Obergeschoss. Geöffnet ist Montag bis Freitag 11:30 bis 23 Uhr, Samstag 9 bis 23 Uhr, Sonn- & Feiertag 9 bis 19 Uhr. Hunde sind willkommen.
+
+Tisch reservieren 
+ Route planen ↗︎
+
+Terrassen drei eine davon überdacht 
+ Plätze draußen rund 270 
+ Bei Regen Panoramaterrasse überdacht, mit Heizstrahlern 
+ Hunde willkommen 
+ Lage Englischer Garten U3/U6 Giselastraße
+
+Draußen sitzen
+
+### Ein Platz im Grünen
+
+Wenn es warm wird, zieht das Haus nach draußen. Drei Terrassen liegen rund um die alte Universitäts-Reitschule, zwischen Königinstraße und Englischem Garten. Bedient wird am Tisch, vom ersten Kaffee bis zum letzten Glas Wein. 
+ Am Wochenende beginnt der Tag mit Frühstück. Mittags kommt die ganze Karte dazu, nachmittags Kuchen vom eigenen Konditor. Abends gehen auf der Panoramaterrasse die Lichterketten an.
+
+Drei Terrassen
+
+### Drei Terrassen, drei Stimmungen
+
+Jede Terrasse hat ihren eigenen Charakter. Für Feiern lassen sich alle drei auch exklusiv buchen.
+
+Erdgeschoss · unüberdacht
+
+### Königinterrasse
+
+Unter alten Bäumen an der Königinstraße, mit Kies und großen Sonnenschirmen. Der Klassiker für lange Sommerabende. 
+ Feiern auf der Königinterrasse
+
+Erdgeschoss · überdacht
+
+### Panoramaterrasse
+
+Überdacht und mit Heizstrahlern, der Blick geht ins Grün des Englischen Gartens. Hier sitzen Sie auch an kühlen Tagen im Freien. 
+ Feiern auf der Panoramaterrasse
+
+Obergeschoss
+
+### Sonnenterrasse
+
+Im Obergeschoss über der Königinstraße, mit Abendsonne. Sie gehört zum Studio und bildet mit ihm eine eigene Etage für Feste. 
+ Feiern auf der Sonnenterrasse
+
+Vom Morgen bis zum Abend
+
+### Ein Tag auf der Terrasse
+
+01
+
+### Frühstück
+
+Samstags, sonntags und an Feiertagen von 9 bis 13 Uhr, ohne Reservierung. Von der Weißwurst mit Breze bis zu Pancakes. 
+ Zum Frühstück →
+
+02
+
+### Mittag
+
+Ab 11:30 Uhr die ganze Karte: Salate, Pasta und das Wiener Schnitzel vom Kalbsrücken für 33,50 €. 
+ Zu den Karten →
+
+03
+
+### Nachmittag
+
+Kaffee und Kuchen vom eigenen Konditor, dazu ein Spritz im Schatten der Bäume.
+
+04
+
+### Abend
+
+Von 17 bis 18:30 Uhr ist Champagner Happy Hour. Danach Abendessen unter Lichterketten. Warme Küche: Mo bis Sa bis 21:30 Uhr, So und Feiertag bis 18:00 Uhr.
+
+Lage
+
+### Der Englische Garten nebenan
+
+Das Café Reitschule liegt am Westrand des Englischen Gartens, zwischen Park und Leopoldstraße. Von der Terrasse sind Sie in wenigen Schritten im Grünen. 
+ Zum Chinesischen Turm und zum Monopteros sind es rund zehn Gehminuten, zum Kleinhesseloher See knapp ein Kilometer. 
+ Die U-Bahn-Station Giselastraße (U3/U6) liegt rund acht Gehminuten entfernt. Parkplätze gibt es in den Straßen rund um die Königinstraße, sie sind aber knapp. 
+ Route planen ↗︎
+
+Gut zu wissen
+
+### Fragen zur Terrasse
+
+Das Café Reitschule ist Restaurant, Café und Bar in der historischen Universitäts-Reitschule an der Königinstraße 34 in München-Schwabing, direkt am Englischen Garten. Draußen gibt es rund 270 Plätze auf drei Terrassen, eine davon ist überdacht und beheizt.
+
+Hat das Café Reitschule eine Terrasse? 
+ Ja, sogar drei: die Königinterrasse unter alten Bäumen an der Königinstraße, die überdachte Panoramaterrasse mit Blick ins Grün des Englischen Gartens und die Sonnenterrasse im Obergeschoss. Zusammen gibt es draußen rund 270 Plätze.
+
+Ist eine der Terrassen überdacht? 
+ Ja. Die Panoramaterrasse ist überdacht und hat Heizstrahler. Dort sitzen Sie auch bei Regen und an kühlen Tagen im Freien, verlässlich von Frühjahr bis in den Herbst.
+
+Muss ich für die Terrasse reservieren? 
+ Oft bekommen Sie spontan einen Platz. Abends und am Wochenende empfehlen wir eine Reservierung über OpenTable, für denselben Tag rufen Sie am besten kurz an: +49 89 38 88 76 0.
+
+Kann man auf der Terrasse frühstücken? 
+ Ja. Samstags, sonntags und an Feiertagen gibt es von 9 bis 13 Uhr Frühstück à la carte, drinnen und auf den Terrassen. Reservieren müssen Sie dafür nicht.
+
+Werde ich auf der Terrasse am Tisch bedient? 
+ Ja. Das Café Reitschule ist ein Restaurant, kein Biergarten: Auch draußen bedienen wir am Tisch.
+
+Sind Hunde auf der Terrasse erlaubt? 
+ Ja. Ihr Hund ist willkommen, drinnen wie auf den Terrassen.
+
+Wann ist Champagner Happy Hour? 
+ Täglich von 17 bis 18:30 Uhr, in der Bar, in der Lounge oder auf der Terrasse.
+
+Wie weit ist es zum Englischen Garten? 
+ Das Haus liegt direkt am Westrand des Englischen Gartens. Zum Chinesischen Turm und zum Monopteros sind es rund zehn Gehminuten, zum Kleinhesseloher See knapp ein Kilometer.
+
+Kann ich eine Terrasse für eine Feier mieten? 
+ Ja. Alle drei Terrassen lassen sich exklusiv buchen: die Königinterrasse für bis zu 180 Gäste an Tischen, die Panoramaterrasse für 160 und die Sonnenterrasse für 150. Unser Eventteam berät Sie unter contact@cafe-reitschule.de.
+
+Wie komme ich zum Café Reitschule? 
+ Mit der U3 oder U6 bis Giselastraße, von dort sind es rund acht Gehminuten. Parkplätze gibt es in den Straßen rund um die Königinstraße, sie sind aber knapp.
+
+Reservierung
+
+### Ihr Tisch wartet
+
+Online rund um die Uhr. Für denselben Tag rufen Sie am besten kurz an.
+
+Online reservieren 
+ +49 89 38 88 76 0
 
 ## Restaurant mieten in Schwabing | Café Reitschule
 
