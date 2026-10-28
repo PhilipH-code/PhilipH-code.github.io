@@ -4089,31 +4089,6 @@ html.is-still .garland__bulb, html.is-still .walkmap__lights circle { animation-
 .walkmap { margin: 0; border: 1px solid var(--line); outline: 1px solid var(--line); outline-offset: 5px; padding: clamp(0.6rem, 1.4vw, 1rem); background: var(--paper); }
 .walkmap svg { display: block; width: 100%; height: auto; }
 
-/* Für Arbeitgeber: der Freibetrag als große Zahl auf einer Karte */
-.tax { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.tax__card {
-  margin: 0;
-  padding: clamp(2rem, 5vw, 3.4rem) clamp(1.2rem, 3vw, 2.4rem);
-  text-align: center;
-  background: var(--cream);
-  border: 1px solid var(--gold-deep);
-  outline: 1px solid var(--line);
-  outline-offset: 6px;
-}
-.tax__law { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); }
-.tax__figure {
-  margin-top: 1rem;
-  font-size: clamp(4.2rem, 11vw, 8.6rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  color: var(--ink);
-  font-variant-numeric: lining-nums;
-}
-.tax__card figcaption { max-width: 17rem; margin: 1.3rem auto 0; font-family: var(--serif); font-style: italic; font-size: 1rem; line-height: 1.5; color: var(--gold-deep); }
-@media (max-width: 1000px) { .tax { grid-template-columns: 1fr; } .tax__card { width: 100%; max-width: 28rem; } }
-
 /* Planung: Monate links, Schritte rechts */
 .plan-list { list-style: none; margin: clamp(1.8rem, 4vw, 2.6rem) 0 0; padding: 0; border-top: 1px dotted var(--line); }
 .plan-list li { display: grid; grid-template-columns: clamp(9rem, 24vw, 14rem) minmax(0, 1fr); gap: 0.4rem 1.6rem; align-items: baseline; padding: clamp(0.9rem, 2vw, 1.3rem) 0; border-bottom: 1px dotted var(--line); }
