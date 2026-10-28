@@ -3578,7 +3578,7 @@ html:has(.nav.is-open) .consent-banner { visibility: hidden; }
    ========================================================== */
 /* Datumsgesteuerte Elemente (main.js) müssen sicher verschwinden, auch wenn
    ihre Komponente ein eigenes display setzt (z. B. grid bei Kalenderzeilen) */
-[data-expires][hidden], [data-from][hidden], [data-after][hidden] { display: none !important; }
+[data-expires][hidden], [data-from][hidden], [data-after][hidden], .cal__month[hidden] { display: none !important; }
 
 /* Festlicher Hero für Silvester: ein Hauch Gold von oben rechts */
 .page-hero--festive {

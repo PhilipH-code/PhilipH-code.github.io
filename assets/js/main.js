@@ -22,28 +22,59 @@
   var body = document.body;
 
   /* ---------- Abgelaufene Termine ausblenden ----------
-     Die Seiten sind statisch generiert; liegt der letzte Build ein paar Tage
-     zurück, wären vergangene Termine noch sichtbar. data-expires trägt das
-     Datum des Termins — ist es vorbei, verschwindet die Zeile clientseitig. */
+     Die Seiten sind statisch generiert; zwischen zwei Builds wären vergangene
+     Termine noch sichtbar. data-expires trägt das Datum des Termins. Er gilt
+     bis zum Folgetag um 12 Uhr Münchner Zeit (wie current_from() im Generator):
+     Halloween am 31.10. verschwindet am 1.11. mittags. */
   var now = new Date();
-  var todayIso = now.getFullYear() + "-" +
-    String(now.getMonth() + 1).padStart(2, "0") + "-" +
-    String(now.getDate()).padStart(2, "0");
+  var berlin = { y: now.getFullYear(), m: now.getMonth() + 1, d: now.getDate(), h: now.getHours() };
+  try {
+    new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Berlin", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", hourCycle: "h23" })
+      .formatToParts(now).forEach(function (p) {
+        if (p.type === "year") berlin.y = +p.value;
+        else if (p.type === "month") berlin.m = +p.value;
+        else if (p.type === "day") berlin.d = +p.value;
+        else if (p.type === "hour") berlin.h = +p.value;
+      });
+  } catch (e) { /* ohne Zeitzonen-Daten: Gerätezeit */ }
+  var isoOf = function (dt) { return dt.toISOString().slice(0, 10); };
+  var todayIso = isoOf(new Date(Date.UTC(berlin.y, berlin.m - 1, berlin.d)));
+  var currentFrom = berlin.h < 12 ? isoOf(new Date(Date.UTC(berlin.y, berlin.m - 1, berlin.d - 1))) : todayIso;
   Array.prototype.forEach.call(document.querySelectorAll("[data-expires]"), function (el) {
-    if (el.getAttribute("data-expires") < todayIso) el.hidden = true;
+    if (el.getAttribute("data-expires") < currentFrom) el.hidden = true;
+  });
+  /* Kalender nach dem Ausblenden aufräumen: Monatsüberschriften ohne sichtbare
+     Termine weg, „Nächster Termin“ wandert zum ersten sichtbaren Eintrag */
+  Array.prototype.forEach.call(document.querySelectorAll(".cal"), function (cal) {
+    var rows = cal.querySelectorAll(".cal-row");
+    var flagged = cal.querySelector(".cal-row--next");
+    var first = null;
+    Array.prototype.forEach.call(rows, function (r) { if (!first && !r.hidden) first = r; });
+    if (flagged && flagged.hidden && first) {
+      flagged.classList.remove("cal-row--next");
+      first.classList.add("cal-row--next");
+      var flag = flagged.querySelector(".cal-row__flag");
+      if (flag) first.insertBefore(flag, first.firstChild);
+    }
+    Array.prototype.forEach.call(cal.querySelectorAll(".cal__month"), function (h) {
+      var el = h.nextElementSibling, visible = false;
+      while (el && !el.classList.contains("cal__month")) { if (el.classList.contains("cal-row") && !el.hidden) visible = true; el = el.nextElementSibling; }
+      if (!visible) h.hidden = true;
+    });
   });
   /* Saisonale Inhalte, ebenfalls ohne neuen Build: data-from erst ab einem
-     Datum zeigen, data-after erst NACH einem Datum (z. B. "Silvester ist
-     vorbei"), data-season hebt ein Element im Zeitraum "von|bis" hervor. */
+     Datum zeigen, data-after erst nach Ablauf eines Datums (z. B. "Silvester
+     ist vorbei", gleiche 12-Uhr-Regel), data-season hebt ein Element im
+     Zeitraum "von|bis" hervor. */
   Array.prototype.forEach.call(document.querySelectorAll("[data-from]"), function (el) {
     if (el.getAttribute("data-from") > todayIso) el.hidden = true;
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-after]"), function (el) {
-    el.hidden = !(el.getAttribute("data-after") < todayIso);
+    el.hidden = !(el.getAttribute("data-after") < currentFrom);
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-season]"), function (el) {
     var r = el.getAttribute("data-season").split("|");
-    el.classList.toggle("is-season", todayIso >= r[0] && todayIso <= r[1]);
+    el.classList.toggle("is-season", todayIso >= r[0] && currentFrom <= r[1]);
   });
 
   /* Druck-Button (Menü-Seiten) — CSP-konform statt inline onclick */
