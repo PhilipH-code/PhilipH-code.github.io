@@ -64,7 +64,7 @@ Sa
  Okt
 
 Halloween Horror Mansion 
- 31. Oktober 2026 · 20:00 Uhr · Reitschule & Moro Mou
+ 31. Oktober 2026 · 20 Uhr · Reitschule & Moro Mou
 
 →
 
@@ -73,7 +73,7 @@ Fr
  Dez
 
 Brunch am 1. Weihnachtsfeiertag 
- 25. Dezember 2026 · 09:30 Uhr · Moro Mou
+ 25. Dezember 2026 · 9:30 Uhr · Moro Mou
 
 →
 
@@ -1491,7 +1491,7 @@ Am Abend
 ### Der Abend zur blauen Stunde
 
 Wird das Licht über dem Garten weicher, füllt sich die Bar. Warme Küche bis 21:30 Uhr, Cocktails und Champagner bis in den späten Abend. 
- Ein Aperitif vor dem Essen oder ein langer Abend mit Freunden: Montag bis Samstag hat die Reitschule bis 23 Uhr geöffnet. 
+ Ein Aperitif vor dem Essen oder ein langer Abend mit Freunden: Montag bis Freitag hat die Reitschule von 11:30 bis 23 Uhr geöffnet, samstags von 9 bis 23 Uhr. 
  Weine & Champagner
 
 Fragen zur Karte
@@ -1552,7 +1552,7 @@ Jeden Sonntag
 
 ### Sonntags­brunch in Schwabing
 
-Jeden Sonntag von 09:30 bis 15:00 Uhr, als Buffet im Moro Mou. Ein langer Tisch, ein langer Vormittag, keine Eile.
+Jeden Sonntag von 9:30 bis 15 Uhr, als Buffet im Moro Mou. Ein langer Tisch, ein langer Vormittag, keine Eile.
 
 Erwachsene & ab 16 Jahre 59,00 € 
  12 bis 15 Jahre 46,50 € 
@@ -2137,7 +2137,7 @@ Sind Hunde willkommen?
  Ja. Ihr Hund ist bei uns gern gesehen, drinnen wie auf den Terrassen.
 
 Haben Sie an Feiertagen geöffnet? 
- An Sonn- und Feiertagen sind wir von 9 bis 19 Uhr für Sie da. Frühstück gibt es bis 13 Uhr.
+ An Sonn- und Feiertagen sind wir von 9 bis 19 Uhr für Sie da. Frühstück gibt es bis 13 Uhr.
 
 Muss ich reservieren? 
  Empfohlen, besonders abends und am Wochenende. Am einfachsten reservieren Sie online über OpenTable . Für denselben Tag rufen Sie am besten kurz an: +49 89 38 88 76 0 .
@@ -2179,7 +2179,7 @@ Sa
 
 Am Samstag, 31. Oktober, wird es wieder dunkel am Englischen Garten. Reitschule und Moro Mou verwandeln sich in eine große Halloween-Welt mit mehreren Areas, DJs, Dinner und Drinks.
 
-Samstag, 31. Oktober 2026 · 20:00 Uhr · Reitschule & Moro Mou · Einlass ab 18 Jahren
+Samstag, 31. Oktober 2026 · 20 Uhr · Reitschule & Moro Mou · Einlass ab 18 Jahren
 
 Drei Welten an einem Abend: House und Mykonos-Gefühl im Moro Mou, 80er, 90er und 2000er in der Orangerie, Charts und Urban Sound auf dem Rooftop und im Horrorsaal. Wer den Abend mit Dinner beginnen möchte, reserviert vorab einen Tisch. Beginn 20 Uhr, Einlass ab 18 Jahren.
 
@@ -2198,7 +2198,7 @@ Fr
 
 Das große Brunchbuffet im Moro Mou, mit Austern- und Eierstation, bayerischen Klassikern und Mittagsgerichten. Prosecco, Wein, Bier, Heißgetränke, Saft und Wasser sind inklusive.
 
-Freitag, 25. Dezember 2026 · 09:30 Uhr · Moro Mou · 59 € pro Person, Getränke inklusive 
+Freitag, 25. Dezember 2026 · 9:30 Uhr · Moro Mou · 59 € pro Person, Getränke inklusive 
  Alles zum Brunch →
 
 Buchbar ausschließlich über OpenTable.
@@ -2215,7 +2215,7 @@ Do
 
 Ein glanzvoller Jahreswechsel in festlicher Atmosphäre. Champagnerempfang, ein großes Galabuffet und DJs auf zwei Ebenen begleiten Sie ins neue Jahr.
 
-Donnerstag, 31. Dezember 2026 · 19:00 Uhr · Das ganze Haus · 139 € pro Person · Galabuffet 
+Donnerstag, 31. Dezember 2026 · 19 Uhr · Das ganze Haus · 139 € pro Person · Galabuffet 
  Programm & Galabuffet →
 
 Ab 19 Uhr Einlass und Champagnerempfang, ab 20 Uhr ist das Galabuffet eröffnet. Um Mitternacht zählen wir gemeinsam herunter. Dresscode von Black Tie bis Smart Casual, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
@@ -2469,7 +2469,7 @@ Der Sonntag
 
 ### Ein langer Tisch, ein langer Vormittag
 
-Sonntags lädt das Moro Mou, unser griechisches Restaurant im selben Haus, zum großen Brunchbuffet. Von halb zehn bis drei Uhr nachmittags ist angerichtet, die Getränke sind inklusive. 
+Sonntags lädt das Moro Mou, unser griechisches Restaurant im selben Haus, zum großen Brunchbuffet. Von 9:30 bis 15 Uhr ist angerichtet, die Getränke sind inklusive. 
  Der Tag beginnt süß oder herzhaft: frisch zubereitete Eier, Austern, Weißwürste mit Brezn, Kuchen und Gebäck. Ab 11:30 Uhr kommen warme Mittagsgerichte dazu. Danach liegt der Englische Garten direkt vor der Tür.
 
 Alles inklusive
@@ -2622,8 +2622,8 @@ Start Silvester
 
 Silvester 26/27 
  Silvester 2026/27 am Englischen Garten 
- Galabuffet, Champagner und DJs auf zwei Ebenen. Ein glanzvoller Abend bis vier Uhr früh. 
- Das Café Reitschule in München-Schwabing feiert Silvester 2026/27 mit einem Galabuffet: Champagnerempfang ab 19:00 Uhr, Buffet ab 20 Uhr, DJs auf zwei Ebenen bis 04:00 Uhr. Der Abend kostet 139 € pro Person, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
+ Galabuffet, Champagner und DJs auf zwei Ebenen. Ein glanzvoller Abend bis 4 Uhr früh. 
+ Das Café Reitschule in München-Schwabing feiert Silvester 2026/27 mit einem Galabuffet: Champagnerempfang ab 19 Uhr, Buffet ab 20 Uhr, DJs auf zwei Ebenen bis 4 Uhr. Der Abend kostet 139 € pro Person, Einlass ab 16 Jahren. Reserviert wird ausschließlich über OpenTable.
 
 Jetzt Tisch sichern 
  Zum Programm ↓
@@ -2647,7 +2647,7 @@ Der Abend
 ### Ein glanzvoller Jahreswechsel
 
 Es erwartet Sie ein wunderbarer Abend in glanzvoller und angenehmer Atmosphäre. Er beginnt mit Champagner, führt über ein großes Galabuffet und endet auf zwei Tanzflächen. 
- Um Mitternacht zählen wir gemeinsam herunter. Danach spielen die DJs bis vier Uhr früh.
+ Um Mitternacht zählen wir gemeinsam herunter. Danach spielen die DJs bis 4 Uhr früh.
 
 Inklusive
 
@@ -2792,7 +2792,7 @@ Tische für Silvester buchen Sie ausschließlich online über OpenTable.
 Jetzt Tisch sichern
 
 Telefonische Reservierungen oder per E-Mail sind leider nicht möglich. 
- Fragen oder Schwierigkeiten bei der Buchung? Rufen Sie uns gern an: +49 89 38 88 76 0, Montag bis Samstag von 9 bis 22 Uhr, sonntags von 9 bis 19 Uhr. 
+ Fragen oder Schwierigkeiten bei der Buchung? Rufen Sie uns gern an: +49 89 38 88 76 0, zu unseren Öffnungszeiten. 
  Alle Preise in Euro inklusive der gesetzlichen Mehrwertsteuer. Gutscheine sind für den Silvesterabend nicht einlösbar.
 
 Gut zu wissen
@@ -2803,7 +2803,7 @@ Was kostet Silvester im Café Reitschule?
  Der Abend kostet 139 € pro Person. Dazu gehören Champagnerempfang, Häppchen, das Galabuffet sowie DJs und Tanzflächen auf zwei Ebenen.
 
 Wann beginnt und endet der Silvesterabend? 
- Einlass mit Champagnerempfang ist ab 19:00 Uhr, das Galabuffet öffnet um 20 Uhr, ab 22 Uhr legen die DJs auf. Der Abend endet um 04:00 Uhr.
+ Einlass mit Champagnerempfang ist ab 19 Uhr, das Galabuffet öffnet um 20 Uhr, ab 22 Uhr legen die DJs auf. Der Abend endet um 4 Uhr.
 
 Wie reserviere ich für Silvester? 
  Ausschließlich online über OpenTable. Telefonische Reservierungen oder per E-Mail sind leider nicht möglich. Bei Fragen zur Buchung erreichen Sie uns unter +49 89 38 88 76 0.

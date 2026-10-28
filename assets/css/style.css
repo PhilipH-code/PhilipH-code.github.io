@@ -2092,7 +2092,8 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
 .cal-row__date .wd { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); }
 .cal-row__date strong { display: block; font-size: clamp(2rem, 3.6vw, 2.8rem); font-weight: 700; line-height: 1.05; color: var(--green); }
 .cal-row__date .mo { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); }
-.cal-row__body h3 { font-size: 1.15rem; letter-spacing: 0.12em; color: var(--green); }
+.cal-row__body h3 { font-size: 1.15rem; letter-spacing: 0.12em; color: var(--green); overflow-wrap: anywhere; hyphens: auto; }
+.cal-row__body { min-width: 0; }  /* lange Ein-Wort-Titel brechen um, statt die Zeile zu sprengen */
 .cal-row__body > p { font-family: var(--serif); font-size: 0.97rem; line-height: 1.7; margin-top: 0.5rem; max-width: 44rem; }
 .cal-row__meta { font-family: var(--font) !important; font-size: 0.72rem !important; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); margin-top: 0.7rem !important; }
 .cal-row__cta { display: flex; flex-direction: column; gap: 0.6rem; }

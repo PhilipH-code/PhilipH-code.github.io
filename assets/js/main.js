@@ -342,7 +342,11 @@
     };
     var fmtTime = function (min) {
       var h = Math.floor(min / 60), m = min % 60;
-      if (HT.uhr === "") return h + ":" + (m < 10 ? "0" : "") + m;
+      /* Englisch wie im Seitentext: "8 pm", "11:30 am", "midnight" */
+      if (HT.uhr === "") {
+        if (min % 1440 === 0) return "midnight";
+        return (h % 12 || 12) + (m ? ":" + (m < 10 ? "0" : "") + m : "") + (h % 24 >= 12 ? " pm" : " am");
+      }
       return h + (m ? ":" + (m < 10 ? "0" : "") + m : "") + HT.uhr;
     };
     var toMin = function (t) {
@@ -435,12 +439,23 @@
       var seenKey = "rs-popup-" + (pd.start || "") + "-" + (pd.end || "");
       var seen = false;
       try { seen = sessionStorage.getItem(seenKey) === "1"; } catch (err) {}
-      if (startOk && endOk && !seen && !window.rsConsentPending) {
-        window.setTimeout(function () {
-          lockBg(true);
-          popupEl.showModal();
-          try { sessionStorage.setItem(seenKey, "1"); } catch (err) {}
-        }, 2200);
+      if (startOk && endOk && !seen) {
+        var showPopup = function (delay) {
+          window.setTimeout(function () {
+            if (popupEl.open) return;
+            lockBg(true);
+            popupEl.showModal();
+            try { sessionStorage.setItem(seenKey, "1"); } catch (err) {}
+          }, delay);
+        };
+        /* Beim ersten Besuch erst den Cookie-Hinweis entscheiden lassen, dann
+           erscheint die Ankündigung auf derselben Seite (nicht erst auf der nächsten) */
+        if (!window.rsConsentPending) showPopup(2200);
+        else document.addEventListener("rs:consent", function onDecide() {
+          if (window.rsConsentPending) return;
+          document.removeEventListener("rs:consent", onDecide);
+          showPopup(900);
+        });
         popupEl.querySelector(".popup__close").addEventListener("click", function () { popupEl.close(); });
         popupEl.addEventListener("click", function (e) {
           if (e.target === popupEl) popupEl.close();
