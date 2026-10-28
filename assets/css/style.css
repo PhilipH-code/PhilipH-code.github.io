@@ -3962,3 +3962,177 @@ html.is-still .seal__ring, html.is-still .scroll-cue::after, html.is-still .open
 /* Statuszeilen bleiben im Screenreader-Baum, auch leer (sonst liest VoiceOver
    Meldungen in eben erst sichtbar gewordenen Bereichen oft nicht vor) */
 .news-form__msg:empty, .inquiry-form__msg:empty { margin: 0; padding: 0; border: 0; }
+
+/* ---------- Weihnachtsfeier (templates/pages/weihnachtsfeier.php) ---------- */
+/* Lichterkette im Hero: flache Bögen unter dem Header, Birnen glimmen versetzt.
+   Mindestens 56rem breit, auf dem Handy also ein Ausschnitt aus der Mitte. */
+.page-hero--xmas { position: relative; overflow: clip; }
+.garland {
+  position: absolute;
+  left: 50%;
+  top: clamp(5.4rem, 8vw, 6.6rem);
+  width: max(100%, 56rem);
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.garland__bulb, .walkmap__lights circle { animation: twinkle 3.8s ease-in-out infinite; }
+.garland__bulb:nth-child(3n + 1) { animation-duration: 4.6s; animation-delay: -1.3s; }
+.garland__bulb:nth-child(3n + 2) { animation-duration: 3.2s; animation-delay: -2.4s; }
+.garland__bulb:nth-child(4n) { animation-delay: -0.7s; }
+.walkmap__lights circle:nth-child(odd) { animation-duration: 4.2s; animation-delay: -1.6s; }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+html.is-still .garland__bulb, html.is-still .walkmap__lights circle { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .garland__bulb, .walkmap__lights circle { animation: none; } }
+
+/* Teamgröße: vier Felder als Wahlschalter (Radio), darunter der passende Vorschlag.
+   Ohne :has-Unterstützung entfällt der Schalter, alle Vorschläge stehen untereinander. */
+.teams { margin-top: clamp(2rem, 4vw, 3rem); }
+.teams__picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-block: 1px solid var(--line);
+}
+.teams__opt {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 0.15rem;
+  padding: clamp(1rem, 2.2vw, 1.5rem) clamp(0.7rem, 1.8vw, 1.4rem);
+  border-left: 1px solid var(--line);
+  cursor: pointer;
+}
+.teams__opt:first-of-type { border-left: 0; padding-left: 0; }
+.teams__opt::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--gold-deep);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.teams__pre, .teams__unit { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-deep); }
+.teams__num {
+  font-size: clamp(2.3rem, 5.6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-deep);
+  font-variant-numeric: lining-nums tabular-nums;
+  transition: color 0.3s var(--ease);
+}
+.teams__label { margin-top: 0.55rem; font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.35; color: var(--gold-deep); }
+.teams__opt:hover .teams__num { color: var(--ink); }
+.teams__picker input:checked + .teams__opt .teams__num,
+.teams__picker input:checked + .teams__opt .teams__label { color: var(--ink); }
+.teams__picker input:checked + .teams__opt::after { transform: scaleX(1); }
+.teams__picker input:focus-visible + .teams__opt { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+
+.teams__panels { margin-top: clamp(1.8rem, 4vw, 2.8rem); }
+.teams__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(1.6rem, 4vw, 3.5rem);
+  align-items: center;
+}
+.teams__fig { margin: 0; border: 1px solid var(--line); outline: 1px solid var(--line); outline-offset: 5px; padding: clamp(0.5rem, 1.2vw, 0.8rem); background: var(--paper); overflow: hidden; }
+.teams__fig img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: sepia(0.08) saturate(0.92); }
+.teams__range { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-deep); }
+.teams__body h3 { margin-top: 0.6rem; }
+.teams__text { margin-top: 1rem; max-width: 34rem; font-family: var(--serif); font-size: 1.05rem; line-height: 1.75; }
+.teams__rooms { list-style: none; max-width: 34rem; margin: 1.3rem 0 0; padding: 0; border-top: 1px dotted var(--line); }
+.teams__rooms li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px dotted var(--line); }
+.teams__rooms a { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--gold); padding: 3px 0; }
+.teams__rooms a:hover { color: var(--gold-deep); }
+.teams__rooms small { font-family: var(--serif); font-size: 0.9rem; text-align: right; color: var(--muted, #6b6252); }
+.teams__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 1.7rem; }
+.teams__link { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); border-bottom: 1px solid currentColor; padding: 3px 0; }
+.teams__link:hover { color: var(--ink); }
+@supports selector(:has(*)) {
+  .teams:has(#team-0:checked) .teams__panel:not([data-team="0"]),
+  .teams:has(#team-1:checked) .teams__panel:not([data-team="1"]),
+  .teams:has(#team-2:checked) .teams__panel:not([data-team="2"]),
+  .teams:has(#team-3:checked) .teams__panel:not([data-team="3"]) { display: none; }
+  /* Beim Wechsel setzt sich nur das Bild, der Text steht sofort */
+  .teams__panel .teams__fig img { animation: teams-settle 0.9s var(--ease); }
+}
+@supports not selector(:has(*)) {
+  .teams__picker { display: none; }
+  .teams__panel + .teams__panel { margin-top: clamp(2.4rem, 5vw, 3.6rem); }
+}
+@keyframes teams-settle { from { transform: scale(1.04); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .teams__panel .teams__fig img { animation: none; } .teams__opt::after { transition: none; } }
+@media (max-width: 800px) {
+  .teams__picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .teams__opt:nth-of-type(3) { border-left: 0; padding-left: 0; }
+  .teams__opt:nth-of-type(n + 3) { border-top: 1px solid var(--line); }
+  .teams__panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .teams__rooms li { flex-direction: column; gap: 0.2rem; }
+  .teams__rooms small { text-align: left; }
+}
+
+/* Wege und Quellen auf hellem Grund */
+.lp-distances--ink { border-top-color: var(--line); }
+.lp-distances--ink li { border-bottom-color: var(--line); }
+.lp-distances--ink li span:last-child { color: var(--gold-deep); }
+.lp-source--ink a { color: var(--gold-deep); }
+.lp-source--ink a:hover { color: var(--ink); }
+
+/* Wegskizze zum Chinesischen Turm, gerahmt wie die Fotos */
+.walkmap { margin: 0; border: 1px solid var(--line); outline: 1px solid var(--line); outline-offset: 5px; padding: clamp(0.6rem, 1.4vw, 1rem); background: var(--paper); }
+.walkmap svg { display: block; width: 100%; height: auto; }
+
+/* Für Arbeitgeber: der Freibetrag als große Zahl auf einer Karte */
+.tax { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.tax__card {
+  margin: 0;
+  padding: clamp(2rem, 5vw, 3.4rem) clamp(1.2rem, 3vw, 2.4rem);
+  text-align: center;
+  background: var(--cream);
+  border: 1px solid var(--gold-deep);
+  outline: 1px solid var(--line);
+  outline-offset: 6px;
+}
+.tax__law { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); }
+.tax__figure {
+  margin-top: 1rem;
+  font-size: clamp(4.2rem, 11vw, 8.6rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--ink);
+  font-variant-numeric: lining-nums;
+}
+.tax__card figcaption { max-width: 17rem; margin: 1.3rem auto 0; font-family: var(--serif); font-style: italic; font-size: 1rem; line-height: 1.5; color: var(--gold-deep); }
+@media (max-width: 1000px) { .tax { grid-template-columns: 1fr; } .tax__card { width: 100%; max-width: 28rem; } }
+
+/* Planung: Monate links, Schritte rechts */
+.plan-list { list-style: none; margin: clamp(1.8rem, 4vw, 2.6rem) 0 0; padding: 0; border-top: 1px dotted var(--line); }
+.plan-list li { display: grid; grid-template-columns: clamp(9rem, 24vw, 14rem) minmax(0, 1fr); gap: 0.4rem 1.6rem; align-items: baseline; padding: clamp(0.9rem, 2vw, 1.3rem) 0; border-bottom: 1px dotted var(--line); }
+.plan-list strong { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); }
+.plan-list span { font-family: var(--serif); font-size: clamp(1.02rem, 1.8vw, 1.15rem); line-height: 1.6; }
+@media (max-width: 560px) { .plan-list li { grid-template-columns: 1fr; } }
+
+/* Rund um Weihnachten: Links unter dem Catering-Text */
+.xmas-more__title { margin-top: clamp(2.2rem, 4vw, 3rem); font-size: 0.72rem; letter-spacing: 0.24em; color: var(--gold); }
+.lp-links--start { justify-content: flex-start; }
+.xmas-more { justify-content: flex-start; margin-top: 0.9rem; }
+
+/* Raumseiten: Anlässe mit eigener Seite als Link */
+.facts { align-items: baseline; }
+.facts a { color: inherit; border-bottom: 1px solid currentColor; padding: 3px 0; }
+.facts a:hover { color: var(--ink); }
+
+/* Versalzeilen im Fließtext-Block: .prose p (Serif, ohne Sperrung) überschrieb
+   Überzeile, Quellenzeile und Linkzeile. Sie behalten ihre eigene Schrift. */
+.prose p.eyebrow { font-family: var(--font); font-size: var(--fs-small); letter-spacing: 0.42em; line-height: 1.65; max-width: none; }
+.prose p.lp-source { font-family: var(--font); font-size: 0.68rem; letter-spacing: 0.16em; line-height: 1.6; }
+.prose p.lp-links { font-family: var(--font); font-size: 0.72rem; letter-spacing: 0.2em; line-height: 1.6; max-width: none; }
