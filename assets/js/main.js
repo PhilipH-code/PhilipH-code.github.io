@@ -341,6 +341,7 @@
       return String(tpl).replace(/%s/g, function () { return args[i++]; });
     };
     var fmtTime = function (min) {
+      if (min > 1440) min -= 1440; /* Schluss nach Mitternacht: 1500 = 1 Uhr */
       var h = Math.floor(min / 60), m = min % 60;
       /* Englisch wie im Seitentext: "8 pm", "11:30 am", "midnight" */
       if (HT.uhr === "") {
@@ -370,15 +371,27 @@
 
       /* Gesetzliche Feiertage öffnen wie sonntags */
       var hoursOn = function (d) { return holidays.indexOf(isoOf(d)) > -1 ? openingHours[0] : openingHours[d.getDay()]; };
+      /* Schluss eines Tages; "früher geschlossen" vor der Öffnung meint die Nacht danach */
+      var closeOf = function (h, c) {
+        var t = c && c.type === "frueher" ? toMin(c.time) : null;
+        return t === null ? h[1] : Math.min(h[1], t < h[0] ? t + 1440 : t);
+      };
       var today = hoursOn(berlin);
       var todayC = closureOn(todayIso);
       var text = "", isOpen = false;
+      /* Nach Mitternacht: läuft noch der Abend von gestern? */
+      var yest = new Date(berlin);
+      yest.setDate(yest.getDate() - 1);
+      var yC = closureOn(isoOf(yest)), yClose = closeOf(hoursOn(yest), yC);
 
-      if (todayC && todayC.type === "ganz") {
+      if (!(yC && yC.type === "ganz") && yClose > 1440 && mins < yClose - 1440) {
+        isOpen = true;
+        text = fill(HT.now, fmtTime(yClose));
+        if (yC && yC.label) text += " (" + yC.label + ")";
+      } else if (todayC && todayC.type === "ganz") {
         text = HT.closedToday + (todayC.label ? " · " + todayC.label : "");
       } else {
-        var closeAt = today[1];
-        if (todayC && todayC.type === "frueher" && toMin(todayC.time) !== null) closeAt = Math.min(closeAt, toMin(todayC.time));
+        var closeAt = closeOf(today, todayC);
         if (mins >= today[0] && mins < closeAt) {
           isOpen = true;
           text = fill(HT.now, fmtTime(closeAt));
