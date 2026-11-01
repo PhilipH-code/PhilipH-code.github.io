@@ -3,25 +3,10 @@
    Heritage im Vordergrund, Technik im Hintergrund.
    ============================================================ */
 
-/* ---------- Fonts (self-hosted, DSGVO-konform) ---------- */
-@font-face {
-  font-family: "Futura";
-  src: url("../fonts/futura-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Futura";
-  src: url("../fonts/futura-bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-/* Jost (Open Font License, assets/fonts/OFL-Jost.txt): freie Alternative im
-   Geist der Futura. Zeichnet etwas kleiner; size-adjust bringt die Zeilen auf
-   Futura-Breite, damit nichts neu umbricht (Anfahrtsplan, Versalzeilen).
-   Aktiv nur mit <html data-schrift="jost"> (Admin → Einstellungen). */
+/* ---------- Fonts (self-hosted, DSGVO-konform) ----------
+   Jost, frei unter der Open Font License (assets/fonts/OFL-Jost.txt), im Geist
+   der Futura der Original-Website. Zeichnet etwas kleiner als Futura; size-adjust
+   hält die Zeilenbreite, damit nichts neu umbricht (Anfahrtsplan, Versalzeilen). */
 @font-face {
   font-family: "Jost";
   src: url("../fonts/jost-regular.woff2") format("woff2");
@@ -59,7 +44,7 @@
   --line: rgba(70, 58, 34, 0.24);
   --line-light: rgba(244, 239, 226, 0.2);
 
-  --font: "Futura", "Century Gothic", "Avenir Next", Avenir, Arial, sans-serif;
+  --font: "Jost", "Century Gothic", "Avenir Next", Avenir, Arial, sans-serif;
 
   --fs-hero: clamp(2.6rem, 8.5vw, 7.5rem);
   --fs-h2: clamp(2rem, 5vw, 4.2rem);
@@ -72,9 +57,6 @@
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
-:root[data-schrift="jost"] { --font: "Jost", "Century Gothic", "Avenir Next", Avenir, Arial, sans-serif; }
-/* Siegel, Auszeichnung und Pläne tragen Futura als SVG-Attribut; CSS geht vor */
-:root[data-schrift="jost"] svg text[font-family^="Futura"] { font-family: var(--font); }
 
 /* ---------- Reset / Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
