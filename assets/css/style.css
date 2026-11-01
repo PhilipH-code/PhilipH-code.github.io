@@ -18,6 +18,26 @@
   font-style: normal;
   font-display: swap;
 }
+/* Jost (Open Font License, assets/fonts/OFL-Jost.txt): freie Alternative im
+   Geist der Futura. Zeichnet etwas kleiner; size-adjust bringt die Zeilen auf
+   Futura-Breite, damit nichts neu umbricht (Anfahrtsplan, Versalzeilen).
+   Aktiv nur mit <html data-schrift="jost"> (Admin → Einstellungen). */
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 103%;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 105%;
+}
 
 /* ---------- Design Tokens ----------
    Palette der Original-Website (cafe-reitschule.de):
@@ -52,6 +72,9 @@
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
+:root[data-schrift="jost"] { --font: "Jost", "Century Gothic", "Avenir Next", Avenir, Arial, sans-serif; }
+/* Siegel, Auszeichnung und Pläne tragen Futura als SVG-Attribut; CSS geht vor */
+:root[data-schrift="jost"] svg text[font-family^="Futura"] { font-family: var(--font); }
 
 /* ---------- Reset / Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
