@@ -1399,6 +1399,17 @@ body::after { opacity: 0.03; }
   .page-hero--split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .page-hero--split .page-hero__media { grid-row: 1; grid-column: 1; height: clamp(20rem, 56svh, 34rem); }
   .page-hero--split .page-hero__inner { grid-row: 2; padding: 2.4rem var(--gutter) clamp(3rem, 9vw, 4rem); }
+  /* Geschichte und Karten: erst Brotkrume und Überschrift, dann das Bild kleiner
+     im Seitenraster, danach der Erklärungsabsatz (Textblock wird zu Rasterzellen).
+     So rückt der Inhalt darunter (Kartenmappe) nicht weit nach unten. */
+  .page-hero--history, .page-hero--menu { padding: 8rem var(--gutter) clamp(2.5rem, 8vw, 3.5rem); }
+  .page-hero--history .page-hero__inner, .page-hero--menu .page-hero__inner { display: contents; }
+  .page-hero--history .page-hero__media, .page-hero--menu .page-hero__media { grid-row: auto; order: 5; height: min((100vw - 2 * var(--gutter)) / 1.5, 52svh, 24rem); margin-top: 1.8rem; }
+  .page-hero--menu .page-hero__media { height: min((100vw - 2 * var(--gutter)) * 0.5625, 52svh, 22rem); }
+  .page-hero--history .page-hero__media::after, .page-hero--menu .page-hero__media::after { display: none; }
+  .page-hero--history .page-hero__answer, .page-hero--menu .page-hero__answer { order: 6; margin-top: 1.8rem; }
+  .page-hero--history .thennow__handle::after { width: 2.6rem; height: 2.6rem; font-size: 0.95rem; }
+  .page-hero--history .thennow__label { padding: 0.3rem 0.55rem; font-size: 0.6rem; letter-spacing: 0.24em; }
 }
 
 /* ---------- Damals / heute ----------
