@@ -43,6 +43,14 @@
   Array.prototype.forEach.call(document.querySelectorAll("[data-expires]"), function (el) {
     if (el.getAttribute("data-expires") < currentFrom) el.hidden = true;
   });
+  /* Schließtage dagegen gelten nur bis Mitternacht: data-until ist ihr letzter Tag,
+     data-empty-after zeigt den Leertext, sobald auch der letzte vorbei ist */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-until]"), function (el) {
+    if (el.getAttribute("data-until") < todayIso) el.hidden = true;
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-empty-after]"), function (el) {
+    el.hidden = !(el.getAttribute("data-empty-after") < todayIso);
+  });
   /* Kalender nach dem Ausblenden aufräumen: Monatsüberschriften ohne sichtbare
      Termine weg, „Nächster Termin“ wandert zum ersten sichtbaren Eintrag */
   Array.prototype.forEach.call(document.querySelectorAll(".cal"), function (cal) {
@@ -410,9 +418,11 @@
           text = fill(HT.today, fmtTime(today[0]));
           if (todayC) note = { what: fill(HT.noteEarly, HT.noteToday, fmtTime(closeAt)), label: todayC.label };
         } else {
-          /* geschlossen: nächsten regulären Tag finden, Schließtage überspringen */
+          /* geschlossen: nächsten regulären Tag finden, Schließtage überspringen
+             (auch mehrere Wochen Betriebsferien am Stück) */
           var d2 = new Date(berlin);
-          for (var n = 1; n <= 14; n++) {
+          text = HT.closedToday;
+          for (var n = 1; n <= 400; n++) {
             d2.setDate(d2.getDate() + 1);
             var c2 = closureOn(isoOf(d2));
             if (!c2 || c2.type !== "ganz") {
@@ -772,7 +782,10 @@
         var err = document.createElement("p");
         err.className = "field-err";
         err.id = "field-err-" + (++errSeq);
-        (f.closest(".news-form__inline") || f).insertAdjacentElement("afterend", err);
+        /* hinter die Zeile des Felds, bei zwei Feldern in einer Zeile in Feldreihenfolge */
+        var at = f.closest(".news-form__inline, .news-form__names") || f;
+        while (at !== f && at.nextElementSibling && at.nextElementSibling.classList.contains("field-err")) at = at.nextElementSibling;
+        at.insertAdjacentElement("afterend", err);
         f.rsErr = err;
         f.setAttribute("aria-describedby", ((f.getAttribute("aria-describedby") || "") + " " + err.id).trim());
         f.addEventListener("input", function () { if (f.value.trim() && f.validity.valid) clearFieldErr(f); });
@@ -790,7 +803,7 @@
     var newsMsg = newsForm.querySelector(".news-form__msg");
     var newsBtn = newsForm.querySelector("button[type=submit]");
     var newsEmail = newsForm.querySelector("input[type=email]");
-    /* Optionale Namensfelder erst ausklappen, wenn jemand loslegt */
+    /* Namensfelder erst ausklappen, wenn jemand loslegt (spätestens beim Absenden) */
     var expand = function () { newsForm.classList.add("is-expanded"); };
     if (newsEmail) { newsEmail.addEventListener("focus", expand); newsEmail.addEventListener("input", expand); }
     var showMsg = function (text, isErr) {
@@ -808,6 +821,7 @@
     };
     newsForm.addEventListener("submit", function (e) {
       e.preventDefault();
+      expand();
       if (!checkFields(newsForm)) return;
       var data = new FormData(newsForm);
       data.append("ajax", "1");
