@@ -1,6 +1,6 @@
 # Café Reitschule München — Volltexte
 
-> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 1. November 2026
+> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 2. November 2026
 
 ## Café Reitschule München | Restaurant am Englischen Garten
 
@@ -1637,7 +1637,7 @@ Was kostet der Sonntagsbrunch?
  Erwachsene zahlen 59 €, für Kinder gelten Preise nach Alter. Der Brunch läuft jeden Sonntag von 9:30 bis 15 Uhr im Moro Mou, Getränke wie Prosecco, Wein, Bier und Kaffee sind inklusive. Gebucht wird ausschließlich über OpenTable; alle Details auf der Brunchseite .
 
 Schließt das Café Reitschule an manchen Tagen früher? 
- Ja, an einzelnen Tagen wegen geschlossener Gesellschaften. Alle Termine mit Uhrzeit stehen unter Geschlossene Gesellschaften , der Hinweis „Jetzt geöffnet“ auf der Website kündigt sie einige Tage vorher an.
+ Ja, an einzelnen Tagen wegen geschlossener Gesellschaften. Alle Termine mit Uhrzeit stehen unter Geschlossene Gesellschaften , der Hinweis „Jetzt geöffnet“ auf der Website kündigt sie bis zu zwei Tage vorher an.
 
 Wie erfahre ich von neuen Veranstaltungen? 
  Im Veranstaltungskalender auf dieser Website und über unseren Newsletter , der etwa einmal im Monat erscheint und jederzeit abbestellbar ist.
@@ -2897,7 +2897,7 @@ Kann ich an einem solchen Tag trotzdem kommen?
  Ja, bis zur angegebenen Uhrzeit. Wer an diesem Tag reserviert hat oder länger bleiben möchte, ruft am besten kurz an: +49 89 38 88 76 0.
 
 Wie erfahre ich rechtzeitig davon? 
- Alle Termine stehen auf dieser Seite und auf Aktuelles. Einige Tage vorher kündigt sie auch der Hinweis „Jetzt geöffnet“ auf der Website an.
+ Alle Termine stehen auf dieser Seite und auf Aktuelles. Bis zu zwei Tage vorher kündigt sie auch der Hinweis „Jetzt geöffnet“ auf der Website an.
 
 Kann ich das Café Reitschule für eine eigene geschlossene Gesellschaft buchen? 
  Ja. Vier Räume und drei Terrassen bieten Platz für 20 bis 450 Gäste, einzeln oder als ganzes Haus. Alles dazu unter Räume & Feste ; unser Eventteam berät Sie unter contact@cafe-reitschule.de oder +49 89 38 88 76 0.

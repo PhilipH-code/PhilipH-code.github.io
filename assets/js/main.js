@@ -325,8 +325,9 @@
     /* Beschriftungen liefert die Seite (hours-data.t, per i18n) — DE-Fallback hier */
     var HT = {
       now: "Jetzt geöffnet · heute bis %s", today: "Öffnet heute um %s", tomorrow: "Öffnet morgen um %s",
-      on: "Öffnet am %s um %s", closedToday: "Heute geschlossen", uhr: " Uhr",
-      noteTomorrow: "Morgen", noteDays: "In %s Tagen (%s)", noteEarly: " nur bis %s geöffnet", noteClosed: " geschlossen"
+      on: "Öffnet am %s um %s", closedToday: "Heute geschlossen", uhr: " Uhr", months: "",
+      noteToday: "Heute", noteTomorrow: "Morgen", noteOn: "Am %s", noteEarly: "%s nur bis %s geöffnet",
+      noteClosed: "%s geschlossen", noteFrom: "Heute ab %s geschlossen"
     };
     var hoursEl = document.getElementById("hours-data");
     if (hoursEl) {
@@ -349,6 +350,11 @@
         return (h % 12 || 12) + (m ? ":" + (m < 10 ? "0" : "") + m : "") + (h % 24 >= 12 ? " pm" : " am");
       }
       return h + (m ? ":" + (m < 10 ? "0" : "") + m : "") + HT.uhr;
+    };
+    /* Datum kurz: deutsch "5.11.", englisch "5 Nov" (Monatsnamen aus hours-data.t) */
+    var fmtDate = function (d) {
+      var mn = HT.months ? String(HT.months).split(",") : [];
+      return mn.length === 12 ? d.getDate() + " " + mn[d.getMonth()] : d.getDate() + "." + (d.getMonth() + 1) + ".";
     };
     var toMin = function (t) {
       var p = String(t || "").split(":");
@@ -379,6 +385,9 @@
       var today = hoursOn(berlin);
       var todayC = closureOn(todayIso);
       var text = "", isOpen = false;
+      /* Kleiner Zusatz unter der Statuszeile: { what: Zeitangabe, label: Anlass }.
+         Der Anlass verlinkt auf die Seite mit allen Terminen. */
+      var note = null;
       /* Nach Mitternacht: läuft noch der Abend von gestern? */
       var yest = new Date(berlin);
       yest.setDate(yest.getDate() - 1);
@@ -387,17 +396,19 @@
       if (!(yC && yC.type === "ganz") && yClose > 1440 && mins < yClose - 1440) {
         isOpen = true;
         text = fill(HT.now, fmtTime(yClose));
-        if (yC && yC.label) text += " (" + yC.label + ")";
+        if (yC && yC.label) note = { what: "", label: yC.label };
       } else if (todayC && todayC.type === "ganz") {
-        text = HT.closedToday + (todayC.label ? " · " + todayC.label : "");
+        text = HT.closedToday;
+        if (todayC.label) note = { what: "", label: todayC.label };
       } else {
         var closeAt = closeOf(today, todayC);
         if (mins >= today[0] && mins < closeAt) {
           isOpen = true;
           text = fill(HT.now, fmtTime(closeAt));
-          if (todayC && todayC.label) text += " (" + todayC.label + ")";
+          if (todayC && todayC.label) note = { what: "", label: todayC.label };
         } else if (mins < today[0]) {
           text = fill(HT.today, fmtTime(today[0]));
+          if (todayC) note = { what: fill(HT.noteEarly, HT.noteToday, fmtTime(closeAt)), label: todayC.label };
         } else {
           /* geschlossen: nächsten regulären Tag finden, Schließtage überspringen */
           var d2 = new Date(berlin);
@@ -406,32 +417,59 @@
             var c2 = closureOn(isoOf(d2));
             if (!c2 || c2.type !== "ganz") {
               var opensAt = fmtTime(hoursOn(d2)[0]);
-              text = n === 1 ? fill(HT.tomorrow, opensAt) : fill(HT.on, d2.getDate() + "." + (d2.getMonth() + 1) + ".", opensAt);
+              text = n === 1 ? fill(HT.tomorrow, opensAt) : fill(HT.on, fmtDate(d2), opensAt);
               break;
             }
           }
+          /* heute früher geschlossen: bis zum regulären Schluss sagen, warum */
+          if (todayC && mins < today[1]) note = { what: fill(HT.noteFrom, fmtTime(closeAt)), label: todayC.label };
         }
       }
 
-      /* Vorlauf-Hinweis auf kommende Schließtage (announce = Tage vorher) */
-      var note = "";
+      /* Vorlauf: kommende Schließtage höchstens zwei Tage vorher ankündigen
+         (announce = Tage vorher, im Admin 0 bis 2) */
       var da = new Date(berlin);
-      for (var k = 1; k <= 14 && !note; k++) {
+      for (var k = 1; k <= 2 && !note; k++) {
         da.setDate(da.getDate() + 1);
         var ca = closureOn(isoOf(da));
-        if (ca && k <= (ca.announce === undefined ? 1 : ca.announce)) {
-          var when = k === 1 ? HT.noteTomorrow : fill(HT.noteDays, k, da.getDate() + "." + (da.getMonth() + 1) + ".");
+        if (ca && ca !== todayC && k <= Math.min(2, ca.announce === undefined ? 1 : +ca.announce)) {
+          var when = k === 1 ? HT.noteTomorrow : fill(HT.noteOn, fmtDate(da));
           var caMin = toMin(ca.time);
-          note = when + (ca.type === "frueher" ? fill(HT.noteEarly, caMin !== null ? fmtTime(caMin) : ca.time) : HT.noteClosed) + (ca.label ? " · " + ca.label : "");
+          note = { what: ca.type === "frueher" ? fill(HT.noteEarly, when, caMin !== null ? fmtTime(caMin) : ca.time) : fill(HT.noteClosed, when), label: ca.label };
         }
       }
 
       badges.forEach(function (b) {
-        b.textContent = text;
-        if (note) {
-          var s = document.createElement("span");
+        b.textContent = "";
+        var st = document.createElement("span");
+        st.className = "open-badge__status";
+        st.textContent = text;
+        b.appendChild(st);
+        if (note && (note.what || note.label)) {
+          /* Zwei Teile, die nur zwischeneinander umbrechen: Zeitangabe, dann Anlass */
+          var s = document.createElement("span"), part = function () {
+            var p = document.createElement("span");
+            p.className = "open-badge__part";
+            return p;
+          };
           s.className = "open-badge__note";
-          s.textContent = note;
+          if (note.what) {
+            var p1 = part();
+            p1.textContent = "(" + note.what + (note.label ? "\u00a0·" : ")");
+            s.appendChild(p1);
+          }
+          if (note.label) {
+            var p2 = part();
+            if (note.what) s.appendChild(document.createTextNode(" "));
+            else p2.appendChild(document.createTextNode("("));
+            /* auf der Terminseite selbst kein Link auf sich */
+            var lk = document.createElement(b.getAttribute("data-open-badge") === "nolink" ? "span" : "a");
+            if (lk.tagName === "A") lk.href = "geschlossene-gesellschaften.html";
+            lk.textContent = note.label;
+            p2.appendChild(lk);
+            p2.appendChild(document.createTextNode(")"));
+            s.appendChild(p2);
+          }
           b.appendChild(s);
         }
         b.classList.toggle("is-open", isOpen);

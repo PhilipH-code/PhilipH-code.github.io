@@ -2346,39 +2346,78 @@ h1 .ax, h2 .ax {
 }
 
 
-/* Live-Status: Jetzt geöffnet */
+/* Live-Status: Jetzt geöffnet. Statuszeile mit Punkt, darunter klein in Klammern
+   der Hinweis auf eine geschlossene Gesellschaft (beides baut main.js). Schriftgröße
+   und Laufweite sitzen auf den Zeilen selbst, nicht auf dem <p>: so greifen Regeln
+   wie .contact__grid p nicht durch. */
 .open-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   margin-top: 1.9rem;
+  color: var(--gold-deep);
+}
+/* Der Punkt steht in der Zeile und hängt links heraus: Bricht der Status um,
+   bleibt er beim ersten Wort, und die Folgezeile beginnt unter dem Text */
+.open-badge__status {
+  padding-left: 1.05rem;
+  text-indent: -1.05rem;
   font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1.5;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  text-wrap: balance;
 }
-.hero .open-badge, .on-dark .open-badge { color: var(--gold); }
-.open-badge::before {
+.open-badge__status::before {
   content: "";
+  display: inline-block;
   width: 0.45rem;
   height: 0.45rem;
+  margin-right: 0.6rem;
+  vertical-align: 0.06em;
   border-radius: 50%;
   background: currentColor;
-  flex: none;
 }
-.open-badge.is-open::before { animation: badgePulse 2.6s var(--ease) infinite; }
+/* Handy: etwas engere Laufweite, damit „Jetzt geöffnet · heute bis 14:30 Uhr“ in eine Zeile passt */
+@media (max-width: 420px) {
+  .open-badge__status { letter-spacing: 0.18em; }
+}
+.open-badge.is-open .open-badge__status::before { animation: badgePulse 2.6s var(--ease) infinite; }
+/* Zusatz: Lesetext-Kursive, eingerückt bis unter den Text der Statuszeile */
 .open-badge__note {
-  display: block;
-  flex-basis: 100%;
-  margin-top: 0.35rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  color: var(--gold-deep);
-  opacity: 0.95;
+  padding-left: 1.05rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--muted, #6b6252);
 }
-.open-badge { flex-wrap: wrap; }
-.hero .open-badge__note, .on-dark .open-badge__note { color: var(--cream); opacity: 0.8; }
+.open-badge__part { display: inline-block; }
+.open-badge__note a {
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
+}
+.open-badge__note a:hover { color: var(--ink); text-decoration-color: currentColor; }
+.hero .open-badge, .on-dark .open-badge { color: var(--gold); }
+.hero .open-badge__note, .on-dark .open-badge__note { color: rgba(240, 233, 214, 0.78); }
+.hero .open-badge__note a:hover, .on-dark .open-badge__note a:hover { color: var(--cream); }
+/* Im Hero mittig. Die Höhe für Status und eine Zusatzzeile steht schon vor dem
+   Skript fest: Erscheint der Hinweis, verschiebt sich nichts. Bricht der Zusatz
+   auf schmalen Schirmen um, läuft er in den unteren Innenabstand. */
+.hero .open-badge { align-items: center; height: 2.7rem; }
+.hero .open-badge[hidden] { display: flex; visibility: hidden; }
+.hero .open-badge__status { padding-left: 0; text-indent: 0; }
+.hero .open-badge__note { padding-left: 0; }
 @keyframes badgePulse {
   0% { box-shadow: 0 0 0 0 rgba(179, 153, 100, 0.45); }
   70% { box-shadow: 0 0 0 0.55rem rgba(179, 153, 100, 0); }
@@ -2421,7 +2460,7 @@ h1 .ax, h2 .ax {
 /* ---------- Reduzierte Bewegung ---------- */
 @media (prefers-reduced-motion: reduce) {
   .loader { display: none; }
-  .open-badge.is-open::before { animation: none; }
+  .open-badge.is-open .open-badge__status::before { animation: none; }
   .hero__kicker, .hero h1, .hero .thin, .hero__rule, .hero__sub, .hero__cta, .hero .seal, .hero .scroll-cue, .hero__media img { animation: none !important; opacity: 1; transform: none; transition: none; }
   .hero__rule { transform: scaleX(1); }
   .statement__text .w { opacity: 1; transform: none; transition: none; }
@@ -3789,6 +3828,8 @@ html:has(.nav.is-open) .consent-banner { visibility: hidden; }
 /* Kontakt: Link unter den Öffnungszeiten */
 .hours-link { display: inline-block; margin-top: 0.9rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .hours-link:hover { color: var(--ink); }
+/* .contact__grid a würde den Link sonst auf Fließtextgröße ziehen */
+.contact__grid .hours-link { font-size: 0.7rem; line-height: 1.5; }
 @media (min-width: 761px) {
   .closures .cal-row:nth-child(1 of .cal-row:not([hidden])):hover { padding-left: clamp(1.6rem, 3vw, 2.2rem); }
 }
@@ -3929,7 +3970,7 @@ html.rs-consent-open .page-scroll { scroll-padding-bottom: calc(var(--consent-h,
 /* Bewegung anhalten (WCAG 2.2.2): Laufbänder, Siegel, Hinweise, Bildwechsel.
    html.is-still setzt consent-boot.js schon vor dem ersten Bild aus localStorage. */
 html.is-still .gallery__row, html.is-still .marquee__track, html.is-still .family-strip__track,
-html.is-still .seal__ring, html.is-still .scroll-cue::after, html.is-still .open-badge.is-open::before { animation-play-state: paused; }
+html.is-still .seal__ring, html.is-still .scroll-cue::after, html.is-still .open-badge.is-open .open-badge__status::before { animation-play-state: paused; }
 /* Laufbänder laufen unter der Maus weiter (Wunsch des Hauses); anhalten nur per Knopf.
    Ausnahme: Tastaturfokus auf einem Familien-Logo, sonst wandert der Link davon */
 .family-strip:focus-within .family-strip__track { animation-play-state: paused; }
