@@ -488,6 +488,77 @@
     } catch (err) { /* Ohne Zeitzonen-Unterstützung bleibt der Hinweis verborgen */ }
   }
 
+  /* ---------- Damals / heute (Geschichte) ----------
+     --pos legt die Zeichnung bis zur Griffposition frei. Maus: drücken und ziehen,
+     Klick springt. Finger: nur waagerechtes Wischen zieht, senkrecht scrollt die
+     Seite. Tastatur und Screenreader über den versteckten Schieberegler. */
+  document.querySelectorAll("[data-thennow]").forEach(function (box) {
+    var range = box.querySelector(".thennow__range");
+    var lblThen = box.getAttribute("data-then") || "", lblNow = box.getAttribute("data-now") || "";
+    var hintRaf = 0, touched = false;
+    var set = function (v) {
+      v = Math.max(0, Math.min(100, v));
+      box.style.setProperty("--pos", v + "%");
+      if (range) {
+        range.value = String(Math.round(v));
+        range.setAttribute("aria-valuetext", lblThen + " " + Math.round(v) + " %, " + lblNow + " " + (100 - Math.round(v)) + " %");
+      }
+    };
+    var userTook = function () { touched = true; if (hintRaf) { cancelAnimationFrame(hintRaf); hintRaf = 0; } };
+    var xToPos = function (x) { var r = box.getBoundingClientRect(); return (x - r.left) / r.width * 100; };
+    var start = null, dragging = false;
+    box.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      userTook();
+      start = { x: e.clientX, y: e.clientY, id: e.pointerId };
+      if (e.pointerType === "mouse") {
+        dragging = true;
+        box.setPointerCapture(e.pointerId);
+        box.classList.add("is-dragging");
+        set(xToPos(e.clientX));
+        e.preventDefault();
+      }
+    });
+    box.addEventListener("pointermove", function (e) {
+      if (!start || e.pointerId !== start.id) return;
+      if (!dragging) {
+        var dx = Math.abs(e.clientX - start.x), dy = Math.abs(e.clientY - start.y);
+        if (dy > 8 && dy > dx) { start = null; return; }      /* senkrecht: Seite scrollt */
+        if (dx < 8) return;
+        dragging = true;
+        try { box.setPointerCapture(e.pointerId); } catch (err) {}
+        box.classList.add("is-dragging");
+      }
+      set(xToPos(e.clientX));
+    });
+    var end = function () { start = null; dragging = false; box.classList.remove("is-dragging"); };
+    box.addEventListener("pointerup", end);
+    box.addEventListener("pointercancel", end);
+    if (range) range.addEventListener("input", function () { userTook(); set(+range.value); });
+    set(50);
+    /* Einmaliger Hinweis, dass sich der Griff bewegen lässt */
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      var hio = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        hio.disconnect();
+        window.setTimeout(function () {
+          if (touched) return;
+          var t0 = 0, dur = 1600;
+          var step = function (ts) {
+            if (touched) return;
+            if (!t0) t0 = ts;
+            var k = Math.min(1, (ts - t0) / dur);
+            set(50 + Math.sin(k * Math.PI * 2) * 9 * (1 - k * 0.4));
+            hintRaf = k < 1 ? requestAnimationFrame(step) : 0;
+            if (k >= 1) set(50);
+          };
+          hintRaf = requestAnimationFrame(step);
+        }, 900);
+      }, { threshold: 0.5 });
+      hio.observe(box);
+    }
+  });
+
   /* ---------- Ankündigungs-Popup (Zeitfenster steuert der Admin) ---------- */
   var popupEl = document.getElementById("popup");
   var popupData = document.getElementById("popup-data");

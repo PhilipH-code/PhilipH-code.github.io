@@ -639,8 +639,6 @@ body::after {
 
 /* ---------- Geschichte / Timeline ---------- */
 .history__head { max-width: 46rem; margin-bottom: clamp(3rem, 7vw, 5rem); }
-.history__figure { margin-block: clamp(2.5rem, 6vw, 4rem); }
-.history__figure img { width: 100%; filter: sepia(0.25) contrast(1.02); }
 
 .timeline { position: relative; margin-top: 3rem; list-style: none; padding-left: 0; }
 .timeline::before {
@@ -1317,6 +1315,148 @@ body::after { opacity: 0.03; }
   color: var(--gold);
 }
 .page-hero__call:hover { color: var(--gold-light); }
+
+/* ---------- Unterseiten mit Bild-Auftakt ----------
+   --photo: Foto über die ganze Breite, Text unten links darauf (Raumseiten).
+   --split: Text links auf Espresso, Bild rechts bis an den Rand (Karten,
+   Geschichte mit Damals/Heute-Schieber). Höhen stehen vor dem Laden fest
+   (kein Springen), das Bild ist das LCP-Element und wird vorgeladen. */
+.page-hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero--photo .page-hero__media img,
+  .page-hero--split .page-hero__media > picture img { animation: heroSettle 1.8s var(--ease) both; }
+}
+@keyframes heroSettle { from { transform: scale(1.06); } to { transform: none; } }
+
+.page-hero--photo {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(32rem, 84svh, 62rem);
+  padding: clamp(9rem, 16vw, 12.5rem) 0 clamp(3rem, 6vw, 5rem);
+}
+.page-hero--photo .page-hero__media { position: absolute; inset: 0; z-index: -2; }
+/* Oben dunkel für Logo und Menü; unten links, wo die Schrift steht, kräftig
+   abgedunkelt (auch helle Fotos halten so den Kontrast), der Rest bleibt hell */
+.page-hero--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(20, 16, 9, 0.6) 0%, rgba(20, 16, 9, 0) 24%),
+    radial-gradient(150% 115% at 0% 100%, rgba(20, 16, 9, 0.9) 0%, rgba(20, 16, 9, 0.82) 48%, rgba(20, 16, 9, 0) 90%),
+    linear-gradient(0deg, rgba(20, 16, 9, 0.6) 0%, rgba(20, 16, 9, 0) 50%);
+}
+.page-hero--photo .breadcrumb, .page-hero--photo .eyebrow, .page-hero--photo .page-hero__sub { text-shadow: 0 1px 14px rgba(20, 16, 9, 0.7); }
+/* Auf Fotos tragen kleine Zeilen Creme statt Gold (Gold bräuchte fast schwarzen Grund),
+   die goldene Linie am Kicker bleibt */
+.page-hero--photo .breadcrumb, .page-hero--photo .breadcrumb a, .page-hero--photo .eyebrow { color: var(--cream); }
+.page-hero--photo .eyebrow::after { background: var(--gold); opacity: 1; }
+
+.page-hero--split {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--media-w, 56cqw);
+  min-height: clamp(34rem, 86svh, 60rem);
+  padding: 0;
+}
+.page-hero--split .page-hero__inner {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+  width: auto;
+  margin: 0;
+  /* linke Kante wie das Seitenraster (.wrap: 78rem mittig) */
+  padding: clamp(9rem, 16vw, 12.5rem) clamp(1.5rem, 4cqw, 3.5rem) clamp(3.5rem, 7vw, 5.5rem) max(var(--gutter), (100cqw - 78rem) / 2);
+}
+/* schmalere Spalte: kleiner und ohne automatische Trennung („GE-SCHICHTE“) */
+.page-hero--split h1 { font-size: clamp(1.9rem, 3.6vw, 3.4rem); -webkit-hyphens: manual; hyphens: manual; }
+.page-hero--split .page-hero__answer { font-size: 0.92rem; }
+.page-hero--split .page-hero__media { grid-column: 2; grid-row: 1; position: relative; overflow: clip; }
+.page-hero--split .page-hero__media > picture { position: absolute; inset: 0; }
+.page-hero--split .page-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(20, 16, 9, 0.55) 0%, rgba(20, 16, 9, 0) 24%);
+}
+.page-hero--menu { --media-w: 46cqw; }
+.page-hero--menu .page-hero__media img { object-position: 50% 58%; }
+.page-hero--history { --media-w: 56cqw; }
+
+@media (max-width: 860px) {
+  .page-hero--photo { min-height: clamp(28rem, 72svh, 44rem); }
+  /* Handy: der Textblock nimmt mehr Höhe ein, der Schleier reicht entsprechend höher */
+  .page-hero--photo::before {
+    background:
+      linear-gradient(180deg, rgba(20, 16, 9, 0.6) 0%, rgba(20, 16, 9, 0) 22%),
+      linear-gradient(0deg, rgba(20, 16, 9, 0.92) 0%, rgba(20, 16, 9, 0.84) 55%, rgba(20, 16, 9, 0.62) 72%, rgba(20, 16, 9, 0) 94%);
+  }
+  .page-hero--split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .page-hero--split .page-hero__media { grid-row: 1; grid-column: 1; height: clamp(20rem, 56svh, 34rem); }
+  .page-hero--split .page-hero__inner { grid-row: 2; padding: 2.4rem var(--gutter) clamp(3rem, 9vw, 4rem); }
+}
+
+/* ---------- Damals / heute ----------
+   Zwei Bilder übereinander, „damals“ wird bis --pos freigelegt. Ziehen mit
+   Maus, Finger (nur waagerecht, senkrecht scrollt die Seite) oder per Tastatur
+   über den Schieberegler, den Screenreader als „Damals / heute“ ansagen. */
+.thennow { position: absolute; inset: 0; overflow: clip; --pos: 50%; touch-action: pan-y; cursor: ew-resize; user-select: none; -webkit-user-select: none; }
+.thennow picture { position: absolute; inset: 0; }
+.thennow img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; }
+.thennow__now img { object-position: 50% 64%; }
+.thennow__then { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+/* Zeichnung warm wie altes Papier, Haupthaus ungefähr dort, wo es heute steht */
+.thennow__then img { object-position: 80% 80%; filter: sepia(0.35) contrast(1.04) brightness(0.98); }
+.thennow__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 1px;
+  background: var(--gold);
+  box-shadow: 0 0 0 0.5px rgba(20, 16, 9, 0.25);
+  pointer-events: none;
+}
+.thennow__handle::after {
+  content: "\2039\2003\203A";
+  position: absolute;
+  top: 58%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(22, 18, 10, 0.72);
+  color: var(--gold);
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+.thennow:hover .thennow__handle::after, .thennow.is-dragging .thennow__handle::after { transform: translate(-50%, -50%) scale(1.08); background: rgba(22, 18, 10, 0.86); }
+.thennow:has(.thennow__range:focus-visible) .thennow__handle::after { outline: 2px solid var(--gold); outline-offset: 4px; }
+.thennow__label {
+  position: absolute;
+  bottom: clamp(1rem, 2.2vw, 1.6rem);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(22, 18, 10, 0.62);
+  pointer-events: none;
+}
+.thennow__label--then { left: clamp(1rem, 2.2vw, 1.6rem); }
+.thennow__label--now { right: clamp(1rem, 2.2vw, 1.6rem); }
+.thennow__range { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; opacity: 0; }
 
 /* Brotkrumen */
 .breadcrumb {
