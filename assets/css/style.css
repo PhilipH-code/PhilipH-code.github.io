@@ -46,7 +46,7 @@
 
   --font: "Jost", "Century Gothic", "Avenir Next", Avenir, Arial, sans-serif;
 
-  --fs-hero: clamp(2.6rem, 8.5vw, 7.5rem);
+  --fs-hero: clamp(2.6rem, 9.2vw, 8.1rem);
   --fs-h2: clamp(2rem, 5vw, 4.2rem);
   --fs-h3: clamp(1.25rem, 2.4vw, 1.9rem);
   --fs-body: clamp(1rem, 1.15vw, 1.125rem);
@@ -439,7 +439,7 @@ body::after {
 }
 .hero__inner {
   text-align: center;
-  padding: 6rem var(--gutter) 7.5rem;
+  padding: 5.25rem var(--gutter) 7.5rem;
 }
 .hero__kicker {
   font-size: var(--fs-small);
@@ -461,14 +461,14 @@ body::after {
   width: 4.5rem;
   height: 1px;
   background: var(--gold);
-  margin: 2.2rem auto;
+  margin: 1.9rem auto;
 }
 .hero__sub {
   max-width: 34rem;
   margin-inline: auto;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
 }
-.hero__cta { margin-top: 2.6rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.hero__cta { margin-top: 2.4rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
 /* Rotierendes Siegel */
 .seal {
@@ -1168,7 +1168,7 @@ body::after {
   .footer__brand img { height: 2.7rem; margin-bottom: 1rem; }
   .footer__brand p { font-size: 0.88rem; }
   .footer__award { margin-top: 1.1rem; gap: 0.7rem; }
-  .footer__award-badge { width: 3.25rem; height: 3.25rem; }
+  .footer__brand .footer__award-badge { width: 3.25rem; height: 3.25rem; }
   .footer h3 { margin-bottom: 0.85rem; }
   .footer li { margin-bottom: 0.5rem; }
   .footer li a { font-size: 0.9rem; }
@@ -1986,8 +1986,9 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
   .actionbar { display: grid; }
   /* Siegel über die Aktionsleiste heben, damit es nicht verdeckt wird */
   .seal { bottom: calc(3.4rem + env(safe-area-inset-bottom) + 1.4rem); right: clamp(1rem, 3vw, 2rem); }
-  .page-scroll { padding-bottom: 3.4rem; scroll-padding-bottom: calc(3.4rem + env(safe-area-inset-bottom) + 1rem); }
-  .footer { padding-bottom: 4.5rem; }
+  .page-scroll { scroll-padding-bottom: calc(3.4rem + env(safe-area-inset-bottom) + 1rem); }
+  /* Hero endet über Aktionsleiste und Wörterlaufband: das Band steht noch im ersten Bild */
+  .hero { min-height: calc(100svh - 3.4rem - 2.75rem - env(safe-area-inset-bottom)); }
 }
 
 
@@ -2408,26 +2409,32 @@ body.is-exiting { opacity: 0; transition: opacity 0.25s ease; }
   margin-top: 1.6rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
 }
-.footer__award > span { display: flex; flex-direction: column; gap: 0.25rem; }
-.footer__award-badge {
-  width: 4rem;
-  height: 4rem;
+.footer__award > span { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+/* .footer__brand .… schlägt die Logo-Regel (.footer__brand img: Höhe und Abstand
+   nach unten), sonst sitzt das Siegel neben dem Text zu hoch */
+.footer__brand .footer__award-badge {
+  width: 3.4rem;
+  height: 3.4rem;
+  margin: 0;
   flex: none;
   border-radius: 50%;
   box-shadow: 0 0 0 1px var(--line-light), 0 6px 16px -8px rgba(0, 0, 0, 0.6);
 }
 .footer__award-title {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.3em;
+  line-height: 1.3;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
 }
+@media (min-width: 1240px) { .footer__award-title { white-space: nowrap; } }
 .footer__award-sub {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: 0.6rem;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.7;
 }
@@ -2447,6 +2454,15 @@ h2 { color: var(--gold-deep); }
 
 /* Goldene Abschlussleiste wie die Rechte-Zeile des Originals (#998356) */
 .footer { border-bottom: 0.55rem solid #998356; }
+/* Nur der Footer mit Aktionsleiste (footer.php; die Rechtsseiten haben keine) */
+@media (max-width: 900px) {
+  .footer--actionbar {
+    --ab-h: calc(3.4rem + env(safe-area-inset-bottom));
+    border-bottom: 0;
+    padding-bottom: calc(1.4rem + 0.55rem + var(--ab-h));
+    background: linear-gradient(#998356, #998356) 0 calc(100% - var(--ab-h)) / 100% 0.55rem no-repeat, var(--ink);
+  }
+}
 
 /* Pferde-Monogramm im Reservierungsband */
 .cta-monogram {
@@ -2781,7 +2797,6 @@ h1 .ax, h2 .ax {
   align-items: center;
   gap: clamp(1.5rem, 4vw, 3.5rem);
 }
-.family-strip__track .is-dup { display: none; }
 .family-strip__track img {
   height: clamp(1.5rem, 2.6vw, 2.1rem);
   width: auto;
@@ -3552,11 +3567,14 @@ html:has(.nav.is-open) .consent-banner { visibility: hidden; }
    ============================================================ */
 @media (max-width: 700px) {
   /* Hero füllt genau einen Schirm; das Statement beginnt direkt darunter */
-  .hero__inner { padding: 4.75rem var(--gutter) 5.5rem; }
+  .hero__inner { padding: 4.75rem var(--gutter) 3rem; }
+  /* „REITSCHULE“ füllt die Zeile (Seitenrand bleibt), statt bei 2,6rem stehen zu bleiben */
+  .hero h1 { font-size: min(12.6vw, 3.6rem); }
 
   /* Buttons in CTA-Reihen: volle Breite, zentriert — sicher zu treffen */
-  .hero__cta { flex-direction: column; align-items: stretch; }
-  .hero__cta .btn { justify-content: center; text-align: center; }
+  /* Knöpfe untereinander, gleich breit, aber nicht bis zum Rand (Hero und Reservierungsband) */
+  .hero__cta { flex-direction: column; align-items: center; }
+  .hero__cta .btn { justify-content: center; text-align: center; width: min(100%, 16.5rem); }
   .reserve__cta .btn { width: 100%; justify-content: center; }
 
   /* Scroll-Hinweis kollidiert mobil mit der Actionbar */
@@ -3613,22 +3631,12 @@ html:has(.nav.is-open) .consent-banner { visibility: hidden; }
   .cal-row--next { padding: 1.3rem 1.1rem; }
   .menu-sheet { padding: 1.75rem 1.1rem; }
 
-  /* Familien-Logos: nahtloses Laufband */
+  /* Familien-Logos: ruhig in zwei Reihen zu drei statt Laufband (direkt darunter
+     läuft schon die Galerie; zwei Laufbänder übereinander waren zu viel Bewegung) */
   .family-strip { padding: 1.75rem 0; }
-  .family-strip__label { margin-bottom: 1.2rem; font-size: 0.68rem; }
-  .family-strip__track {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    width: max-content;
-    gap: 2.4rem;
-    animation: marquee 26s linear infinite;
-  }
-  .family-strip__track .is-dup { display: inline-flex; }
-  .family-strip__track img { height: 1.5rem; max-width: 8rem; }
-}
-@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
-  .family-strip__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
-  .family-strip__track .is-dup { display: none; }
+  .family-strip__label { margin-bottom: 1.4rem; font-size: 0.68rem; }
+  .family-strip__track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 1rem; justify-items: center; max-width: 26rem; margin-inline: auto; }
+  .family-strip__track img { height: 1.5rem; max-width: 6.5rem; }
 }
 
 /* ---------- Sprachumschalter ---------- */
@@ -4125,11 +4133,9 @@ html.rs-consent-open .page-scroll { scroll-padding-bottom: calc(var(--consent-h,
 
 /* Bewegung anhalten (WCAG 2.2.2): Laufbänder, Siegel, Hinweise, Bildwechsel.
    html.is-still setzt consent-boot.js schon vor dem ersten Bild aus localStorage. */
-html.is-still .gallery__row, html.is-still .marquee__track, html.is-still .family-strip__track,
+html.is-still .gallery__row, html.is-still .marquee__track,
 html.is-still .seal__ring, html.is-still .scroll-cue::after, html.is-still .open-badge.is-open .open-badge__status::before { animation-play-state: paused; }
-/* Laufbänder laufen unter der Maus weiter (Wunsch des Hauses); anhalten nur per Knopf.
-   Ausnahme: Tastaturfokus auf einem Familien-Logo, sonst wandert der Link davon */
-.family-strip:focus-within .family-strip__track { animation-play-state: paused; }
+/* Laufbänder laufen unter der Maus weiter (Wunsch des Hauses); anhalten nur per Knopf */
 .motion-toggle {
   display: inline-flex; align-items: center; gap: 0.6rem;
   min-height: 2.75rem; padding: 0.4rem 0.2rem;

@@ -1,6 +1,6 @@
 # Café Reitschule München — Volltexte
 
-> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 2. November 2026
+> Vollständige Seiteninhalte für KI-Assistenten. Faktenblatt: https://www.cafe-reitschule.de/llms.txt · Stand: 7. November 2026
 
 ## Café Reitschule München | Restaurant am Englischen Garten
 
@@ -102,14 +102,21 @@ Die Reitschule teilt die Königinstraße 34 mit zwei Nachbarn aus der eigenen Fa
 Moderne griechische Küche mit klarer Handschrift: frischer Fisch und Meeresfrüchte, dazu eine tiefe Weinkarte. Sonntags richtet Moro Mou das Brunchbuffet der Reitschule aus. 
  Zur Website ↗︎
 
-Neu diesen Sommer
-
 Neu in diesem Sommer auf der Vorderterrasse: Aperitifs unter freiem Himmel, ein Hauch SoHo an der Königinstraße. Donnerstag bis Sonntag, bis die Sonne weg ist. 
  Zur Website ↗︎
 
 Eine Münchner Familie · Sechs Häuser, eine Handschrift
 
 Laufband anhalten
+
+Reservierung
+
+### Ihr Tisch wartet
+
+Online rund um die Uhr. Für denselben Tag rufen Sie am besten kurz an.
+
+Online reservieren 
+ +49 89 38 88 76 0
 
 Gut zu wissen
 
@@ -146,15 +153,6 @@ Kann ich im Café Reitschule feiern?
 
 Gibt es Parkplätze am Café Reitschule? 
  In den Straßen rund um die Königinstraße finden Sie Parkplätze, sie sind aber begrenzt. Entspannter kommen Sie mit der U-Bahn (Giselastraße, U3/U6) oder mit dem Rad, das Sie direkt vor dem Haus abstellen.
-
-Reservierung
-
-### Ihr Tisch wartet
-
-Online rund um die Uhr. Für denselben Tag rufen Sie am besten kurz an.
-
-Online reservieren 
- +49 89 38 88 76 0
 
 ## Restaurant Schwabing mit Terrasse | Café Reitschule München
 
@@ -1608,8 +1606,7 @@ Gut zu wissen
 
 ### Geschlossene Gesellschaften
 
-Als Nächstes: Do, 5. November 2026 · Ab 14:30 Uhr geschlossen 
- Als Nächstes: Sa, 21. November 2026 · Ab 13 Uhr geschlossen 
+Als Nächstes: Sa, 21. November 2026 · Ab 13 Uhr geschlossen 
  Als Nächstes: Fr, 27. November 2026 · Ab 14:30 Uhr geschlossen 
  Als Nächstes: Fr, 11. Dezember 2026 · Ab 14:30 Uhr geschlossen
 
@@ -2821,17 +2818,6 @@ Sonder­öffnungszeiten
 Die nächsten Termine
 
 ### Wann wir früher schließen
-
-Als Nächstes
-
-Do 
- 5 
- Nov
-
-### Ab 14:30 Uhr geschlossen
-
-Geöffnet 11:30 bis 14:30 Uhr · Geschlossene Gesellschaft 
- Donnerstag, 5. November 2026
 
 Als Nächstes
 

@@ -966,8 +966,12 @@
     var updateBar = function () {
       var y = getScrollY();
       var goingDown = y > lastY;
+      /* Am Seitenende bleibt sie stehen: dort schließt sie direkt unter der
+         goldenen Leiste ab (der Footer hält ihren Platz frei) */
+      var atEnd = getScrollMax() - y < 140;
       /* Nahe am Seitenanfang immer sichtbar; kleine Schwelle gegen Zittern */
-      if (Math.abs(y - lastY) > 6) {
+      if (atEnd) { actionbar.classList.remove("is-hidden"); lastY = y; }
+      else if (Math.abs(y - lastY) > 6) {
         if (goingDown && y > 220) actionbar.classList.add("is-hidden");
         else actionbar.classList.remove("is-hidden");
         lastY = y;
